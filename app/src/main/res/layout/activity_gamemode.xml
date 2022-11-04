@@ -88,4 +88,25 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btn_backmain"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:backgroundTint="#0B0A0A"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="8dp"
+        android:text="back"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_choicegamemode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.31"
+        app:strokeColor="#F4F0F0"
+        app:strokeWidth="1dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
         val btn_classic: TextView = findViewById(R.id.btn_classicmode)
         val btn_hard: TextView = findViewById(R.id.btn_hardmode)
         val btn_timeAttack: TextView = findViewById(R.id.btn_timeattackmode)
+        val btn_backMain: TextView = findViewById(R.id.btn_backmain)
+
 
         btn_classic.setOnClickListener {
             setContentView(R.layout.activity_classicmode)
@@ -29,6 +31,12 @@ class MainActivity : AppCompatActivity() {
             setContentView(R.layout.activity_timeattackmode)
             timeAttackMode()
         }
+
+        btn_backMain.setOnClickListener {
+            setContentView(binding.root)
+        }
+
+
 
     }
 
