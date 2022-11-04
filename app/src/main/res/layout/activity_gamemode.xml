@@ -17,7 +17,7 @@
         android:layout_height="100dp"
         android:layout_margin="10dp"
         android:backgroundTint="#070707"
-        android:text="게임 모드 선택"
+        android:text="● 게임 모드 선택"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
