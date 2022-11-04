@@ -14,7 +14,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        binding.btnGamestart.setOnClickListener {
+            setContentView(R.layout.activity_gamemode)
+        }
 
 
 
