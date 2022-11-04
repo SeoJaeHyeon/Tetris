@@ -17,18 +17,20 @@ class MainActivity : AppCompatActivity() {
 
         btn_classic.setOnClickListener {
             setContentView(R.layout.activity_classicmode)
+            classicMode()
         }
 
         btn_hard.setOnClickListener {
             setContentView(R.layout.activity_hardmode)
+            hardMode()
         }
 
         btn_timeAttack.setOnClickListener {
             setContentView(R.layout.activity_timeattackmode)
+            timeAttackMode()
         }
 
     }
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
