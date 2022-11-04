@@ -30,7 +30,7 @@
         app:layout_constraintVertical_bias="0.36">
 
         <Button
-            android:id="@+id/btn_classicmode"
+            android:id="@+id/btn_gamestart"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_margin="10dp"
@@ -46,7 +46,7 @@
             app:strokeWidth="1dp" />
 
         <Button
-            android:id="@+id/btn_hardmode"
+            android:id="@+id/btn_setting"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_margin="10dp"
