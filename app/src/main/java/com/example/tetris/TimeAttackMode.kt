@@ -11,6 +11,7 @@ class TimeAttackMode: AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityTimeattackmodeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     fun hardMode() {

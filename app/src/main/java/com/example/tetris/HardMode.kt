@@ -12,7 +12,8 @@ class HardMode: AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityHardmodeBinding.inflate(layoutInflater)
-    }
+        setContentView(binding.root)
+        }
 
     fun hardMode() {
 // 버튼 눌렸을때

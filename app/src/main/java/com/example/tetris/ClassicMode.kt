@@ -33,6 +33,7 @@ class ClassicMode : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityClassicmodeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     public fun classicMode() {
