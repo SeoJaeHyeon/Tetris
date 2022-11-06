@@ -5,4 +5,121 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#050859"
-    tools:context=".MainActivity"/>
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <SurfaceView
+                android:id="@+id/surfaceView2"
+                android:layout_width="312dp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/ibtn_stop"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    app:srcCompat="@drawable/stop" />
+
+                <TextView
+                    android:id="@+id/txt_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="NEXT" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/txt_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="#F4E75C"
+                    android:gravity="center_horizontal"
+                    android:text="<LEVEL>"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/txt_high"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="#F3E65C"
+                    android:gravity="center_horizontal"
+                    android:text="<HIGH>"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/txt_score"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="#F2E55C"
+                    android:gravity="center_horizontal"
+                    android:text="<SCORE>"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ibtn_left"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/l2" />
+
+            <ImageButton
+                android:id="@+id/ibtn_down"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/down" />
+
+            <ImageButton
+                android:id="@+id/ibtn_right"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/right" />
+
+            <ImageButton
+                android:id="@+id/ibtn_change"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/change" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
