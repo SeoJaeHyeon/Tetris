@@ -28,17 +28,17 @@ class MainActivity : AppCompatActivity() {
 
         bindingChoiceGame.btnClassicmode.setOnClickListener {
             setContentView(R.layout.activity_classicmode)
-
+            ClassicMode()
         }
 
         bindingChoiceGame.btnHardmode.setOnClickListener {
             setContentView(R.layout.activity_hardmode)
-
+            HardMode()
         }
 
         bindingChoiceGame.btnTimeattackmode.setOnClickListener {
             setContentView(R.layout.activity_timeattackmode)
-
+            TimeAttackMode()
         }
 
         bindingChoiceGame.btnBackmain.setOnClickListener {
