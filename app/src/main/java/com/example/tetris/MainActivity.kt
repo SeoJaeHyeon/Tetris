@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
     fun settingMode() { //게임 설정 화면
         val btn_back : TextView = findViewById(R.id.btn_back)
         val btn_bgmON : Button = findViewById((R.id.btn_bgmON))
+        val btn_bgmOFF : Button = findViewById((R.id.btn_bgmOFF))
 
         btn_bgmON.setOnClickListener {
             if (mediaPlayer == null) { //노래 겹쳐서 재생방지
