@@ -31,8 +31,8 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/ibtn_stoph"
+                <ImageView
+                    android:id="@+id/img_stoph"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
@@ -71,6 +71,7 @@
                     android:background="#F2E55C"
                     android:gravity="center_horizontal"
                     android:text="<SCORE>" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -79,32 +80,32 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/ibtn_lefth"
+            <ImageView
+                android:id="@+id/img_lefth"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/l2" />
 
-            <ImageButton
-                android:id="@+id/ibtn_downh"
+            <ImageView
+                android:id="@+id/img_downh"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/down" />
 
-            <ImageButton
-                android:id="@+id/ibtn_righth"
+            <ImageView
+                android:id="@+id/img_righth"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/right" />
 
-            <ImageButton
-                android:id="@+id/ibtn_changeh"
+            <ImageView
+                android:id="@+id/img_changeh"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"

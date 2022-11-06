@@ -1,38 +1,35 @@
 package com.example.tetris
 
-import android.widget.Button
-import com.example.tetris.databinding.ActivityClassicmodeBinding
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tetris.databinding.ActivityHardmodeBinding
 
-fun hardMode() {
 
+class HardMode: AppCompatActivity() {
     lateinit var binding: ActivityHardmodeBinding
 
-    binding = ActivityHardmodeBinding.inflate(layoutinflater)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
+        binding = ActivityHardmodeBinding.inflate(layoutInflater)
+    }
 
-    val btn_lefth: Button = findViewById(R.id.ibtn_lefth)
-    val btn_righth: Button = findViewById(R.id.ibtn_righth)
-    val btn_downh: Button = findViewById(R.id.ibtn_downh)
-    val btn_changeh: Button = findViewById(R.id.ibtn_changeh)
-    val btn_stoph: Button = findViewById(R.id.ibtn_stoph)
-
-
+    fun hardMode() {
 // 버튼 눌렸을때
-    binding.ibtnLefth.setOnClickListener {
-        left()
+        binding.imgLefth.setOnClickListener {
+            left()
+        }
+        binding.imgRighth.setOnClickListener {
+            right()
+        }
+        binding.imgDownh.setOnClickListener {
+            down()
+        }
+        binding.imgChangeh.setOnClickListener {
+            change()
+        }
+        binding.imgStoph.setOnClickListener {
+            stop()
+        }
     }
-    binding.ibtnRighth.setOnClickListener {
-        right()
-    }
-    binding.ibtnDownh.setOnClickListener {
-        down()
-    }
-    binding.ibtnChangeh.setOnClickListener {
-        change()
-    }
-    binding.ibtnStoph.setOnClickListener {
-        stop()
-    }
-
 }

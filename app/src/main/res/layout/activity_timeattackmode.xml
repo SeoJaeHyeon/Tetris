@@ -31,8 +31,8 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/ibtn_stopt"
+                <ImageView
+                    android:id="@+id/img_stopt"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
@@ -80,37 +80,38 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/ibtn_leftt"
+            <ImageView
+                android:id="@+id/img_leftt"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/l2" />
 
-            <ImageButton
-                android:id="@+id/ibtn_downt"
+            <ImageView
+                android:id="@+id/img_downt"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/down" />
 
-            <ImageButton
-                android:id="@+id/ibtn_rightt"
+            <ImageView
+                android:id="@+id/img_rightt"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/right" />
 
-            <ImageButton
-                android:id="@+id/ibtn_changet"
+            <ImageView
+                android:id="@+id/img_changet"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/change" />
         </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

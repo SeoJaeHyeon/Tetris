@@ -1,40 +1,34 @@
 package com.example.tetris
 
-import android.widget.Button
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tetris.databinding.ActivityTimeattackmodeBinding
 
-fun timeAttackMode() {
-
+class TimeAttackMode: AppCompatActivity() {
     lateinit var binding: ActivityTimeattackmodeBinding
 
-    binding = ActivityTimeattackmodeBinding.inflate(layoutinflater)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    val btn_left: Button = findViewById(R.id.ibtn_left)
-    val btn_right: Button = findViewById(R.id.ibtn_right)
-    val btn_down: Button = findViewById(R.id.ibtn_down)
-    val btn_change: Button = findViewById(R.id.ibtn_change)
-    val btn_stop: Button = findViewById(R.id.ibtn_stop)
-
-
-    // 버튼 눌렸을때
-    binding.ibtnLeft.setOnClickListener {
-        left()
+        binding = ActivityTimeattackmodeBinding.inflate(layoutInflater)
     }
 
-    binding.ibtnRight.setOnClickListener {
-        right()
+    fun hardMode() {
+// 버튼 눌렸을때
+        binding.imgLeftt.setOnClickListener {
+            left()
+        }
+        binding.imgRightt.setOnClickListener {
+            right()
+        }
+        binding.imgDownt.setOnClickListener {
+            down()
+        }
+        binding.imgChanget.setOnClickListener {
+            change()
+        }
+        binding.imgStopt.setOnClickListener {
+            stop()
+        }
     }
-
-    binding.ibtnDown.setOnClickListener {
-        down()
-    }
-
-    binding.ibtnChange.setOnClickListener {
-        change()
-    }
-
-    binding.ibtnStop.setOnClickListener {
-        stop()
-    }
-
 }
