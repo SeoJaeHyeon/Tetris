@@ -52,7 +52,7 @@
                     android:layout_margin="5dp"
                     android:background="#F4E75C"
                     android:gravity="center_horizontal"
-                    android:text="<LEVEL>" />
+                    android:text="LEVEL" />
 
                 <TextView
                     android:id="@+id/txt_highh"
@@ -61,7 +61,7 @@
                     android:layout_margin="5dp"
                     android:background="#F3E65C"
                     android:gravity="center_horizontal"
-                    android:text="<HIGH>" />
+                    android:text="HIGH" />
 
                 <TextView
                     android:id="@+id/txt_scoreh"
@@ -70,7 +70,7 @@
                     android:layout_margin="5dp"
                     android:background="#F2E55C"
                     android:gravity="center_horizontal"
-                    android:text="<SCORE>" />
+                    android:text="SCORE" />
 
             </LinearLayout>
         </LinearLayout>

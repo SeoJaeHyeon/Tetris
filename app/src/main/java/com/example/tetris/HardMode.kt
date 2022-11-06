@@ -30,7 +30,6 @@ class HardMode: AppCompatActivity() {
             change()
         }
         binding.imgStoph.setOnClickListener {
-            stop()
         }
     }
 }

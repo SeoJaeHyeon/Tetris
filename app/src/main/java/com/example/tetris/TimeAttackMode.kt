@@ -29,7 +29,7 @@ class TimeAttackMode: AppCompatActivity() {
             change()
         }
         binding.imgStopt.setOnClickListener {
-            stop()
+
         }
     }
 }
