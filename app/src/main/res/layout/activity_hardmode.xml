@@ -5,4 +5,112 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#050859"
-    tools:context=".MainActivity"/>
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:orientation="horizontal">
+
+            <SurfaceView
+                android:id="@+id/surfaceView"
+                android:layout_width="312dp"
+                android:layout_height="570dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="87dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_stoph"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    app:srcCompat="@drawable/stop" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_margin="5dp"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/txt_levelh"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="#F4E75C"
+                    android:gravity="center_horizontal"
+                    android:text="<LEVEL>" />
+
+                <TextView
+                    android:id="@+id/txt_highh"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="#F3E65C"
+                    android:gravity="center_horizontal"
+                    android:text="<HIGH>" />
+
+                <TextView
+                    android:id="@+id/txt_scoreh"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:background="#F2E55C"
+                    android:gravity="center_horizontal"
+                    android:text="<SCORE>" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_lefth"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/l2" />
+
+            <ImageView
+                android:id="@+id/img_downh"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/down" />
+
+            <ImageView
+                android:id="@+id/img_righth"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/right" />
+
+            <ImageView
+                android:id="@+id/img_changeh"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/change" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
