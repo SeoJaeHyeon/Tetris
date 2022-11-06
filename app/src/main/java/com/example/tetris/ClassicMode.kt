@@ -5,26 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tetris.databinding.ActivityClassicmodeBinding
 
-// 왼쪽 오른쪽 아래 모양바꾸기
-fun left() {
 
-}
-
-fun right() {
-
-}
-
-fun down() {
-
-}
-
-fun change() {
-
-}
-
-fun stop() {
-
-}
 
 class ClassicMode : AppCompatActivity() {
     lateinit var binding: ActivityClassicmodeBinding
@@ -36,7 +17,7 @@ class ClassicMode : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    public fun classicMode() {
+    fun classicMode() {
         //버튼 눌렸을 때
         binding.imgLeft.setOnClickListener {
             left()
@@ -51,7 +32,6 @@ class ClassicMode : AppCompatActivity() {
             change()
         }
         binding.imgStop.setOnClickListener {
-            stop()
         }
     }
 }
