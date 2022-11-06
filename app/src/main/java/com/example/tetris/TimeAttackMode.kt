@@ -29,7 +29,7 @@ class TimeAttackMode: AppCompatActivity() {
             change()
         }
         binding.imgStopt.setOnClickListener {
-
+            setContentView(R.layout.activity_stop)
         }
     }
 }

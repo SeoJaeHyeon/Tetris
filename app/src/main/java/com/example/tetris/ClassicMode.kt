@@ -32,6 +32,7 @@ class ClassicMode : AppCompatActivity() {
             change()
         }
         binding.imgStop.setOnClickListener {
+            setContentView(R.layout.activity_stop)
         }
     }
 }
