@@ -25,6 +25,12 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <activity android:name="com.example.tetris.GameModeActivity"></activity>
+        <activity android:name="com.example.tetris.ClassicModeActivity"></activity>
+        <activity android:name="com.example.tetris.HardModeActivity"></activity>
+        <activity android:name="com.example.tetris.TimeAttackModeActivity"></activity>
+        <activity android:name="com.example.tetris.StopActivity"></activity>
     </application>
 
 </manifest>
