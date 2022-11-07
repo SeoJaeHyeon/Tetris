@@ -17,8 +17,6 @@ class MainActivity : AppCompatActivity() {
         val bindingChoiceGame = ActivityGamemodeBinding.inflate(layoutInflater)
         setContentView(bindingChoiceGame.root)
 
-
-
 /*
         val btn_classic: TextView = findViewById(R.id.btn_classicmode)
         val btn_hard: TextView = findViewById(R.id.btn_hardmode)
@@ -87,10 +85,13 @@ class MainActivity : AppCompatActivity() {
             settingMode()
         }
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.tetris_nintendo) //앱시작시 테트리스브금
-        mediaPlayer?.start()
-
     }
+    override fun onStart(){
+        super.onStart()
+        mediaPlayer = MediaPlayer.create(this, R.raw.tetris_nintendo) //앱시작시 테트리스브금 생성
+        mediaPlayer?.start()
+    }
+
 
     override fun onStop() { //배경음악 백그라운드에서 재생금지
         super.onStop()
