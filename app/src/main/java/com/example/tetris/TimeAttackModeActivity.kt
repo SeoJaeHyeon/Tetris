@@ -1,10 +1,11 @@
 package com.example.tetris
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tetris.databinding.ActivityTimeattackmodeBinding
 
-class TimeAttackMode: AppCompatActivity() {
+class TimeAttackModeActivity: AppCompatActivity() {
     lateinit var binding: ActivityTimeattackmodeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,10 +13,6 @@ class TimeAttackMode: AppCompatActivity() {
 
         binding = ActivityTimeattackmodeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-    }
-
-    fun hardMode() {
-// 버튼 눌렸을때
         binding.imgLeftt.setOnClickListener {
             left()
         }
@@ -29,7 +26,8 @@ class TimeAttackMode: AppCompatActivity() {
             change()
         }
         binding.imgStopt.setOnClickListener {
-            setContentView(R.layout.activity_stop)
+            startActivity(Intent(this, StopActivity::class.java)) // 그만하기 버튼 누르면 StopActivity로 이동 -재현이가 해놓음
         }
     }
+
 }
