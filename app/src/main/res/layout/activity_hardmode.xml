@@ -21,11 +21,13 @@
             android:layout_height="600dp"
             android:orientation="horizontal">
 
-            <SurfaceView
-                android:id="@+id/surfaceView"
-                android:layout_width="312dp"
-                android:layout_height="570dp"
-                android:layout_weight="1" />
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/boardh"
+                android:layout_width="290dp"
+                android:layout_height="580dp"
+                android:layout_weight="1">
+
+            </androidx.gridlayout.widget.GridLayout>
 
             <LinearLayout
                 android:layout_width="87dp"
@@ -35,21 +37,30 @@
 
                 <ImageView
                     android:id="@+id/img_stoph"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     app:srcCompat="@drawable/stop" />
 
-                <ImageView
-                    android:id="@+id/imageView2"
+                <TextView
+                    android:id="@+id/txt_nexth"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_margin="5dp"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Next Block"
+                    android:textColor="@color/white" />
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:id="@+id/nextblockh"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp">
+
+                </androidx.gridlayout.widget.GridLayout>
 
                 <TextView
                     android:id="@+id/txt_levelh"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#F4E75C"
@@ -58,7 +69,7 @@
 
                 <TextView
                     android:id="@+id/txt_highh"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#F3E65C"
@@ -67,7 +78,7 @@
 
                 <TextView
                     android:id="@+id/txt_scoreh"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#F2E55C"
