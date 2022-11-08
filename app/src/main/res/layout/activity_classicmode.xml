@@ -22,10 +22,14 @@
             android:layout_margin="5dp"
             android:orientation="horizontal">
 
-            <SurfaceView
-                android:id="@+id/surfaceView2"
-                android:layout_width="312dp"
-                android:layout_height="match_parent" />
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridmain"
+                android:layout_width="283dp"
+                android:layout_height="match_parent"
+                app:columnCount="10"
+                app:rowCount="20">
+
+            </androidx.gridlayout.widget.GridLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,20 +38,21 @@
 
                 <ImageView
                     android:id="@+id/img_stop"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     app:srcCompat="@drawable/stop" />
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <TextView
                     android:id="@+id/txt_level"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#F4E75C"
@@ -57,7 +62,7 @@
 
                 <TextView
                     android:id="@+id/txt_high"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#F3E65C"
@@ -67,7 +72,7 @@
 
                 <TextView
                     android:id="@+id/txt_score"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#F2E55C"
