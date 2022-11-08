@@ -22,10 +22,11 @@
             android:layout_margin="5dp"
             android:orientation="horizontal">
 
-            <SurfaceView
-                android:id="@+id/surfaceView2"
+            <androidx.gridlayout.widget.GridLayout
                 android:layout_width="312dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
+
+            </androidx.gridlayout.widget.GridLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
