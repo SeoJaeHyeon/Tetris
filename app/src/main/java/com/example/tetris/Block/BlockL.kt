@@ -4,9 +4,9 @@ class BlockL(var row: Int, var col: Int): Block(row, col) {
 
     init {
         number = 5
-        point2 = Point(row + 1, col )
-        point3 = Point(row + 2, col )
-        point4 = Point(row + 2 , col + 1 )
+        point2 = Point(row - 1, col )
+        point3 = Point(row + 1, col )
+        point4 = Point(row + 1 , col + 1 )
     }
 
     override fun blockDown() {
