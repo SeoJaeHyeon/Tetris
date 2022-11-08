@@ -21,35 +21,48 @@
             android:layout_height="600dp"
             android:orientation="horizontal">
 
-            <SurfaceView
-                android:id="@+id/surfaceView3"
-                android:layout_width="312dp"
-                android:layout_height="570dp"
-                android:layout_weight="1" />
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/boardt"
+                android:layout_width="290dp"
+                android:layout_height="580dp"
+                android:layout_weight="1"
+                android:background="@color/black">
+
+            </androidx.gridlayout.widget.GridLayout>
 
             <LinearLayout
                 android:layout_width="87dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/img_stopt"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     app:srcCompat="@drawable/stop" />
 
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                <TextView
+                    android:id="@+id/txt_nextt"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Next Block"
+                    android:textColor="@color/white" />
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:id="@+id/nextblockt"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_margin="5dp"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:background="@color/black">
+
+                </androidx.gridlayout.widget.GridLayout>
 
                 <TextView
                     android:id="@+id/txt_time"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#F4E75C"
@@ -58,7 +71,7 @@
 
                 <TextView
                     android:id="@+id/txt_hight"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#F3E65C"
@@ -67,7 +80,7 @@
 
                 <TextView
                     android:id="@+id/txt_scoret"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#F2E55C"
