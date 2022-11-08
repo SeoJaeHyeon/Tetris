@@ -31,6 +31,29 @@ class BlockI(var row: Int, var col: Int): Block(row, col) {
     }
 
     override fun rotation() {
+        if(!isRotation) { // 한번도 로테이션 실행 x
+            point2.x++
+            point2.y++
 
+            point3.x--
+            point3.y--
+
+            point4.x -= 2
+            point4.y -= 2
+
+            isRotation = true // 로테이션 한번 실행
+
+        } else {
+            point2.x--
+            point2.y--
+
+            point3.x++
+            point3.y++
+
+            point4.x += 2
+            point4.y += 2
+
+            isRotation = false // 로테이션 2번 실행 -> 원래 모양으로 돌아옴
+        }
     }
 }

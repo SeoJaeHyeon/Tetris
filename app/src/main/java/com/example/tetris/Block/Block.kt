@@ -11,6 +11,17 @@ open class Block(var x: Int, var y: Int) {
     lateinit var point3: Point
     lateinit var point4: Point
 
+    // 2개만 로테이션 하면 되는 것들의 회전 확인을 위한 불리언 변수
+    var isRotation: Boolean = false
+
+    // 4번 회전하는 블럭들의 회전 확인을 위한 불리언 변수
+    var isRotation1: Boolean = false
+    var isRotation2: Boolean = false
+    var isRotation3: Boolean = false
+
+
+
+
     open fun blockDown() {
 
     }
