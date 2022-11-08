@@ -24,8 +24,8 @@
 
             <androidx.gridlayout.widget.GridLayout
                 android:id="@+id/gridmain"
-                android:layout_width="290dp"
-                android:layout_height="580dp"
+                android:layout_width="280dp"
+                android:layout_height="560dp"
                 android:background="@color/black"
                 app:columnCount="10"
                 app:rowCount="20">
