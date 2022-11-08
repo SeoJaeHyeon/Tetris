@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tetris"
         tools:targetApi="31">
+        <service
+            android:name=".MusicService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -25,12 +30,12 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-        <activity android:name="com.example.tetris.GameModeActivity"></activity>
-        <activity android:name="com.example.tetris.ClassicModeActivity"></activity>
-        <activity android:name="com.example.tetris.HardModeActivity"></activity>
-        <activity android:name="com.example.tetris.TimeAttackModeActivity"></activity>
-        <activity android:name="com.example.tetris.StopActivity"></activity>
+        <activity android:name=".GameModeActivity" />
+        <activity android:name=".ClassicModeActivity" />
+        <activity android:name=".HardModeActivity" />
+        <activity android:name=".TimeAttackModeActivity" />
+        <activity android:name=".StopActivity" />
+        <activity android:name="com.example.tetris.SettingActivity" />
     </application>
 
 </manifest>

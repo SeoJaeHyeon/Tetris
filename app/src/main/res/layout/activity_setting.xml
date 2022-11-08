@@ -129,6 +129,7 @@
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/black"
                 android:text="ON"
+                android:onClick="serviceStart"
                 android:textSize="18sp" />
 
             <Button
@@ -166,6 +167,7 @@
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="#070707"
                 android:text="OFF"
+                android:onClick="serviceStop"
                 android:textSize="18sp" />
 
             <Button

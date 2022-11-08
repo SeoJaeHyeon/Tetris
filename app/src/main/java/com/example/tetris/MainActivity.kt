@@ -2,11 +2,13 @@ package com.example.tetris
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NO_USER_ACTION
 import android.media.MediaPlayer
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import com.example.tetris.databinding.ActivityClassicmodeBinding
@@ -18,38 +20,11 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
 
-    fun stopGame() {
-        val bindingStopGame = ActivityClassicmodeBinding.inflate(layoutInflater)
-        setContentView(bindingStopGame.root)
-
-        bindingStopGame.imgStop.setOnClickListener {
-            setContentView(R.layout.activity_stop)
-        }
-
+    override fun onRestart() {
+        super.onRestart()
+        startService(Intent(this, MusicService::class.java))
     }
 
-
-    private var mediaPlayer: MediaPlayer? = null
-    fun settingMode() { //게임 설정 화면
-        val btn_back : TextView = findViewById(R.id.btn_back)
-        val btn_bgmON : Button = findViewById((R.id.btn_bgmON))
-        val btn_bgmOFF : Button = findViewById((R.id.btn_bgmOFF))
-
-        btn_bgmON.setOnClickListener {
-            if (mediaPlayer == null) { //노래 겹쳐서 재생방지
-                mediaPlayer = MediaPlayer.create(this, R.raw.tetris_nintendo)
-            }
-
-            mediaPlayer?.start()
-        }
-        btn_bgmOFF.setOnClickListener {
-            mediaPlayer?.stop()
-            mediaPlayer = null
-        }
-        btn_back.setOnClickListener {
-            setContentView(binding.root)
-        }
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -58,25 +33,28 @@ class MainActivity : AppCompatActivity() {
 
         // 첫 시작 화면(mainActivity)에서 게임 시작 버튼을 누르면 게임 모드 선택 엑티비티로 이동
         binding.btnGamestart.setOnClickListener {
-            startActivity(Intent(this, GameModeActivity::class.java))
+            val intent = Intent(this, GameModeActivity::class.java)
+            intent.addFlags(FLAG_ACTIVITY_NO_USER_ACTION)
+            startActivity(intent)
         }
 
-        // 여기는 인범이가 짠 함수 잘 몰라서 안건드림 but Intent 써서 위와 같이 수정해야함 !
+        // setting 화면 관련 Intent 수정완료
         binding.btnSetting.setOnClickListener {
-            setContentView(R.layout.activity_setting)
-            settingMode()
+            val intent = Intent(this, SettingActivity::class.java)
+            intent.addFlags(FLAG_ACTIVITY_NO_USER_ACTION)
+            startActivity(intent)
         }
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.tetris_nintendo) //앱시작시 테트리스브금
-        mediaPlayer?.start()
-
+        startService(Intent(applicationContext, MusicService::class.java))
     }
 
-    override fun onStop() { //배경음악 백그라운드에서 재생금지
-        super.onStop()
-        mediaPlayer?.release()
-
+    override fun onDestroy() { //앱종료시 음악종료
+        stopService(Intent(applicationContext, MusicService::class.java))
+        super.onDestroy()
     }
 
-
+    override fun onUserLeaveHint() { //홈버튼 누르면 음악꺼짐
+        super.onUserLeaveHint()
+        stopService(Intent(applicationContext, MusicService::class.java))
+    }
 }
