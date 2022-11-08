@@ -23,9 +23,9 @@
             android:orientation="horizontal">
 
             <androidx.gridlayout.widget.GridLayout
-                android:id="@+id/gridmain"
-                android:layout_width="283dp"
-                android:layout_height="match_parent"
+                android:id="@+id/board"
+                android:layout_width="290dp"
+                android:layout_height="580dp"
                 app:columnCount="10"
                 app:rowCount="20">
 
@@ -43,12 +43,22 @@
                     android:layout_margin="5dp"
                     app:srcCompat="@drawable/stop" />
 
-                <ImageView
-                    android:id="@+id/imageView3"
+                <TextView
+                    android:id="@+id/txt_next"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:gravity="center_horizontal"
+                    android:text="Next Block"
+                    android:textColor="@color/white" />
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:id="@+id/nextblock"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp">
+
+                </androidx.gridlayout.widget.GridLayout>
 
                 <TextView
                     android:id="@+id/txt_level"
