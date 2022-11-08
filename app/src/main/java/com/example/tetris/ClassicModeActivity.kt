@@ -13,8 +13,8 @@ import com.example.tetris.databinding.ActivityClassicmodeBinding
 class ClassicModeActivity : AppCompatActivity() {
     lateinit var binding: ActivityClassicmodeBinding
 
-    val ROW = 29
-    val COL = 16
+    val ROW = 20
+    val COL = 10
     var boardView = Array(ROW) {
         arrayOfNulls<ImageView>(COL)
     }
