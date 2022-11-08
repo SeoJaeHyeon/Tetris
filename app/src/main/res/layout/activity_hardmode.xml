@@ -25,7 +25,8 @@
                 android:id="@+id/boardh"
                 android:layout_width="290dp"
                 android:layout_height="580dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="@color/black">
 
             </androidx.gridlayout.widget.GridLayout>
 
@@ -54,7 +55,8 @@
                     android:id="@+id/nextblockh"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_margin="5dp">
+                    android:layout_margin="5dp"
+                    android:background="@color/black">
 
                 </androidx.gridlayout.widget.GridLayout>
 
