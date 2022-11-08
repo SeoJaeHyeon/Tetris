@@ -12,23 +12,23 @@ class MusicService : Service() {
         TODO("Return the communication channel to the service.")
     }
 
-    override fun onCreate() {
+    override fun onCreate() {  //서비스호출시 한번만 호출
         super.onCreate()
         mediaPlayer = MediaPlayer.create(this, R.raw.tetris_nintendo)
-        mediaPlayer.start()
-        mediaPlayer.isLooping = true
+        mediaPlayer.start() //노래재생
+        mediaPlayer.isLooping = true //노래 무한 루프
     }
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if(mediaPlayer == null) {
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int { //서비스 호출될 때 노래를 재생시킴
+        if(mediaPlayer == null) { //노래 중복 재생 방지
             mediaPlayer.start()
         }
         return super.onStartCommand(intent, flags, startId)
     }
 
-    override fun onDestroy() {
-        mediaPlayer.stop()
-        mediaPlayer.release()
+    override fun onDestroy() { //서비스 종료 명령 받으면 음악 종료
+        mediaPlayer.stop()  //노래중지
+        mediaPlayer.release() //다른객체와 상호작용 안되게해줌
         super.onDestroy()
 
     }

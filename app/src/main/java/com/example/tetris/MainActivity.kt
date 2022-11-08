@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         // 첫 시작 화면(mainActivity)에서 게임 시작 버튼을 누르면 게임 모드 선택 엑티비티로 이동
         binding.btnGamestart.setOnClickListener {
             val intent = Intent(this, GameModeActivity::class.java)
-            intent.addFlags(FLAG_ACTIVITY_NO_USER_ACTION)
+            intent.addFlags(FLAG_ACTIVITY_NO_USER_ACTION) //onUserLeaveHint 로 인해 intent시 음악이 꺼지는 현상 발생 방지
             startActivity(intent)
         }
 
@@ -45,15 +45,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        startService(Intent(applicationContext, MusicService::class.java))
+        startService(Intent(applicationContext, MusicService::class.java)) //서비스에 있는 onStartCommand 호출하여 노래 재생
     }
 
-    override fun onDestroy() { //앱종료시 음악종료
-        stopService(Intent(applicationContext, MusicService::class.java))
+    override fun onDestroy() { //앱 종료시 음악종료
+        stopService(Intent(applicationContext, MusicService::class.java)) //서비스에 있는 onDestory 호출하여 음악 중지
         super.onDestroy()
     }
 
-    override fun onUserLeaveHint() { //홈버튼 누르면 음악꺼짐
+    override fun onUserLeaveHint() { //홈버튼 눌러 앱종료시 음악이 꺼짐
         super.onUserLeaveHint()
         stopService(Intent(applicationContext, MusicService::class.java))
     }
