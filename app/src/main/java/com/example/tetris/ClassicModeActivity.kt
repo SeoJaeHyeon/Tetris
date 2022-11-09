@@ -51,20 +51,17 @@ class ClassicModeActivity : AppCompatActivity() {
         //버튼 눌렸을 때
         binding.imgLeft.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-            //block.blockLeft() // 블럭을 왼쪽으로 움직임
-            block.blockLeftTest(compareArr)
+            block.blockLeft(compareArr)// 블럭을 왼쪽으로 움직임
             printBlock() // 움직인 블럭을 다시 그림
         }
         binding.imgRight.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-            //block.blockRight() // 블럭을 오른쪽으로 움직임
-            block.blockRightTest(compareArr)
+            block.blockRight(compareArr)// 블럭을 오른쪽으로 움직임
             printBlock() // 움직인 블럭을 다시 그림
         }
         binding.imgDown.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-            //block.blockDown() // 블럭을 아래로 움직임
-            block.blockDownTest(compareArr)
+            block.blockDown(compareArr)// 블럭을 아래로 움직임
             printBlock() // 움직인 블럭을 다시 그림
         }
         binding.imgChange.setOnClickListener {

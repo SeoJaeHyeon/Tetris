@@ -21,34 +21,19 @@ open class Block(var x: Int, var y: Int) {
     var isRotation2: Boolean = false
     var isRotation3: Boolean = false
 
-
-
-
-    open fun blockDown() {
-
-    }
-
-    open fun blockLeft() {
-
-    }
-
-    open fun blockRight() {
-
-    }
-
     open fun rotation() {
 
     }
 
-    open fun blockDownTest(arr: CompareArray) {
+    open fun blockDown(arr: CompareArray) {
 
     }
 
-    open fun blockLeftTest(arr: CompareArray) {
+    open fun blockLeft(arr: CompareArray) {
 
     }
 
-    open fun blockRightTest(arr: CompareArray) {
+    open fun blockRight(arr: CompareArray) {
 
     }
 }
