@@ -1,20 +1,10 @@
 package com.example.tetris
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NO_USER_ACTION
-import android.media.MediaPlayer
-import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
-import com.example.tetris.databinding.ActivityClassicmodeBinding
-import com.example.tetris.databinding.ActivityGamemodeBinding
 import com.example.tetris.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_setting.*
 
 class MainActivity : AppCompatActivity() {
 

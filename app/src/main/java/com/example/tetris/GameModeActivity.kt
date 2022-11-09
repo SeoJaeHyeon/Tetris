@@ -4,7 +4,6 @@ package com.example.tetris
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tetris.databinding.ActivityClassicmodeBinding
 import com.example.tetris.databinding.ActivityGamemodeBinding
 
 // GameModeActivity class 생성

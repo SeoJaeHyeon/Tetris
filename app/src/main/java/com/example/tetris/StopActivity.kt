@@ -3,7 +3,6 @@ package com.example.tetris
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tetris.databinding.ActivityGamemodeBinding
 import com.example.tetris.databinding.ActivityStopBinding
 
 class StopActivity : AppCompatActivity() {

@@ -32,7 +32,7 @@
         </activity>
         <activity android:name=".GameModeActivity" />
         <activity android:name=".ClassicModeActivity" />
-        <activity android:name=".HardModeActivity" />
+        <activity android:name=".Activity.HardModeActivity" />
         <activity android:name=".TimeAttackModeActivity" />
         <activity android:name=".StopActivity" />
         <activity android:name="com.example.tetris.SettingActivity" />

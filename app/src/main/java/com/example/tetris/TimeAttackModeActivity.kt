@@ -14,19 +14,19 @@ class TimeAttackModeActivity: AppCompatActivity() {
         binding = ActivityTimeattackmodeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.imgLeftt.setOnClickListener {
-            left()
+
         }
         binding.imgRightt.setOnClickListener {
-            right()
+
         }
         binding.imgDownt.setOnClickListener {
-            down()
+
         }
         binding.imgChanget.setOnClickListener {
-            change()
+
         }
         binding.imgStopt.setOnClickListener {
-            startActivity(Intent(this, StopActivity::class.java)) // 그만하기 버튼 누르면 StopActivity로 이동 -재현이가 해놓음
+            startActivity(Intent(this, StopActivity::class.java)) // 그만하기 버튼 누르면 StopActivity로 이동
         }
     }
 
