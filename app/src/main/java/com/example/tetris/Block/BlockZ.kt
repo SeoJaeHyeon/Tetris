@@ -31,6 +31,27 @@ class BlockZ(var row: Int, var col: Int): Block(row, col) {
     }
 
     override fun rotation() {
+        if(!isRotation) { // 1번째 회전
+            point2.x--
+            point2.y++
+
+            point3.x--
+            point3.y--
+
+            point4.y -= 2 // x는 변하지 않음
+
+            isRotation = true
+        }else { // 2번 회전 -> 처음 모양
+            point2.x++
+            point2.y--
+
+            point3.x++
+            point3.y++
+
+            point4.y += 2
+
+            isRotation = false
+        }
 
     }
 }
