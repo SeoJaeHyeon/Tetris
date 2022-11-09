@@ -38,7 +38,7 @@ class BlockJ(var row: Int, var col: Int): Block(row, col) {
             point3.x--
             point3.y--
 
-            point4.x += 2
+            point4.x -= 2
             // point4.y 변화 없음
             isRotation1 = true // 1번 로테이션 실행
 

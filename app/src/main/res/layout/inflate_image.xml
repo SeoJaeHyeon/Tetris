@@ -3,4 +3,4 @@
     android:id="@+id/imgInflater"
     android:layout_width="29dp"
     android:layout_height="29dp"
-    android:src="@drawable/white"></ImageView>
+    android:src="@drawable/gameframe"></ImageView>
