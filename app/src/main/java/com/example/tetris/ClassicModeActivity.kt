@@ -33,6 +33,7 @@ class ClassicModeActivity : AppCompatActivity() {
 
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -63,6 +64,7 @@ class ClassicModeActivity : AppCompatActivity() {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
             block.blockDown(compareArr)// 블럭을 아래로 움직임
             printBlock() // 움직인 블럭을 다시 그림
+            newBlockDown()
         }
         binding.imgChange.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
@@ -157,10 +159,10 @@ class ClassicModeActivity : AppCompatActivity() {
 
     }
 
-    fun startGame() {
+    fun newBlockDown() {
         if(compareArr.touchFloor(block)) {
             randomNum = Random.nextInt(0, 7)
-            block = randomBlockChoice(5, 1, COL / 2)
+            block = randomBlockChoice(randomNum, 1, COL / 2)
             printBlock()
         }
     }

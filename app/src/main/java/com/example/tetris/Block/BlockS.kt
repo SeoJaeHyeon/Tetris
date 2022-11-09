@@ -43,7 +43,7 @@ class BlockS(var row: Int, var col: Int): Block(row, col) {
             point3.x--
             point3.y--
 
-            point4.x += 2 // y는 변하지 않음
+            point4.x -= 2 // y는 변하지 않음
 
             isRotation = true
         }else { // 2번 회전 -> 처음 모양
