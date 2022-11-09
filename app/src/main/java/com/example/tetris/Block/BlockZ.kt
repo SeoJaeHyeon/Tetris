@@ -52,6 +52,5 @@ class BlockZ(var row: Int, var col: Int): Block(row, col) {
 
             isRotation = false
         }
-
     }
 }
