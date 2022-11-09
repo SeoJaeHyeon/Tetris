@@ -11,13 +11,14 @@ class BlockO(var row: Int, var col: Int): Block(row, col) {
         point4 = Point(row + 1, col + 1)
     }
     override fun blockDown(arr: CompareArray) {
-        if(!(arr.touchFloor(this))) {// 블럭들이 바닥에 안닿았으면 이동가능
+        if(!(arr.touchFloor(this))) { // 블럭들이 바닥에 안닿았으면 이동가능
             point1.down()
             point2.down()
             point3.down()
             point4.down()
         }
     }
+
     override fun blockLeft(arr: CompareArray) {
         if(!(arr.touchLeft(this))) { // 블럭들이 왼쪽 벽에 닿지 않았으면 이동가능
             point1.left()
@@ -33,7 +34,6 @@ class BlockO(var row: Int, var col: Int): Block(row, col) {
             point3.right()
             point4.right()
         }
-
     }
 
 }

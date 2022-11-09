@@ -35,7 +35,6 @@ class BlockI(var row: Int, var col: Int): Block(row, col) {
             point3.right()
             point4.right()
         }
-
     }
 
     override fun rotation() {

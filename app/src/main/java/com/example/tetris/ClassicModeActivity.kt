@@ -65,6 +65,8 @@ class ClassicModeActivity : AppCompatActivity() {
             block.blockDown(compareArr)// 블럭을 아래로 움직임
             printBlock() // 움직인 블럭을 다시 그림
             newBlockDown()
+
+
         }
         binding.imgChange.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
@@ -133,6 +135,7 @@ class ClassicModeActivity : AppCompatActivity() {
         gameFrame[block.point4.x][block.point4.y]!!.setImageResource(blockColor(block.number))
 
         compareArr.changeZeroToOne(block)
+
     }
 
     // gameFrame에서 블럭을 다시 원래 배경으로 바꾸는 함수(이동할 때 사용)
@@ -141,7 +144,6 @@ class ClassicModeActivity : AppCompatActivity() {
         gameFrame[block.point2.x][block.point2.y]!!.setImageResource(R.drawable.gameframe)
         gameFrame[block.point3.x][block.point3.y]!!.setImageResource(R.drawable.gameframe)
         gameFrame[block.point4.x][block.point4.y]!!.setImageResource(R.drawable.gameframe)
-
         compareArr.changeOneToZero(block)
     }
 
@@ -160,11 +162,12 @@ class ClassicModeActivity : AppCompatActivity() {
     }
 
     fun newBlockDown() {
-        if(compareArr.touchFloor(block)) {
+        if(compareArr.touchFloor(block)) { // 블럭이 바닥에 닿으면 새로운 블럭 생성
             randomNum = Random.nextInt(0, 7)
             block = randomBlockChoice(randomNum, 1, COL / 2)
             printBlock()
         }
+
     }
 }
 
