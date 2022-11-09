@@ -19,7 +19,7 @@ class ClassicModeActivity : AppCompatActivity() {
 
     val ROW = 20 // gameFrame의 row
     val COL = 10 // gameFrame의 col
-    var gameFrame = Array(ROW) { // gameFrame의 이차원 배열
+    val gameFrame = Array(ROW) { // gameFrame의 이차원 배열
         // 각 행들의 배열의 타입은 ImageView ! 나중에 초기화하기 위해 arrayOfNulls 배열 사용
         arrayOfNulls<ImageView>(COL)
     }
@@ -27,6 +27,9 @@ class ClassicModeActivity : AppCompatActivity() {
     var randomNum: Int = Random.nextInt(0, 7)
     // 랜덤하게 얻은 블럭을 Block에 저장(게임화면에서 움직일 블럭)
     var block: Block = randomBlockChoice(randomNum, 1, COL / 2)
+
+    val compareArr: CompareArray = CompareArray()
+
 
 
 
@@ -39,24 +42,29 @@ class ClassicModeActivity : AppCompatActivity() {
         binding.gridmain.rowCount = ROW // gridLayout의 row
         binding.gridmain.columnCount = COL // gridLayout의 col
 
+
         // 게임 시작 후 gridLayout에 게임화면 생성
         gameFrameSetting(gameFrame, binding.gridmain, ROW, COL)
         printBlock() // 움직일 블럭 생성
 
+
         //버튼 눌렸을 때
         binding.imgLeft.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-            block.blockLeft() // 블럭을 왼쪽으로 움직임
+            //block.blockLeft() // 블럭을 왼쪽으로 움직임
+            block.blockLeftTest(compareArr)
             printBlock() // 움직인 블럭을 다시 그림
         }
         binding.imgRight.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-            block.blockRight() // 블럭을 오른쪽으로 움직임
+            //block.blockRight() // 블럭을 오른쪽으로 움직임
+            block.blockRightTest(compareArr)
             printBlock() // 움직인 블럭을 다시 그림
         }
         binding.imgDown.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-            block.blockDown() // 블럭을 아래로 움직임
+            //block.blockDown() // 블럭을 아래로 움직임
+            block.blockDownTest(compareArr)
             printBlock() // 움직인 블럭을 다시 그림
         }
         binding.imgChange.setOnClickListener {
@@ -98,6 +106,9 @@ class ClassicModeActivity : AppCompatActivity() {
             }
         }
     }
+
+
+
     // 블럭의 색 결정하는 함수
     fun blockColor(number: Int): Int {
         val color: Int
@@ -121,6 +132,8 @@ class ClassicModeActivity : AppCompatActivity() {
         gameFrame[block.point2.x][block.point2.y]!!.setImageResource(blockColor(block.number))
         gameFrame[block.point3.x][block.point3.y]!!.setImageResource(blockColor(block.number))
         gameFrame[block.point4.x][block.point4.y]!!.setImageResource(blockColor(block.number))
+
+        compareArr.changeZeroToOne(block)
     }
 
     // gameFrame에서 블럭을 다시 원래 배경으로 바꾸는 함수(이동할 때 사용)
@@ -129,6 +142,8 @@ class ClassicModeActivity : AppCompatActivity() {
         gameFrame[block.point2.x][block.point2.y]!!.setImageResource(R.drawable.gameframe)
         gameFrame[block.point3.x][block.point3.y]!!.setImageResource(R.drawable.gameframe)
         gameFrame[block.point4.x][block.point4.y]!!.setImageResource(R.drawable.gameframe)
+
+        compareArr.changeOneToZero(block)
     }
 
     // 블럭이 내려오는 걸 지연하는 함수인데 했는데 적용이 안되서 다시 해야할 듯
@@ -145,6 +160,13 @@ class ClassicModeActivity : AppCompatActivity() {
 
     }
 
+    fun startGame() {
+        if(compareArr.touchFloor(block)) {
+            randomNum = Random.nextInt(0, 7)
+            block = randomBlockChoice(5, 1, COL / 2)
+            printBlock()
+        }
+    }
 }
 
 

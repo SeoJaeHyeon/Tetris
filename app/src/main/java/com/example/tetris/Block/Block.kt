@@ -1,5 +1,7 @@
 package com.example.tetris.Block
 
+import com.example.tetris.CompareArray
+
 // 최상위 클래스인 Block을 상속하여 각각의 Block를 정의
 open class Block(var x: Int, var y: Int) {
     var number = 0 // 각 블럭별로 상이한 숫자를 가져 서로 다른 블럭임을 나타냄
@@ -35,6 +37,18 @@ open class Block(var x: Int, var y: Int) {
     }
 
     open fun rotation() {
+
+    }
+
+    open fun blockDownTest(arr: CompareArray) {
+
+    }
+
+    open fun blockLeftTest(arr: CompareArray) {
+
+    }
+
+    open fun blockRightTest(arr: CompareArray) {
 
     }
 }
