@@ -128,13 +128,15 @@ class ClassicModeActivity : AppCompatActivity() {
 
     // 블럭을 gameFrame에 보여주는 함수
     fun printBlock() {
+
+        compareArr.changeZeroToOne(block)
         // 블럭이 지정하는 인덱스에 맞추어 블럭 출력 -> gameFrame의 배열 블럭은 항상 이미지가 있어 null이 될 수 없음
         gameFrame[block.point1.x][block.point1.y]!!.setImageResource(blockColor(block.number))
         gameFrame[block.point2.x][block.point2.y]!!.setImageResource(blockColor(block.number))
         gameFrame[block.point3.x][block.point3.y]!!.setImageResource(blockColor(block.number))
         gameFrame[block.point4.x][block.point4.y]!!.setImageResource(blockColor(block.number))
 
-        compareArr.changeZeroToOne(block)
+
 
     }
 
@@ -166,20 +168,22 @@ class ClassicModeActivity : AppCompatActivity() {
             randomNum = Random.nextInt(0, 7)
             block = randomBlockChoice(randomNum, 1, COL / 2)
             printBlock()
-        } else if(block.touchBottomBlock(compareArr)) {
-            randomNum = Random.nextInt(0, 7)
-            block = randomBlockChoice(randomNum, 1, COL / 2)
-            printBlock()
-        } else if(block.touchLeftBlock(compareArr)) {
-            randomNum = Random.nextInt(0, 7)
-            block = randomBlockChoice(randomNum, 1, COL / 2)
-            printBlock()
-        } else if(block.touchRightBlock(compareArr)) {
+        }
+        if(block.touchBottomBlock(compareArr)) {
             randomNum = Random.nextInt(0, 7)
             block = randomBlockChoice(randomNum, 1, COL / 2)
             printBlock()
         }
-
+        if(!compareArr.touchLeft(block) && block.touchBottomBlock(compareArr) && block.touchLeftBlock(compareArr)) {
+            randomNum = Random.nextInt(0, 7)
+            block = randomBlockChoice(randomNum, 1, COL / 2)
+            printBlock()
+        }
+        if(!compareArr.touchRight(block) && block.touchBottomBlock(compareArr) && block.touchRightBlock(compareArr)) {
+            randomNum = Random.nextInt(0, 7)
+            block = randomBlockChoice(randomNum, 1, COL / 2)
+            printBlock()
+        }
     }
 }
 
