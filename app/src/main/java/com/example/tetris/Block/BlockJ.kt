@@ -42,7 +42,7 @@ class BlockJ(var row: Int, var col: Int): Block(row, col) {
             }
         }
     }
-    override fun rotation() {
+    override fun rotation(arr: CompareArray) {
         if(!isRotation1 && !isRotation2 && !isRotation3 ) { // 한번도 로테이션 실행한 적 없음
             point2.x++
             point2.y++

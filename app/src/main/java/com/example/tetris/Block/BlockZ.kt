@@ -41,7 +41,7 @@ class BlockZ(var row: Int, var col: Int): Block(row, col) {
             }
         }
     }
-    override fun rotation() {
+    override fun rotation(arr: CompareArray) {
         if(!isRotation) { // 1번째 회전
             point2.x--
             point2.y++

@@ -42,7 +42,7 @@ class BlockS(var row: Int, var col: Int): Block(row, col) {
             }
         }
     }
-    override fun rotation() {
+    override fun rotation(arr: CompareArray) {
         if(!isRotation) { // 1번째 회전
             point2.x++
             point2.y--
@@ -54,16 +54,43 @@ class BlockS(var row: Int, var col: Int): Block(row, col) {
 
             isRotation = true
         }else { // 2번 회전 -> 처음 모양
-            point2.x--
-            point2.y++
+            // 1번 rotation이 이루어 지면 왼/오른쪽 벽면에 붙었을 때 로테이션에 문제가 발생
 
-            point3.x++
-            point3.y++
+            if(arr.touchLeft(this)) {
+                point2.x--
+                point2.y++
 
-            point4.x += 2 // y는 변하지 않음
+                point3.x++
+                point3.y++
 
-            isRotation = false
-        }
+                point4.x += 2
+
+                isRotation = false
+            } else if(arr.touchRight(this)) {
+                point1.y--
+
+                point2.x--
+
+                point3.x++
+
+                point4.x += 2
+                point4.y--
+
+                isRotation = false
+            } else {
+                point2.x--
+                point2.y++
+
+                point3.x++
+                point3.y++
+
+                point4.x += 2 // y는 변하지 않음
+
+                isRotation = false
+
+            }
+
+                    }
     }
 
     override fun touchBottomBlock(arr: CompareArray): Boolean {

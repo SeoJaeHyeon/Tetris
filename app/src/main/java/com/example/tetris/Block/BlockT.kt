@@ -12,7 +12,7 @@ class BlockT(var row: Int, var col: Int): Block(row, col) {
     }
     override fun blockDown(arr: CompareArray) {
         if(!(arr.touchFloor(this))) { // 블럭들이 바닥에 안닿았으면 이동가능
-            if(touchBottomBlock(arr)) {// 다른블럭이랑 밑 부분이 안부딪히면 이동 가능
+            if(!touchBottomBlock(arr)) {// 다른블럭이랑 밑 부분이 안부딪히면 이동 가능
                 point1.down()
                 point2.down()
                 point3.down()
@@ -41,7 +41,7 @@ class BlockT(var row: Int, var col: Int): Block(row, col) {
             }
         }
     }
-    override fun rotation() {
+    override fun rotation(arr: CompareArray) {
         if(!isRotation1 && !isRotation2 && !isRotation3) { //1번째 로테이션
             point2.x--
             point2.y++
@@ -119,4 +119,17 @@ class BlockT(var row: Int, var col: Int): Block(row, col) {
         }
     }
 
+    override fun touchRightBlock(arr: CompareArray): Boolean {
+        if(!isRotation1 && !isRotation2 && !isRotation3) {
+            return arr.arr[point3.x][point3.y + 1] == 1 || arr.arr[point4.x][point4.y + 1] == 1
+        } else if(isRotation1 && !isRotation2 && !isRotation3) {
+            return arr.arr[point1.x][point1.y + 1] == 1 || arr.arr[point2.x][point2.y + 1] == 1 ||
+                    arr.arr[point3.x][point3.y + 1] == 1
+        } else if(isRotation1 && isRotation2 && !isRotation3) {
+            return  arr.arr[point2.x][point2.y + 1] == 1 || arr.arr[point4.x][point4.y + 1] == 1
+        } else {
+            return  arr.arr[point2.x][point2.y + 1] == 1 || arr.arr[point3.x][point3.y + 1] == 1 ||
+                    arr.arr[point4.x][point4.y + 1] == 1
+        }
+    }
 }

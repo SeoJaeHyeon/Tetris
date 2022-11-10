@@ -21,7 +21,7 @@ open class Block(var x: Int, var y: Int) {
     var isRotation2: Boolean = false
     var isRotation3: Boolean = false
 
-    open fun rotation() {
+    open fun rotation(arr: CompareArray) {
 
     }
 

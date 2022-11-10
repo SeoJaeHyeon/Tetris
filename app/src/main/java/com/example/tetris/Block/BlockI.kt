@@ -44,30 +44,88 @@ class BlockI(var row: Int, var col: Int): Block(row, col) {
         }
     }
 
-    override fun rotation() {
+    override fun rotation(arr: CompareArray) {
+
+        // 왼쪽 혹은 오른쪽 벽에 부딪혔는지 확인 먼저 -> rotation 실행
+
         if(!isRotation) { // 한번도 로테이션 실행 x
-            point2.x++
-            point2.y++
+            if(arr.touchLeft(this)) {
+                point1.y += 2 // point1.x 변화 x
 
-            point3.x--
-            point3.y--
+                point2.x++
+                point2.y += 3
 
-            point4.x -= 2
-            point4.y -= 2
+                point3.x--
+                point3.y++
 
-            isRotation = true // 로테이션 한번 실행
+                point4.x -= 2 // point4.x 변화 x
 
+                isRotation = true
+            } else if(arr.touchRight(this)){
+                point1.y--
+
+                point2.x++
+
+                point3.x--
+                point3.y -= 2
+
+                point4.x -= 2
+                point4.y -= 3
+
+                isRotation = true
+            } else {
+                point2.x++
+                point2.y++
+
+                point3.x--
+                point3.y--
+
+                point4.x -= 2
+                point4.y -= 2
+
+                isRotation = true // 로테이션 한번 실행
+            }
         } else {
-            point2.x--
-            point2.y--
+            if(arr.touchLeft(this)) {
+                point1.y -= 2
 
-            point3.x++
-            point3.y++
+                point2.x--
+                point2.y -= 3
 
-            point4.x += 2
-            point4.y += 2
+                point3.x++
+                point3.y--
 
-            isRotation = false // 로테이션 2번 실행 -> 원래 모양으로 돌아옴
+                point4.x += 2
+
+                isRotation = false
+            } else if(arr.touchRight(this)) {
+                point1.y++
+
+                point2.x --
+
+                point3.x++
+                point3.y += 2
+
+                point4.x += 2
+                point4.y += 3
+
+                isRotation = false
+            } else {
+                point2.x--
+                point2.y--
+
+                point3.x++
+                point3.y++
+
+                point4.x += 2
+                point4.y += 2
+
+                isRotation = false // 로테이션 2번 실행 -> 원래 모양으로 돌아옴
+            }
+
+
+
+
         }
     }
 

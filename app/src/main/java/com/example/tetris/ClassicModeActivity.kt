@@ -26,7 +26,7 @@ class ClassicModeActivity : AppCompatActivity() {
     // 블럭들을 랜덤하게 나오기 위해 블럭의 번호를 난수로 저장
     var randomNum: Int = Random.nextInt(0, 7)
     // 랜덤하게 얻은 블럭을 Block에 저장(게임화면에서 움직일 블럭)
-    var block: Block = randomBlockChoice(randomNum, 1, COL / 2)
+    var block: Block = randomBlockChoice(6, 1, COL / 2)
 
     val compareArr: CompareArray = CompareArray()
 
@@ -70,7 +70,7 @@ class ClassicModeActivity : AppCompatActivity() {
         }
         binding.imgChange.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-            block.rotation() // 블럭을 회전시킴
+            block.rotation(compareArr) // 블럭을 회전시킴
             printBlock() // 움직인 블럭을 다시 그림
         }
         binding.imgStop.setOnClickListener {
@@ -169,11 +169,12 @@ class ClassicModeActivity : AppCompatActivity() {
             block = randomBlockChoice(randomNum, 1, COL / 2)
             printBlock()
         }
-        if(block.touchBottomBlock(compareArr)) {
+        if(block.touchBottomBlock(compareArr)) { // 블럭의 밑이 다른 블럭과 만나면 새로운 블럭 생성
             randomNum = Random.nextInt(0, 7)
             block = randomBlockChoice(randomNum, 1, COL / 2)
             printBlock()
         }
+        /*
         if(!compareArr.touchLeft(block) && block.touchBottomBlock(compareArr) && block.touchLeftBlock(compareArr)) {
             randomNum = Random.nextInt(0, 7)
             block = randomBlockChoice(randomNum, 1, COL / 2)
@@ -184,6 +185,8 @@ class ClassicModeActivity : AppCompatActivity() {
             block = randomBlockChoice(randomNum, 1, COL / 2)
             printBlock()
         }
+
+         */
     }
 }
 
