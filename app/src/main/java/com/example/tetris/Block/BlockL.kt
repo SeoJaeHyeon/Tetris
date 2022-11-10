@@ -43,15 +43,29 @@ class BlockL(var row: Int, var col: Int): Block(row, col) {
     }
     override fun rotation(arr: CompareArray) {
         if (!isRotation1 && !isRotation2 && !isRotation3) { // 1번째 회전
-            point2.x++
-            point2.y++
+            if(arr.touchLeft(this)) {
+                point1.y++
 
-            point3.x--
-            point3.y--
+                point2.x++
+                point2.y += 2
 
-            point4.y -= 2 // x변화 없음
+                point3.x--
 
-            isRotation1 = true
+                point4.y--
+
+                isRotation1 = true
+            } else {
+                point2.x++
+                point2.y++
+
+                point3.x--
+                point3.y--
+
+                point4.y -= 2 // x변화 없음
+
+                isRotation1 = true
+
+            }
 
         } else if (isRotation1 && !isRotation2 && !isRotation3) { // 2번째 회전
             point2.x++
@@ -65,15 +79,29 @@ class BlockL(var row: Int, var col: Int): Block(row, col) {
             isRotation2 = true
 
         } else if (isRotation1 && isRotation2 && !isRotation3) { // 3번째 회전
-            point2.x--
-            point2.y--
+            if(arr.touchRight(this)) {
+                point1.y--
 
-            point3.x++
-            point3.y++
+                point2.x--
+                point2.y -= 2
 
-            point4.y += 2 // y변화없음
+                point3.x++
 
-            isRotation3 = true
+                point4.y++
+
+                isRotation3 = true
+            } else {
+                point2.x--
+                point2.y--
+
+                point3.x++
+                point3.y++
+
+                point4.y += 2 // x변화없음
+
+                isRotation3 = true
+
+            }
 
         } else  { // 4번째 회전 -> 처음 모양
             point2.x--

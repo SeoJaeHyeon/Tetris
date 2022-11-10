@@ -26,7 +26,7 @@ class ClassicModeActivity : AppCompatActivity() {
     // 블럭들을 랜덤하게 나오기 위해 블럭의 번호를 난수로 저장
     var randomNum: Int = Random.nextInt(0, 7)
     // 랜덤하게 얻은 블럭을 Block에 저장(게임화면에서 움직일 블럭)
-    var block: Block = randomBlockChoice(6, 1, COL / 2)
+    var block: Block = randomBlockChoice(4, 1, COL / 2)
 
     val compareArr: CompareArray = CompareArray()
 
@@ -174,19 +174,7 @@ class ClassicModeActivity : AppCompatActivity() {
             block = randomBlockChoice(randomNum, 1, COL / 2)
             printBlock()
         }
-        /*
-        if(!compareArr.touchLeft(block) && block.touchBottomBlock(compareArr) && block.touchLeftBlock(compareArr)) {
-            randomNum = Random.nextInt(0, 7)
-            block = randomBlockChoice(randomNum, 1, COL / 2)
-            printBlock()
-        }
-        if(!compareArr.touchRight(block) && block.touchBottomBlock(compareArr) && block.touchRightBlock(compareArr)) {
-            randomNum = Random.nextInt(0, 7)
-            block = randomBlockChoice(randomNum, 1, COL / 2)
-            printBlock()
-        }
 
-         */
     }
 }
 

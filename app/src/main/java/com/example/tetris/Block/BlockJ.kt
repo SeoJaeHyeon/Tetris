@@ -44,15 +44,30 @@ class BlockJ(var row: Int, var col: Int): Block(row, col) {
     }
     override fun rotation(arr: CompareArray) {
         if(!isRotation1 && !isRotation2 && !isRotation3 ) { // 한번도 로테이션 실행한 적 없음
-            point2.x++
-            point2.y++
+            if(arr.touchRight(this)) {
+                point1.y--
 
-            point3.x--
-            point3.y--
+                point2.x++
 
-            point4.x -= 2
-            // point4.y 변화 없음
-            isRotation1 = true // 1번 로테이션 실행
+                point3.x--
+                point3.y -= 2
+
+                point4.x -= 2
+                point4.y--
+
+                isRotation1 = true
+            } else {
+                point2.x++
+                point2.y++
+
+                point3.x--
+                point3.y--
+
+                point4.x -= 2
+                // point4.y 변화 없음
+                isRotation1 = true // 1번 로테이션 실행
+
+            }
 
         } else if(isRotation1 && !isRotation2 && !isRotation3 ) { // 로테이션 2번 실행
             point2.x++
@@ -67,18 +82,34 @@ class BlockJ(var row: Int, var col: Int): Block(row, col) {
             isRotation2 = true // 로테이션 두번 실행
 
         } else if(isRotation1 && isRotation2 && !isRotation3 ) { // 로테이션 3번 실행
-            point2.x--
-            point2.y--
+            if(arr.touchLeft(this)) {
+                point1.y++
 
-            point3.x++
-            point3.y++
+                point2.x--
 
-            point4.x += 2
-            // point4.y 변화 없음
+                point3.x++
+                point3.y += 2
 
-            isRotation3 = true // 로테이션 3번 실행
+                point4.x += 2
+                point4.y++
+
+                isRotation3 = true
+            } else {
+                point2.x--
+                point2.y--
+
+                point3.x++
+                point3.y++
+
+                point4.x += 2
+                // point4.y 변화 없음
+
+                isRotation3 = true // 로테이션 3번 실행
+
+            }
 
         } else { // 로테이션 4번 실행 (처음 모양으로)
+
             point2.x--
             point2.y++
 
