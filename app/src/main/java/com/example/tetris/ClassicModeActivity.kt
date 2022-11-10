@@ -166,6 +166,18 @@ class ClassicModeActivity : AppCompatActivity() {
             randomNum = Random.nextInt(0, 7)
             block = randomBlockChoice(randomNum, 1, COL / 2)
             printBlock()
+        } else if(block.touchBottomBlock(compareArr)) {
+            randomNum = Random.nextInt(0, 7)
+            block = randomBlockChoice(randomNum, 1, COL / 2)
+            printBlock()
+        } else if(block.touchLeftBlock(compareArr)) {
+            randomNum = Random.nextInt(0, 7)
+            block = randomBlockChoice(randomNum, 1, COL / 2)
+            printBlock()
+        } else if(block.touchRightBlock(compareArr)) {
+            randomNum = Random.nextInt(0, 7)
+            block = randomBlockChoice(randomNum, 1, COL / 2)
+            printBlock()
         }
 
     }

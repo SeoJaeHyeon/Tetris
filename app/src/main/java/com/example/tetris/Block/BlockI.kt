@@ -71,7 +71,7 @@ class BlockI(var row: Int, var col: Int): Block(row, col) {
         }
     }
 
-    fun touchBottomBlock(arr: CompareArray): Boolean {
+    override fun touchBottomBlock(arr: CompareArray): Boolean {
         if(!isRotation) {
             return arr.arr[point4.x + 1][point4.y] == 1
         } else {
@@ -80,7 +80,7 @@ class BlockI(var row: Int, var col: Int): Block(row, col) {
         }
     }
 
-    fun touchLeftBlock(arr: CompareArray): Boolean {
+    override fun touchLeftBlock(arr: CompareArray): Boolean {
         if(!isRotation) {
             return arr.arr[point1.x][point1.y - 1] == 1 || arr.arr[point2.x][point2.y - 1] == 1 ||
                     arr.arr[point3.x][point3.y - 1] == 1 || arr.arr[point4.x][point4.y - 1] == 1
@@ -89,7 +89,7 @@ class BlockI(var row: Int, var col: Int): Block(row, col) {
         }
     }
 
-    fun touchRightBlock(arr: CompareArray): Boolean {
+    override fun touchRightBlock(arr: CompareArray): Boolean {
         if(!isRotation) {
             return arr.arr[point1.x][point1.y + 1] == 1 || arr.arr[point2.x][point2.y + 1] == 1 ||
                     arr.arr[point3.x][point3.y + 1] == 1 || arr.arr[point4.x][point4.y + 1] == 1

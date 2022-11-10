@@ -57,7 +57,7 @@ class BlockL(var row: Int, var col: Int): Block(row, col) {
             point2.x++
             point2.y--
 
-            point3.x++
+            point3.x--
             point3.y++
 
             point4.x -= 2 // y변화 없음
@@ -71,11 +71,11 @@ class BlockL(var row: Int, var col: Int): Block(row, col) {
             point3.x++
             point3.y++
 
-            point4.y += 2 // x변화없음
+            point4.y += 2 // y변화없음
 
             isRotation3 = true
 
-        } else if (isRotation1 && isRotation2 && isRotation3) { // 4번째 회전 -> 처음 모양
+        } else  { // 4번째 회전 -> 처음 모양
             point2.x--
             point2.y++
 
@@ -90,7 +90,7 @@ class BlockL(var row: Int, var col: Int): Block(row, col) {
         }
     }
 
-    fun touchBottomBlock(arr: CompareArray): Boolean {
+    override fun touchBottomBlock(arr: CompareArray): Boolean {
         if(!isRotation1 && !isRotation2 && !isRotation3) {
             return arr.arr[point3.x + 1][point3.y] == 1 || arr.arr[point4.x + 1][point4.y] == 1
         } else if(isRotation1 && !isRotation2 && !isRotation3) {
@@ -104,7 +104,7 @@ class BlockL(var row: Int, var col: Int): Block(row, col) {
         }
     }
 
-    fun touchLeftBlock(arr: CompareArray): Boolean {
+    override fun touchLeftBlock(arr: CompareArray): Boolean {
         if(!isRotation1 && !isRotation2 && !isRotation3) {
             return arr.arr[point1.x][point1.y - 1] == 1 || arr.arr[point2.x][point2.y - 1] == 1 ||
                     arr.arr[point3.x][point3.y - 1] == 1
@@ -118,7 +118,7 @@ class BlockL(var row: Int, var col: Int): Block(row, col) {
         }
     }
 
-    fun touchRightBlock(arr: CompareArray): Boolean {
+    override fun touchRightBlock(arr: CompareArray): Boolean {
         if(!isRotation1 && !isRotation2 && !isRotation3) {
             return arr.arr[point1.x][point1.y + 1] == 1 || arr.arr[point2.x][point2.y + 1] == 1 ||
                     arr.arr[point4.x][point4.y + 1] == 1
