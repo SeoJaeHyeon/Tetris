@@ -13,7 +13,7 @@ class BlockS(var row: Int, var col: Int): Block(row, col) {
 
     override fun blockDown(arr: CompareArray) {
         if(!(arr.touchFloor(this))) { // 블럭들이 바닥에 안닿았으면 이동가능
-            if(!touchBottomBlock(arr)) {
+            if(!touchBottomBlock(arr)) { // 다른블럭이랑 밑 부분이 안부딪히면 이동 가능
                 point1.down()
                 point2.down()
                 point3.down()
@@ -24,7 +24,7 @@ class BlockS(var row: Int, var col: Int): Block(row, col) {
 
     override fun blockLeft(arr: CompareArray) {
         if(!(arr.touchLeft(this))) { // 블럭들이 왼쪽 벽에 닿지 않았으면 이동가능
-            if(!touchLeftBlock(arr)) {
+            if(!touchLeftBlock(arr)) {// 다른블럭이랑 왼쪽 부분이 안부딪히면 이동 가능
                 point1.left()
                 point2.left()
                 point3.left()
@@ -34,7 +34,7 @@ class BlockS(var row: Int, var col: Int): Block(row, col) {
     }
     override fun blockRight(arr: CompareArray) {
         if(!(arr.touchRight(this))) { // 블럭들이 오른쪽 벽에 닿지 않았으면 이동가능
-            if(!touchRightBlock(arr)) {
+            if(!touchRightBlock(arr)) { // 다른블럭이랑 오른쪽 부분이 안부딪히면 이동 가능
                 point1.right()
                 point2.right()
                 point3.right()
