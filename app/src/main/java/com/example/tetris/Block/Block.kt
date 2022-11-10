@@ -36,4 +36,9 @@ open class Block(var x: Int, var y: Int) {
     open fun blockRight(arr: CompareArray) {
 
     }
+
+    open fun touchBottomBlock(arr: CompareArray) = true
+    open fun touchLeftBlock(arr: CompareArray) = true
+    open fun touchRightBlock(arr: CompareArray) = true
+
 }

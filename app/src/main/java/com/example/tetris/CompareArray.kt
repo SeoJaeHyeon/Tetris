@@ -47,4 +47,7 @@ class CompareArray {
         return (block.point1.y + 1 == COL) || (block.point2.y + 1 == COL) ||
                 (block.point3.y + 1 == COL) || (block.point4.y + 1 == COL)
     }
+
+
+
 }
