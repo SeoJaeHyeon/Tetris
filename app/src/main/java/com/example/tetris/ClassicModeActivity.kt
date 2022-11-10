@@ -167,12 +167,12 @@ class ClassicModeActivity : AppCompatActivity() {
     fun newBlockDown() {
         if(compareArr.touchFloor(block)) { // 블럭이 바닥에 닿으면 새로운 블럭 생성
             randomNum = Random.nextInt(0, 7)
-            block = randomBlockChoice(1, 1, COL / 2)
+            block = randomBlockChoice(randomNum, 1, COL / 2)
             printBlock()
         }
         if(block.touchBottomBlock(compareArr)) { // 블럭의 밑이 다른 블럭과 만나면 새로운 블럭 생성
             randomNum = Random.nextInt(0, 7)
-            block = randomBlockChoice(1, 1, COL / 2)
+            block = randomBlockChoice(randomNum, 1, COL / 2)
             printBlock()
         }
 
