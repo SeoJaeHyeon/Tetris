@@ -29,9 +29,15 @@ class GameModeActivity : AppCompatActivity() {
             startActivity(Intent(this, TimeAttackModeActivity::class.java)) // time attack 모드로 엑티비티 이동
         }
         binding.btnBackmain.setOnClickListener {
+/*
             val intent = Intent(this, MainActivity::class.java) // 게임 모드에서 뒤로 가기 버튼을 누르면
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)                  // 스택에 있는 나머지 액티비티 다 없애고
             startActivity(intent)                                            // 다시 MainActivity인 첫 화면으로 이동
+*/
+
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(intent)
         }
     }
 }
