@@ -5,7 +5,7 @@ import com.example.tetris.CompareArray
 class BlockT(var row: Int, var col: Int): Block(row, col) {
 
     init {
-        number = 6
+        number = 7
         point2 = Point(row, col - 1 )
         point3 = Point(row, col + 1 )
         point4 = Point(row + 1, col )
@@ -93,29 +93,29 @@ class BlockT(var row: Int, var col: Int): Block(row, col) {
 
     override fun touchBottomBlock(arr: CompareArray): Boolean {
         if(!isRotation1 && !isRotation2 && !isRotation3) {
-            return arr.arr[point2.x + 1][point2.y] == 1 || arr.arr[point3.x + 1][point3.y] == 1 ||
-                    arr.arr[point4.x + 1][point4.y] == 1
+            return arr.arr[point2.x + 1][point2.y] > 0 || arr.arr[point3.x + 1][point3.y] > 0 ||
+                    arr.arr[point4.x + 1][point4.y] > 0
         } else if(isRotation1 && !isRotation2 && !isRotation3) {
-            return arr.arr[point3.x + 1][point3.y] == 1 || arr.arr[point4.x + 1][point4.y] == 1
+            return arr.arr[point3.x + 1][point3.y] > 0 || arr.arr[point4.x + 1][point4.y] > 0
         } else if(isRotation1 && isRotation2 && !isRotation3) {
-            return arr.arr[point1.x + 1][point1.y] == 1 || arr.arr[point2.x + 1][point2.y] == 1 ||
-                    arr.arr[point3.x + 1][point3.y] == 1
+            return arr.arr[point1.x + 1][point1.y] > 0 || arr.arr[point2.x + 1][point2.y] > 0 ||
+                    arr.arr[point3.x + 1][point3.y] > 0
         } else {
-            return arr.arr[point2.x + 1][point2.y] == 1 || arr.arr[point4.x + 1][point4.y] == 1
+            return arr.arr[point2.x + 1][point2.y] > 0 || arr.arr[point4.x + 1][point4.y] > 0
         }
     }
 
     override fun touchLeftBlock(arr: CompareArray): Boolean {
         if(!isRotation1 && !isRotation2 && !isRotation3) {
-            return arr.arr[point2.x][point2.y - 1] == 1 || arr.arr[point4.x][point4.y - 1] == 1
+            return arr.arr[point2.x][point2.y - 1] > 0 || arr.arr[point4.x][point4.y - 1] > 0
         } else if(isRotation1 && !isRotation2 && !isRotation3) {
-            return arr.arr[point2.x][point2.y - 1] == 1 || arr.arr[point3.x][point3.y - 1] == 1 ||
-                    arr.arr[point4.x][point4.y - 1] == 1
+            return arr.arr[point2.x][point2.y - 1] > 0 || arr.arr[point3.x][point3.y - 1] > 0 ||
+                    arr.arr[point4.x][point4.y - 1] > 0
         } else if(isRotation1 && isRotation2 && !isRotation3) {
-            return  arr.arr[point3.x][point3.y - 1] == 1 || arr.arr[point4.x][point4.y - 1] == 1
+            return  arr.arr[point3.x][point3.y - 1] > 0 || arr.arr[point4.x][point4.y - 1] > 0
         } else {
-            return arr.arr[point1.x][point1.y - 1] == 1 || arr.arr[point2.x][point2.y - 1] == 1 ||
-                    arr.arr[point3.x][point3.y - 1] == 1
+            return arr.arr[point1.x][point1.y - 1] > 0 || arr.arr[point2.x][point2.y - 1] > 0 ||
+                    arr.arr[point3.x][point3.y - 1] > 0
         }
     }
 

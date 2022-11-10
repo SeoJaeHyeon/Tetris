@@ -16,10 +16,10 @@ class CompareArray {
     // 파라미터의 block이 있는 배열의 위치는 모두 1로 값 변경
     // 게임모드 들의 Activity에서 printBlock 함수 내에서 실행
     fun changeZeroToOne(block: Block) {
-        arr[block.point1.x][block.point1.y] = 1
-        arr[block.point2.x][block.point2.y] = 1
-        arr[block.point3.x][block.point3.y] = 1
-        arr[block.point4.x][block.point4.y] = 1
+        arr[block.point1.x][block.point1.y] = block.number
+        arr[block.point2.x][block.point2.y] = block.number
+        arr[block.point3.x][block.point3.y] = block.number
+        arr[block.point4.x][block.point4.y] = block.number
     }
     // 파라미터의 block이 있는 배열의 위치는 모두 0으로 변경
     // 블럭 이동시 이동 전 게임모드 들의 Activity에서 removeBlock 함수 내에서 실행

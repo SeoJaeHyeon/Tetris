@@ -24,7 +24,7 @@ class ClassicModeActivity : AppCompatActivity() {
         arrayOfNulls<ImageView>(COL)
     }
     // 블럭들을 랜덤하게 나오기 위해 블럭의 번호를 난수로 저장
-    var randomNum: Int = Random.nextInt(0, 7)
+    var randomNum: Int = Random.nextInt(1, 8)
     // 랜덤하게 얻은 블럭을 Block에 저장(게임화면에서 움직일 블럭)
     var block: Block = randomBlockChoice(randomNum, 1, COL / 2)
 
@@ -64,6 +64,7 @@ class ClassicModeActivity : AppCompatActivity() {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
             block.blockDown(compareArr)// 블럭을 아래로 움직임
             printBlock() // 움직인 블럭을 다시 그림
+            DeleteBlocksChecking()
             newBlockDown()
 
 
@@ -83,12 +84,12 @@ class ClassicModeActivity : AppCompatActivity() {
     fun randomBlockChoice(number: Int, row: Int, col: Int): Block {
         val randomBlock: Block
         when(number) {
-            0 -> randomBlock = BlockI(row, col)
-            1 -> randomBlock = BlockO(row, col)
-            2 -> randomBlock = BlockZ(row, col)
-            3 -> randomBlock = BlockS(row, col)
-            4 -> randomBlock = BlockJ(row, col)
-            5 -> randomBlock = BlockL(row, col)
+            1 -> randomBlock = BlockI(row, col)
+            2 -> randomBlock = BlockO(row, col)
+            3 -> randomBlock = BlockZ(row, col)
+            4 -> randomBlock = BlockS(row, col)
+            5 -> randomBlock = BlockJ(row, col)
+            6 -> randomBlock = BlockL(row, col)
             else -> randomBlock = BlockT(row, col)
         }
         return randomBlock
@@ -115,12 +116,12 @@ class ClassicModeActivity : AppCompatActivity() {
         val color: Int
         when(number) {
             // 블럭의 number에 따라 각각 그려질 블럭 색깔 지정
-            0 -> color = R.drawable.skyblueblockl
-            1 -> color = R.drawable.yellowblocko
-            2 -> color = R.drawable.redblockz
-            3 -> color = R.drawable.greenblocks
-            4 -> color = R.drawable.deepblueblockj
-            5 -> color = R.drawable.orangeblockl
+            1 -> color = R.drawable.skyblueblockl
+            2 -> color = R.drawable.yellowblocko
+            3 -> color = R.drawable.redblockz
+            4 -> color = R.drawable.greenblocks
+            5 -> color = R.drawable.deepblueblockj
+            6 -> color = R.drawable.orangeblockl
             else -> color = R.drawable.purpleblockt
         }
         return color
@@ -166,28 +167,59 @@ class ClassicModeActivity : AppCompatActivity() {
     fun newBlockDown() {
         if(compareArr.touchFloor(block)) { // 블럭이 바닥에 닿으면 새로운 블럭 생성
             randomNum = Random.nextInt(0, 7)
-            block = randomBlockChoice(randomNum, 1, COL / 2)
+            block = randomBlockChoice(1, 1, COL / 2)
             printBlock()
         }
         if(block.touchBottomBlock(compareArr)) { // 블럭의 밑이 다른 블럭과 만나면 새로운 블럭 생성
             randomNum = Random.nextInt(0, 7)
-            block = randomBlockChoice(randomNum, 1, COL / 2)
-            printBlock()
-        }
-        /*
-        if(!compareArr.touchLeft(block) && block.touchBottomBlock(compareArr) && block.touchLeftBlock(compareArr)) {
-            randomNum = Random.nextInt(0, 7)
-            block = randomBlockChoice(randomNum, 1, COL / 2)
-            printBlock()
-        }
-        if(!compareArr.touchRight(block) && block.touchBottomBlock(compareArr) && block.touchRightBlock(compareArr)) {
-            randomNum = Random.nextInt(0, 7)
-            block = randomBlockChoice(randomNum, 1, COL / 2)
+            block = randomBlockChoice(1, 1, COL / 2)
             printBlock()
         }
 
-         */
     }
+
+    fun DeleteBlocks(row: Int) {
+        for(i in row downTo 1) {
+            compareArr.arr[i] = compareArr.arr[i - 1]
+        }
+        printAllGameFrame()
+
+    }
+
+    fun DeleteBlocksChecking() {
+        for(i in 0 until ROW) {
+            for(j in 0 until COL) {
+                if(compareArr.arr[i][j] == 0) break
+                else{
+                    if(j == COL - 1) {
+                        DeleteBlocks(i)
+                    }
+                }
+            }
+        }
+    }
+
+    fun printAllGameFrame() {
+        for(i in 0 until ROW) {
+            for (j in 0 until  COL){
+                test(compareArr.arr[i][j], gameFrame, i, j)
+            }
+        }
+    }
+
+    fun test(number: Int, arr: Array<Array<ImageView?>>, row: Int, col: Int) {
+        when(number) {
+            1 -> arr[row][col]!!.setImageResource(R.drawable.skyblueblockl)
+            2 -> arr[row][col]!!.setImageResource(R.drawable.yellowblocko)
+            3 -> arr[row][col]!!.setImageResource(R.drawable.redblockz)
+            4 -> arr[row][col]!!.setImageResource(R.drawable.greenblocks)
+            5 -> arr[row][col]!!.setImageResource(R.drawable.deepblueblockj)
+            6 -> arr[row][col]!!.setImageResource(R.drawable.orangeblockl)
+            7 -> arr[row][col]!!.setImageResource(R.drawable.purpleblockt)
+            else -> arr[row][col]!!.setImageResource(R.drawable.gameframe)
+        }
+    }
+
 }
 
 
