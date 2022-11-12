@@ -219,6 +219,7 @@ class ClassicModeActivity : AppCompatActivity() {
             else -> arr[row][col]!!.setImageResource(R.drawable.gameframe)
         }
     }
+    // test
 
 }
 
