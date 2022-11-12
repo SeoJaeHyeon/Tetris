@@ -53,15 +53,28 @@ class BlockZ(var row: Int, var col: Int): Block(row, col) {
 
             isRotation = true
         }else { // 2번 회전 -> 처음 모양
-            point2.x++
-            point2.y--
+            if( arr.touchRight(this)) {
+                point1.y--
 
-            point3.x++
-            point3.y++
+                point2.x++
+                point2.y -= 2
 
-            point4.y += 2
+                point3.x++
 
-            isRotation = false
+                point4.y++
+
+                isRotation = false
+            }else {
+                point2.x++
+                point2.y--
+
+                point3.x++
+                point3.y++
+
+                point4.y += 2
+
+                isRotation = false
+            }
         }
     }
 
