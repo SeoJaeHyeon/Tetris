@@ -24,12 +24,11 @@ class ClassicModeActivity : AppCompatActivity() {
         arrayOfNulls<ImageView>(COL)
     }
     // 블럭들을 랜덤하게 나오기 위해 블럭의 번호를 난수로 저장
-    var randomNum: Int = Random.nextInt(1, 8)
+    var randomNum: Int = 7
     // 랜덤하게 얻은 블럭을 Block에 저장(게임화면에서 움직일 블럭)
     var block: Block = randomBlockChoice(randomNum, 1, COL / 2)
 
     val compareArr: CompareArray = CompareArray()
-
 
 
 
@@ -136,8 +135,6 @@ class ClassicModeActivity : AppCompatActivity() {
         gameFrame[block.point2.x][block.point2.y]!!.setImageResource(blockColor(block.number))
         gameFrame[block.point3.x][block.point3.y]!!.setImageResource(blockColor(block.number))
         gameFrame[block.point4.x][block.point4.y]!!.setImageResource(blockColor(block.number))
-
-
 
     }
 
