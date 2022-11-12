@@ -38,14 +38,14 @@
 
                 <ImageView
                     android:id="@+id/img_stopt"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     app:srcCompat="@drawable/stop" />
 
                 <TextView
                     android:id="@+id/txt_nextt"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="Next Block"
@@ -53,7 +53,7 @@
 
                 <androidx.gridlayout.widget.GridLayout
                     android:id="@+id/nextblockt"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="@color/black">
@@ -62,7 +62,7 @@
 
                 <TextView
                     android:id="@+id/txt_time"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#F4E75C"
@@ -71,7 +71,7 @@
 
                 <TextView
                     android:id="@+id/txt_hight"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#F3E65C"
@@ -80,7 +80,7 @@
 
                 <TextView
                     android:id="@+id/txt_scoret"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#F2E55C"
