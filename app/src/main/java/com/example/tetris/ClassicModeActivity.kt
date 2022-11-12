@@ -33,6 +33,7 @@ class ClassicModeActivity : AppCompatActivity() {
 
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -63,7 +64,6 @@ class ClassicModeActivity : AppCompatActivity() {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
             block.blockDown(compareArr)// 블럭을 아래로 움직임
             printBlock() // 움직인 블럭을 다시 그림
-            DeleteBlocksChecking()
             newBlockDown()
 
 
@@ -136,6 +136,8 @@ class ClassicModeActivity : AppCompatActivity() {
         gameFrame[block.point3.x][block.point3.y]!!.setImageResource(blockColor(block.number))
         gameFrame[block.point4.x][block.point4.y]!!.setImageResource(blockColor(block.number))
 
+
+
     }
 
     // gameFrame에서 블럭을 다시 원래 배경으로 바꾸는 함수(이동할 때 사용)
@@ -163,14 +165,32 @@ class ClassicModeActivity : AppCompatActivity() {
 
     fun newBlockDown() {
         if(compareArr.touchFloor(block)) { // 블럭이 바닥에 닿으면 새로운 블럭 생성
-            randomNum = Random.nextInt(0, 7)
-            block = randomBlockChoice(randomNum, 1, COL / 2)
-            printBlock()
-        }
-        if(block.touchBottomBlock(compareArr)) { // 블럭의 밑이 다른 블럭과 만나면 새로운 블럭 생성
-            randomNum = Random.nextInt(0, 7)
-            block = randomBlockChoice(randomNum, 1, COL / 2)
-            printBlock()
+            if(isDelete()) {
+                while(isDelete()) {
+                    DeleteBlocksChecking()
+                }
+                randomNum = Random.nextInt(1, 8)
+                block = randomBlockChoice(randomNum, 1, COL / 2)
+                printBlock()
+            } else {
+                randomNum = Random.nextInt(1, 8)
+                block = randomBlockChoice(randomNum, 1, COL / 2)
+                printBlock()
+            }
+        } else if(block.touchBottomBlock(compareArr)) { // 블럭의 밑이 다른 블럭과 만나면 새로운 블럭 생성
+            if(isDelete()) {
+                while(isDelete()) {
+                    DeleteBlocksChecking()
+                }
+                randomNum = Random.nextInt(0, 7)
+                block = randomBlockChoice(randomNum, 1, COL / 2)
+                printBlock()
+            } else {
+                randomNum = Random.nextInt(0, 7)
+                block = randomBlockChoice(randomNum, 1, COL / 2)
+                printBlock()
+            }
+
         }
 
     }
@@ -184,7 +204,7 @@ class ClassicModeActivity : AppCompatActivity() {
     }
 
     fun DeleteBlocksChecking() {
-        for(i in 0 until ROW) {
+        for(i in ROW-1 downTo 0) {
             for(j in 0 until COL) {
                 if(compareArr.arr[i][j] == 0) break
                 else{
@@ -194,6 +214,20 @@ class ClassicModeActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun isDelete(): Boolean {
+        for(i in ROW-1 downTo 0) {
+            for(j in 0 until COL) {
+                if(compareArr.arr[i][j] == 0) break
+                else{
+                    if(j == COL - 1) {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
     }
 
     fun printAllGameFrame() {
@@ -216,6 +250,7 @@ class ClassicModeActivity : AppCompatActivity() {
             else -> arr[row][col]!!.setImageResource(R.drawable.gameframe)
         }
     }
+
 
 }
 

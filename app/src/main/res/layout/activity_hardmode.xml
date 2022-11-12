@@ -38,7 +38,7 @@
 
                 <ImageView
                     android:id="@+id/img_stoph"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     app:srcCompat="@drawable/stop" />
@@ -53,7 +53,7 @@
 
                 <androidx.gridlayout.widget.GridLayout
                     android:id="@+id/nextblockh"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="@color/black">
@@ -62,7 +62,7 @@
 
                 <TextView
                     android:id="@+id/txt_levelh"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#F4E75C"
@@ -71,7 +71,7 @@
 
                 <TextView
                     android:id="@+id/txt_highh"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#F3E65C"
@@ -80,7 +80,7 @@
 
                 <TextView
                     android:id="@+id/txt_scoreh"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:background="#F2E55C"
