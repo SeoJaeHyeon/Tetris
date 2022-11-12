@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.gridlayout.widget.GridLayout
 import com.example.tetris.Block.*
 import com.example.tetris.databinding.ActivityClassicmodeBinding
 import kotlinx.coroutines.delay
@@ -95,7 +96,7 @@ class ClassicModeActivity : AppCompatActivity() {
     }
 
     // 게임 화면 설정 -> 게임화면에 사용될 이차원배열, 이차원배열을 그려줄 gridLayout, row, col을 매개변수로 받음
-    fun gameFrameSetting(arr: Array<Array<ImageView?>>, grid: androidx.gridlayout.widget.GridLayout, row: Int, col: Int) {
+    fun gameFrameSetting(arr: Array<Array<ImageView?>>, grid: GridLayout, row: Int, col: Int) {
         // 해당 context(환경에 대한 전역정보) LayoutInflater를 가져옴(xml을 View객체로 변환)
         val inflater = LayoutInflater.from(this)
         for (i in 0 until row) {
@@ -233,12 +234,12 @@ class ClassicModeActivity : AppCompatActivity() {
     fun printAllGameFrame() {
         for(i in 0 until ROW) {
             for (j in 0 until  COL){
-                test(compareArr.arr[i][j], gameFrame, i, j)
+                printEachBlock(compareArr.arr[i][j], gameFrame, i, j)
             }
         }
     }
 
-    fun test(number: Int, arr: Array<Array<ImageView?>>, row: Int, col: Int) {
+    fun printEachBlock(number: Int, arr: Array<Array<ImageView?>>, row: Int, col: Int) {
         when(number) {
             1 -> arr[row][col]!!.setImageResource(R.drawable.skyblueblockl)
             2 -> arr[row][col]!!.setImageResource(R.drawable.yellowblocko)
@@ -251,6 +252,16 @@ class ClassicModeActivity : AppCompatActivity() {
         }
     }
 
+    // 게임오버 함수
+    fun gameOver(): Boolean {
+        for(col in 0 until COL) {
+            for(row in 0 until ROW) {
+                if(compareArr.arr[row][col] <= 0) break
+                else return true // 게임 종료
+            }
+        }
+        return false
+    }
 
 }
 
