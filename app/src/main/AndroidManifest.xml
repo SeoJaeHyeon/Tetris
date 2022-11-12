@@ -31,7 +31,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name="com.example.tetris.MainActivity"></activity>
+        <activity android:name="com.example.tetris.MainActivity" />
         <activity android:name=".GameModeActivity" />
         <activity android:name=".ClassicModeActivity" />
         <activity android:name=".HardModeActivity" />
