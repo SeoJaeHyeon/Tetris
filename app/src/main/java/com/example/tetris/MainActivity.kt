@@ -38,9 +38,15 @@ class MainActivity : AppCompatActivity() {
 
         startService(Intent(applicationContext, MusicService::class.java)) //서비스에 있는 onStartCommand 호출하여 노래 재생
     }
+/*
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        stopService(Intent(applicationContext, MusicService::class.java))
+    }*/
 
     override fun onUserLeaveHint() { //홈버튼 눌러 앱종료시 음악이 꺼짐
         super.onUserLeaveHint()
         stopService(Intent(applicationContext, MusicService::class.java))
     }
+
 }

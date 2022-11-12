@@ -18,7 +18,8 @@
             android:exported="true"></service>
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.tetris.LoadingActivity"
+            android:theme="@style/Theme.Tetris"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,9 +31,10 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name="com.example.tetris.MainActivity"></activity>
         <activity android:name=".GameModeActivity" />
         <activity android:name=".ClassicModeActivity" />
-        <activity android:name=".Activity.HardModeActivity" />
+        <activity android:name=".HardModeActivity" />
         <activity android:name=".TimeAttackModeActivity" />
         <activity android:name=".StopActivity" />
         <activity android:name="com.example.tetris.SettingActivity" />
