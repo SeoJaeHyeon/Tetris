@@ -22,9 +22,11 @@ class SettingActivity: AppCompatActivity() {
             finish()
         }
         binding.btnBgmON.setOnClickListener {
+            isMusicOn = true
             startService(Intent(applicationContext, MusicService::class.java)) ////서비스에 있는 onStartCommand 호출하여 노래 재생
         }
         binding.btnBgmOFF.setOnClickListener {
+            isMusicOn = false
             stopService(Intent(applicationContext, MusicService::class.java)) //서비스에 있는 onDestory 호출하여 음악 중지
         }
     }

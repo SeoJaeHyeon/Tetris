@@ -4,17 +4,16 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NO_USER_ACTION
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.tetris.databinding.ActivityMainBinding
+
+var isMusicOn: Boolean = true // 음악이 켜져있는 지 확인하는 변수
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
 
-    /*override fun onStart() {
-        super.onStart()
-        startService(Intent(this, MusicService::class.java))
-    }*/ //배경음악 종료 후 돌아와도 다시 메인화면에서 다시 재생되는 문제로 주석처리
-        //이거 제거하면 배경화면 나갔다 들어왔을 때 다시 실행이 안됌..
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,17 +35,20 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        startService(Intent(applicationContext, MusicService::class.java)) //서비스에 있는 onStartCommand 호출하여 노래 재생
+        if(isMusicOn) {
+            startService(Intent(applicationContext, MusicService::class.java)) //서비스에 있는 onStartCommand 호출하여 노래 재생
+        } else {
+            stopService(Intent(applicationContext, MusicService::class.java))
+        }
     }
-/*
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        stopService(Intent(applicationContext, MusicService::class.java))
-    }*/
 
     override fun onUserLeaveHint() { //홈버튼 눌러 앱종료시 음악이 꺼짐
         super.onUserLeaveHint()
         stopService(Intent(applicationContext, MusicService::class.java))
+        isMusicOn = false
     }
+
+
+
 
 }
