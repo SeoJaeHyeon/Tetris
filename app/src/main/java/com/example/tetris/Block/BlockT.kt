@@ -53,17 +53,31 @@ class BlockT(var row: Int, var col: Int): Block(row, col) {
             point4.y--
 
             isRotation1 = true
+
         } else if (isRotation1 && !isRotation2 &&!isRotation3) { //2번째 로테이션
-            point2.x++
-            point2.y++
+            if(arr.touchRight(this)){
+                point1.y--
 
-            point3.x--
-            point3.y--
+                point2.x++
 
-            point4.x--
-            point4.y++
+                point3.x--
+                point3.y-=2
 
-            isRotation2 = true
+                point4.x--
+
+                isRotation2 = true
+            }else {
+                point2.x++
+                point2.y++
+
+                point3.x--
+                point3.y--
+
+                point4.x--
+                point4.y++
+
+                isRotation2 = true
+            }
         } else if (isRotation1 && isRotation2 &&!isRotation3) { //3번째 로테이션
             point2.x++
             point2.y--
@@ -76,18 +90,33 @@ class BlockT(var row: Int, var col: Int): Block(row, col) {
 
             isRotation3 = true
         } else if (isRotation1 && isRotation2 && isRotation3) { //4번째 로테이션(원점복귀)
-            point2.x--
-            point2.y--
+            if (arr.touchLeft(this)) {
+                point1.y++
 
-            point3.x++
-            point3.y++
+                point2.x--
 
-            point4.x++
-            point4.y--
+                point3.x++
+                point3.y += 2
 
-            isRotation1 = false
-            isRotation2 = false
-            isRotation3 = false
+                point4.x++
+
+                isRotation1 = false
+                isRotation2 = false
+                isRotation3 = false
+            } else {
+                point2.x--
+                point2.y--
+
+                point3.x++
+                point3.y++
+
+                point4.x++
+                point4.y--
+
+                isRotation1 = false
+                isRotation2 = false
+                isRotation3 = false
+            }
         }
     }
 
