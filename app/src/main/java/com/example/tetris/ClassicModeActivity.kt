@@ -30,6 +30,9 @@ class ClassicModeActivity : AppCompatActivity() {
         // 각 행들의 배열의 타입은 ImageView ! 나중에 초기화하기 위해 arrayOfNulls 배열 사용
         arrayOfNulls<ImageView>(COL)
     }
+    val nextBlockFrame = Array(4) {
+        arrayOfNulls<ImageView>(3)
+    }
     // 블럭들을 랜덤하게 나오기 위해 블럭의 번호를 난수로 저장
     var randomNum: Int = Random.nextInt(1, 8)
     // 랜덤하게 얻은 블럭을 Block에 저장(게임화면에서 움직일 블럭)
@@ -49,6 +52,9 @@ class ClassicModeActivity : AppCompatActivity() {
         binding.gridmain.rowCount = ROW // gridLayout의 row
         binding.gridmain.columnCount = COL // gridLayout의 col
 
+        binding.nextblock.rowCount = 4
+        binding.nextblock.columnCount = 3
+
         viewModelFrame = ViewModelProvider(this).get(ViewModelArray::class.java)
         viewModelFrame.arr.observe(this, Observer {
 
@@ -56,6 +62,9 @@ class ClassicModeActivity : AppCompatActivity() {
 
         // 게임 시작 후 gridLayout에 게임화면 생성
         gameFrameSetting(gameFrame, binding.gridmain, ROW, COL)
+
+        gameFrameSetting(nextBlockFrame, binding.nextblock, 4, 3)
+
         //printBlock() // 움직일 블럭 생성
         gameRun()
 
