@@ -1,7 +1,7 @@
 package com.example.tetris
 
 import com.example.tetris.Block.Block
-
+/*
 // (20 x 10) Int 배열로서 게임 화면에서 블럭이 있는 곳은 1, 블럭이 없는 곳은 0으로 표시 하기 위한 클래스
 // 0으로 표시 되어 있으면 블럭 이동 가능, 1로 표시되어 있으면 블럭 이동 불가능
 class CompareArray {
@@ -50,4 +50,4 @@ class CompareArray {
 
 
 
-}
+}*/

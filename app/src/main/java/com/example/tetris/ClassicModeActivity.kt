@@ -3,15 +3,21 @@ package com.example.tetris
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.ImageView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.gridlayout.widget.GridLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.tetris.Block.*
+import com.example.tetris.ViewModel.ViewModelArray
 import com.example.tetris.databinding.ActivityClassicmodeBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlin.math.log
 import kotlin.random.Random
 
 
@@ -28,11 +34,10 @@ class ClassicModeActivity : AppCompatActivity() {
     var randomNum: Int = Random.nextInt(1, 8)
     // 랜덤하게 얻은 블럭을 Block에 저장(게임화면에서 움직일 블럭)
     var block: Block = randomBlockChoice(randomNum, 1, COL / 2)
-
-    val compareArr: CompareArray = CompareArray()
-
+    var run = true
 
 
+    lateinit var viewModelFrame: ViewModelArray
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,39 +49,60 @@ class ClassicModeActivity : AppCompatActivity() {
         binding.gridmain.rowCount = ROW // gridLayout의 row
         binding.gridmain.columnCount = COL // gridLayout의 col
 
+        viewModelFrame = ViewModelProvider(this).get(ViewModelArray::class.java)
+        viewModelFrame.arr.observe(this, Observer {
+
+        })
 
         // 게임 시작 후 gridLayout에 게임화면 생성
         gameFrameSetting(gameFrame, binding.gridmain, ROW, COL)
-        printBlock() // 움직일 블럭 생성
-
+        //printBlock() // 움직일 블럭 생성
+        gameRun()
 
         //버튼 눌렸을 때
         binding.imgLeft.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-            block.blockLeft(compareArr)// 블럭을 왼쪽으로 움직임
+            //block.blockLeft(compareArr)// 블럭을 왼쪽으로 움직임
+            block.blockLeft(viewModelFrame)
             printBlock() // 움직인 블럭을 다시 그림
         }
         binding.imgRight.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-            block.blockRight(compareArr)// 블럭을 오른쪽으로 움직임
+            //block.blockRight(compareArr)// 블럭을 오른쪽으로 움직임
+            block.blockRight(viewModelFrame)
             printBlock() // 움직인 블럭을 다시 그림
         }
         binding.imgDown.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-            block.blockDown(compareArr)// 블럭을 아래로 움직임
+            //block.blockDown(compareArr)// 블럭을 아래로 움직임
+            block.blockDown(viewModelFrame)
             printBlock() // 움직인 블럭을 다시 그림
-            newBlockDown()
-
-
+            Log.e("ENTER","BLOCK MOVE",)
         }
         binding.imgChange.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-            block.rotation(compareArr) // 블럭을 회전시킴
+            //block.rotation(compareArr) // 블럭을 회전시킴
+            block.rotation(viewModelFrame)
             printBlock() // 움직인 블럭을 다시 그림
         }
         binding.imgStop.setOnClickListener {
             // 그만하기 버튼 누르면 StopActivity로 이동
             startActivity(Intent(this, StopActivity::class.java))
+        }
+
+
+    }
+    // 게임 화면 설정 -> 게임화면에 사용될 이차원배열, 이차원배열을 그려줄 gridLayout, row, col을 매개변수로 받음
+    fun gameFrameSetting(arr: Array<Array<ImageView?>>, grid: GridLayout, row: Int, col: Int) {
+        // 해당 context(환경에 대한 전역정보) LayoutInflater를 가져옴(xml을 View객체로 변환)
+        val inflater = LayoutInflater.from(this)
+        for (i in 0 until row) {
+            for (j in 0 until col) {
+                // 게임화면에서 사용되는 이차원 배열의 각 원소에 gameframe_image를 넣음
+                arr!![i][j] = inflater.inflate(R.layout.gameframe_image, grid, false) as ImageView
+                // 위의 배열을 gridLayout에 맞추어 이미지 삽입
+                grid.addView(arr[i][j])
+            }
         }
     }
 
@@ -95,22 +121,6 @@ class ClassicModeActivity : AppCompatActivity() {
         return randomBlock
     }
 
-    // 게임 화면 설정 -> 게임화면에 사용될 이차원배열, 이차원배열을 그려줄 gridLayout, row, col을 매개변수로 받음
-    fun gameFrameSetting(arr: Array<Array<ImageView?>>, grid: GridLayout, row: Int, col: Int) {
-        // 해당 context(환경에 대한 전역정보) LayoutInflater를 가져옴(xml을 View객체로 변환)
-        val inflater = LayoutInflater.from(this)
-        for (i in 0 until row) {
-            for (j in 0 until col) {
-                // 게임화면에서 사용되는 이차원 배열의 각 원소에 gameframe_image를 넣음
-                arr!![i][j] = inflater.inflate(R.layout.gameframe_image, grid, false) as ImageView
-                // 위의 배열을 gridLayout에 맞추어 이미지 삽입
-                grid.addView(arr[i][j])
-            }
-        }
-    }
-
-
-
     // 블럭의 색 결정하는 함수
     fun blockColor(number: Int): Int {
         val color: Int
@@ -122,95 +132,59 @@ class ClassicModeActivity : AppCompatActivity() {
             4 -> color = R.drawable.greenblocks
             5 -> color = R.drawable.deepblueblockj
             6 -> color = R.drawable.orangeblockl
-            else -> color = R.drawable.purpleblockt
+            7 -> color = R.drawable.purpleblockt
+            else -> color = R.drawable.gameframe
         }
         return color
     }
 
     // 블럭을 gameFrame에 보여주는 함수
     fun printBlock() {
-
-        compareArr.changeZeroToOne(block)
+        viewModelFrame.changeZeroToBlockNumber(block)
         // 블럭이 지정하는 인덱스에 맞추어 블럭 출력 -> gameFrame의 배열 블럭은 항상 이미지가 있어 null이 될 수 없음
         gameFrame[block.point1.x][block.point1.y]!!.setImageResource(blockColor(block.number))
         gameFrame[block.point2.x][block.point2.y]!!.setImageResource(blockColor(block.number))
         gameFrame[block.point3.x][block.point3.y]!!.setImageResource(blockColor(block.number))
         gameFrame[block.point4.x][block.point4.y]!!.setImageResource(blockColor(block.number))
-
-
-
     }
 
     // gameFrame에서 블럭을 다시 원래 배경으로 바꾸는 함수(이동할 때 사용)
     fun removeBlock() {
+        viewModelFrame.changeBlockNumberToZero(block)
         gameFrame[block.point1.x][block.point1.y]!!.setImageResource(R.drawable.gameframe)
         gameFrame[block.point2.x][block.point2.y]!!.setImageResource(R.drawable.gameframe)
         gameFrame[block.point3.x][block.point3.y]!!.setImageResource(R.drawable.gameframe)
         gameFrame[block.point4.x][block.point4.y]!!.setImageResource(R.drawable.gameframe)
-        compareArr.changeOneToZero(block)
-    }
-
-    // 블럭이 내려오는 걸 지연하는 함수인데 했는데 적용이 안되서 다시 해야할 듯
-    fun runDelay(second: Long) {
-        runBlocking {
-            launch {
-                delay(second)
-            }
-        }
-    }
-
-    // 자동으로 내려가는 함수
-    fun moveDownBlock() {
-
     }
 
     fun newBlockDown() {
-        if(compareArr.touchFloor(block)) { // 블럭이 바닥에 닿으면 새로운 블럭 생성
-            if(isDelete()) {
-                while(isDelete()) {
-                    DeleteBlocksChecking()
-                }
-                randomNum = Random.nextInt(1, 8)
-                block = randomBlockChoice(randomNum, 1, COL / 2)
-                printBlock()
-            } else {
-                randomNum = Random.nextInt(1, 8)
-                block = randomBlockChoice(randomNum, 1, COL / 2)
-                printBlock()
+        if(viewModelFrame.touchFloor(block) || block.touchBottomBlock(viewModelFrame)) { // 블럭이 바닥에 닿으면 새로운 블럭 생성
+            while(isDelete()) {
+                DeleteBlocksChecking()
             }
-        } else if(block.touchBottomBlock(compareArr)) { // 블럭의 밑이 다른 블럭과 만나면 새로운 블럭 생성
-            if(isDelete()) {
-                while(isDelete()) {
-                    DeleteBlocksChecking()
-                }
-                randomNum = Random.nextInt(0, 7)
-                block = randomBlockChoice(randomNum, 1, COL / 2)
-                printBlock()
-            } else {
-                randomNum = Random.nextInt(0, 7)
-                block = randomBlockChoice(randomNum, 1, COL / 2)
-                printBlock()
-            }
-
+            randomNum = Random.nextInt(1, 8)
+            block = randomBlockChoice(randomNum, 1, COL / 2)
+            printBlock()
         }
 
     }
 
     fun DeleteBlocks(row: Int) {
-        for(i in row downTo 1) {
-            compareArr.arr[i] = compareArr.arr[i - 1]
-        }
+        viewModelFrame.destroy(row)
         printAllGameFrame()
-
     }
 
     fun DeleteBlocksChecking() {
-        for(i in ROW-1 downTo 0) {
-            for(j in 0 until COL) {
-                if(compareArr.arr[i][j] == 0) break
+        for(row in ROW-1 downTo 0) {
+            for(col in 0 until COL) {
+                var isBlock = false
+                viewModelFrame.arr.value?. let{
+                    isBlock = it[row][col] == 0
+                }
+                if( isBlock ) break
                 else{
-                    if(j == COL - 1) {
-                        DeleteBlocks(i)
+                    if(col == COL - 1) {
+                        DeleteBlocks(row)
                     }
                 }
             }
@@ -220,7 +194,11 @@ class ClassicModeActivity : AppCompatActivity() {
     fun isDelete(): Boolean {
         for(i in ROW-1 downTo 0) {
             for(j in 0 until COL) {
-                if(compareArr.arr[i][j] == 0) break
+                var isBlock = true
+                viewModelFrame.arr.value?. let{
+                    isBlock = it[i][j] == 0
+                }
+                if( isBlock ) break
                 else{
                     if(j == COL - 1) {
                         return true
@@ -234,7 +212,11 @@ class ClassicModeActivity : AppCompatActivity() {
     fun printAllGameFrame() {
         for(i in 0 until ROW) {
             for (j in 0 until  COL){
-                printEachBlock(compareArr.arr[i][j], gameFrame, i, j)
+                var blockNum = 0
+                viewModelFrame.arr.value?. let{
+                    blockNum = it[i][j]
+                }
+                printEachBlock(blockNum, gameFrame, i, j)
             }
         }
     }
@@ -253,16 +235,134 @@ class ClassicModeActivity : AppCompatActivity() {
     }
 
     // 게임오버 함수
+    /*
     fun gameOver(): Boolean {
         for(col in 0 until COL) {
             for(row in 0 until ROW) {
-                if(compareArr.arr[row][col] <= 0) break
+                var isBlock = true
+                viewModelFrame.arr.value?. let{
+                    isBlock = it[col][row] == 0
+                }
+                if(isBlock) break
                 else return true // 게임 종료
             }
         }
         return false
     }
 
+     */
+
+    // 자동으로 내려가는 함수
+    fun moveDownBlock() {
+        removeBlock()
+        block.blockDown(viewModelFrame)
+        printBlock()
+    }
+
+    fun gameRun() {
+        Thread {
+            while(run) {
+                //if(gameOver()) run = false
+                Thread.sleep(500L)
+                runOnUiThread {
+                    //clearScreen(gameFrame, ROW, COL)
+                    moveDownBlock()
+                    newBlockDown()
+                }
+            }
+        }.start()
+    }
+
+/*
+    fun printArray() {
+        viewModelFrame.arr.value?.let {
+            Log.e(
+                "#######",
+                "${it[0][0]} ${it[0][1]} ${it[0][2]} ${it[0][3]} ${it[0][4]} ${it[0][5]} ${it[0][6]} ${it[0][7]} ${it[0][8]} ${it[0][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[1][0]} ${it[1][1]} ${it[1][2]} ${it[1][3]} ${it[1][4]} ${it[1][5]} ${it[1][6]} ${it[1][7]} ${it[1][8]} ${it[1][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[2][0]} ${it[2][1]} ${it[2][2]} ${it[2][3]} ${it[2][4]} ${it[2][5]} ${it[2][6]} ${it[2][7]} ${it[2][8]} ${it[2][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[3][0]} ${it[3][1]} ${it[3][2]} ${it[3][3]} ${it[3][4]} ${it[3][5]} ${it[3][6]} ${it[3][7]} ${it[3][8]} ${it[3][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[4][0]} ${it[4][1]} ${it[4][2]} ${it[4][3]} ${it[4][4]} ${it[4][5]} ${it[4][6]} ${it[4][7]} ${it[4][8]} ${it[4][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[5][0]} ${it[5][1]} ${it[5][2]} ${it[5][3]} ${it[5][4]} ${it[5][5]} ${it[5][6]} ${it[5][7]} ${it[5][8]} ${it[5][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[6][0]} ${it[6][1]} ${it[6][2]} ${it[6][3]} ${it[6][4]} ${it[6][5]} ${it[6][6]} ${it[6][7]} ${it[6][8]} ${it[6][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[7][0]} ${it[7][1]} ${it[7][2]} ${it[7][3]} ${it[7][4]} ${it[7][5]} ${it[7][6]} ${it[7][7]} ${it[7][8]} ${it[7][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[8][0]} ${it[8][1]} ${it[8][2]} ${it[8][3]} ${it[8][4]} ${it[8][5]} ${it[8][6]} ${it[8][7]} ${it[8][8]} ${it[8][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[9][0]} ${it[9][1]} ${it[9][2]} ${it[9][3]} ${it[9][4]} ${it[9][5]} ${it[9][6]} ${it[9][7]} ${it[9][8]} ${it[9][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[10][0]} ${it[10][1]} ${it[10][2]} ${it[10][3]} ${it[10][4]} ${it[10][5]} ${it[10][6]} ${it[10][7]} ${it[10][8]} ${it[10][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[11][0]} ${it[11][1]} ${it[11][2]} ${it[11][3]} ${it[11][4]} ${it[11][5]} ${it[11][6]} ${it[11][7]} ${it[11][8]} ${it[11][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[12][0]} ${it[12][1]} ${it[12][2]} ${it[12][3]} ${it[12][4]} ${it[12][5]} ${it[12][6]} ${it[12][7]} ${it[12][8]} ${it[12][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[13][0]} ${it[13][1]} ${it[13][2]} ${it[13][3]} ${it[13][4]} ${it[13][5]} ${it[13][6]} ${it[13][7]} ${it[13][8]} ${it[13][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[14][0]} ${it[14][1]} ${it[14][2]} ${it[14][3]} ${it[14][4]} ${it[14][5]} ${it[14][6]} ${it[14][7]} ${it[14][8]} ${it[14][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[15][0]} ${it[15][1]} ${it[15][2]} ${it[15][3]} ${it[15][4]} ${it[15][5]} ${it[15][6]} ${it[15][7]} ${it[15][8]} ${it[15][9]}"
+            )
+            Log.e(
+                    "#######",
+            "${it[16][0]} ${it[16][1]} ${it[16][2]} ${it[16][3]} ${it[16][4]} ${it[16][5]} ${it[16][6]} ${it[16][7]} ${it[16][8]} ${it[16][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[17][0]} ${it[17][1]} ${it[17][2]} ${it[17][3]} ${it[17][4]} ${it[17][5]} ${it[17][6]} ${it[17][7]} ${it[17][8]} ${it[17][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[18][0]} ${it[18][1]} ${it[18][2]} ${it[18][3]} ${it[18][4]} ${it[18][5]} ${it[18][6]} ${it[18][7]} ${it[18][8]} ${it[18][9]}"
+            )
+            Log.e(
+                "#######",
+                "${it[19][0]} ${it[19][1]} ${it[19][2]} ${it[19][3]} ${it[19][4]} ${it[19][5]} ${it[19][6]} ${it[19][7]} ${it[19][8]} ${it[19][9]}"
+            )
+
+
+
+        }
+    }
+
+ */
 }
 
 

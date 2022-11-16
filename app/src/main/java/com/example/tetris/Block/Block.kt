@@ -1,6 +1,7 @@
 package com.example.tetris.Block
 
-import com.example.tetris.CompareArray
+//import com.example.tetris.CompareArray
+import com.example.tetris.ViewModel.ViewModelArray
 
 // 최상위 클래스인 Block을 상속하여 각각의 Block를 정의
 open class Block(var x: Int, var y: Int) {
@@ -21,24 +22,24 @@ open class Block(var x: Int, var y: Int) {
     var isRotation2: Boolean = false
     var isRotation3: Boolean = false
 
-    open fun rotation(arr: CompareArray) {
+
+    open fun rotation(arr: ViewModelArray) {
 
     }
 
-    open fun blockDown(arr: CompareArray) {
+    open fun blockDown(arr: ViewModelArray) {
 
     }
 
-    open fun blockLeft(arr: CompareArray) {
+    open fun blockLeft(arr: ViewModelArray) {
 
     }
 
-    open fun blockRight(arr: CompareArray) {
+    open fun blockRight(arr: ViewModelArray) {
 
     }
 
-    open fun touchBottomBlock(arr: CompareArray) = true
-    open fun touchLeftBlock(arr: CompareArray) = true
-    open fun touchRightBlock(arr: CompareArray) = true
-
+    open fun touchBottomBlock(arr: ViewModelArray) = true
+    open fun touchLeftBlock(arr: ViewModelArray) = true
+    open fun touchRightBlock(arr: ViewModelArray) = true
 }
