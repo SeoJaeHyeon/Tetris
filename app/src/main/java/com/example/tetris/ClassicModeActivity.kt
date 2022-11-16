@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.ImageView
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.gridlayout.widget.GridLayout
 import androidx.lifecycle.Observer
@@ -17,8 +16,8 @@ import com.example.tetris.databinding.ActivityClassicmodeBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.util.*
 import kotlin.math.log
-import kotlin.random.Random
 
 
 class ClassicModeActivity : AppCompatActivity() {
@@ -33,8 +32,9 @@ class ClassicModeActivity : AppCompatActivity() {
     val nextBlockFrame = Array(4) {
         arrayOfNulls<ImageView>(3)
     }
+    private val random = Random() //seed를 랜덤하게 나오기위해 seed 랜덤 저장
     // 블럭들을 랜덤하게 나오기 위해 블럭의 번호를 난수로 저장
-    var randomNum: Int = Random.nextInt(1, 8)
+    var randomNum: Int = random.nextInt(8) + 1 //boundary라 + 1 해줌
     // 랜덤하게 얻은 블럭을 Block에 저장(게임화면에서 움직일 블럭)
     var block: Block = randomBlockChoice(randomNum, 1, COL / 2)
     var run = true
@@ -164,7 +164,7 @@ class ClassicModeActivity : AppCompatActivity() {
             while(isDelete()) {
                 DeleteBlocksChecking()
             }
-            randomNum = Random.nextInt(1, 8)
+            randomNum = random.nextInt(8) + 1
             block = randomBlockChoice(randomNum, 1, COL / 2)
             printBlock()
         }
