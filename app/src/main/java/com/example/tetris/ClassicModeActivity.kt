@@ -62,35 +62,28 @@ class ClassicModeActivity : AppCompatActivity() {
 
         // 게임 시작 후 gridLayout에 게임화면 생성
         gameFrameSetting(gameFrame, binding.gridmain, ROW, COL)
-
         gameFrameSetting(nextBlockFrame, binding.nextblock, 4, 3)
 
-        //printBlock() // 움직일 블럭 생성
         gameRun()
 
         //버튼 눌렸을 때
         binding.imgLeft.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-            //block.blockLeft(compareArr)// 블럭을 왼쪽으로 움직임
             block.blockLeft(viewModelFrame)
             printBlock() // 움직인 블럭을 다시 그림
         }
         binding.imgRight.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-            //block.blockRight(compareArr)// 블럭을 오른쪽으로 움직임
             block.blockRight(viewModelFrame)
             printBlock() // 움직인 블럭을 다시 그림
         }
         binding.imgDown.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-            //block.blockDown(compareArr)// 블럭을 아래로 움직임
             block.blockDown(viewModelFrame)
             printBlock() // 움직인 블럭을 다시 그림
-            Log.e("ENTER","BLOCK MOVE",)
         }
         binding.imgChange.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-            //block.rotation(compareArr) // 블럭을 회전시킴
             block.rotation(viewModelFrame)
             printBlock() // 움직인 블럭을 다시 그림
         }
