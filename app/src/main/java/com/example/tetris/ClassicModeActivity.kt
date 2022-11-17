@@ -265,7 +265,7 @@ class ClassicModeActivity : AppCompatActivity() {
         Thread {
             while(run) {
                 //if(gameOver()) run = false
-                Thread.sleep(500L)
+                Thread.sleep(1000L)
                 runOnUiThread {
                     //clearScreen(gameFrame, ROW, COL)
                     moveDownBlock()
