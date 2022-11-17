@@ -161,14 +161,18 @@ class ClassicModeActivity : AppCompatActivity() {
 
     fun newBlockDown() {
         if(viewModelFrame.touchFloor(block) || block.touchBottomBlock(viewModelFrame)) { // 블럭이 바닥에 닿으면 새로운 블럭 생성
-            while(isDelete()) {
-                DeleteBlocksChecking()
+            if(!gameOver()) {
+                while(isDelete()) {
+                    DeleteBlocksChecking()
+                }
+                randomNum = random.nextInt(8) + 1
+                block = randomBlockChoice(randomNum, 1, COL / 2)
+                printBlock()
+            } else {
+                run = false
             }
-            randomNum = random.nextInt(8) + 1
-            block = randomBlockChoice(randomNum, 1, COL / 2)
-            printBlock()
-        }
 
+        }
     }
 
     fun DeleteBlocks(row: Int) {
@@ -237,22 +241,28 @@ class ClassicModeActivity : AppCompatActivity() {
     }
 
     // 게임오버 함수
-    /*
+
     fun gameOver(): Boolean {
         for(col in 0 until COL) {
-            for(row in 0 until ROW) {
+            for(row in 1 until ROW) {
                 var isBlock = true
                 viewModelFrame.arr.value?. let{
-                    isBlock = it[col][row] == 0
+                    isBlock = (it[row][col] == 0)
                 }
                 if(isBlock) break
-                else return true // 게임 종료
+                else {
+                    if(row == ROW - 1)  return true
+                } // 게임 종료
             }
         }
         return false
     }
 
-     */
+    // 나중에 게임 종료 되면 여기서 현재 자기 점수 값 게임오버 액티비티에 넘겨야 해서 함수로 만듦
+    fun changeGameOverActivity() {
+        startActivity(Intent(this, GameOverActivity::class.java))
+    }
+
 
     // 자동으로 내려가는 함수
     fun moveDownBlock() {
@@ -264,7 +274,6 @@ class ClassicModeActivity : AppCompatActivity() {
     fun gameRun() {
         Thread {
             while(run) {
-                //if(gameOver()) run = false
                 Thread.sleep(1000L)
                 runOnUiThread {
                     //clearScreen(gameFrame, ROW, COL)
@@ -272,6 +281,7 @@ class ClassicModeActivity : AppCompatActivity() {
                     newBlockDown()
                 }
             }
+            changeGameOverActivity()
         }.start()
     }
 

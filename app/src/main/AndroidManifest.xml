@@ -38,6 +38,7 @@
         <activity android:name=".TimeAttackModeActivity" />
         <activity android:name=".StopActivity" />
         <activity android:name="com.example.tetris.SettingActivity" />
+        <activity android:name="com.example.tetris.GameOverActivity"></activity>
     </application>
 
 </manifest>
