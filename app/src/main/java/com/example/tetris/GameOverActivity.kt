@@ -3,17 +3,21 @@ package com.example.tetris
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tetris.ViewModel.ViewModelArray
 import com.example.tetris.databinding.ActivityGameoverBinding
 import com.example.tetris.databinding.ActivitySettingBinding
 
 class GameOverActivity : AppCompatActivity() {
     lateinit var binding: ActivityGameoverBinding
+    lateinit var viewModelFrame: ViewModelArray
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityGameoverBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.txtResult.text = viewModelFrame.score.value.toString()
 
         binding.btnRetry.setOnClickListener {
             val intent = Intent(this, ClassicModeActivity::class.java)
