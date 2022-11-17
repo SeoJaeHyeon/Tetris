@@ -66,6 +66,10 @@ class ClassicModeActivity : AppCompatActivity() {
         viewModelFrame.score.observe(this) {
             binding?.txtScore?.text = viewModelFrame.score.value.toString()
         }
+        // 뷰모델로 level 갱신
+        viewModelFrame.level.observe(this) {
+            binding?.txtLevel?.text = viewModelFrame.level.value.toString()
+        }
 
         // 게임 시작 후 gridLayout에 게임화면 생성
         gameFrameSetting(gameFrame, binding.gridmain, ROW, COL)
@@ -184,8 +188,9 @@ class ClassicModeActivity : AppCompatActivity() {
 
     fun DeleteBlocks(row: Int) {
         viewModelFrame.destroy(row)
-        erase += 1
-        viewModelFrame.setscore(erase)
+        erase += 1 // 한 줄 지워질 때마다 erase 1씩 증가
+        viewModelFrame.setscore(erase) // erase수에 따라 스코어 계산
+        viewModelFrame.setlevel(viewModelFrame.score.value?:1) // level 갱신
         printAllGameFrame()
     }
 
