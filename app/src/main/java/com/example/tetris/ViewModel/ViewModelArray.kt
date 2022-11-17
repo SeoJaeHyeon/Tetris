@@ -21,6 +21,9 @@ class ViewModelArray : ViewModel() {
         }
         _score.value = 0
     }
+    fun setscore(erase: Int) {
+        _score.value = erase * 20
+    }
 
     fun changeZeroToBlockNumber(block: Block) {
         _arr.value?.let {

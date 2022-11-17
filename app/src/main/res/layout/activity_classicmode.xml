@@ -99,7 +99,7 @@
                     android:layout_marginBottom="0.5dp"
                     android:background="#F3E65C"
                     android:gravity="center_horizontal"
-                    android:text="LEVEL"
+                    android:text="HIGH"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -127,7 +127,7 @@
                     android:layout_marginBottom="0.5dp"
                     android:background="#F3E65C"
                     android:gravity="center_horizontal"
-                    android:text="LEVEL"
+                    android:text="SCORE"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 

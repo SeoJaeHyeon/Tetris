@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.gridlayout.widget.GridLayout
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.tetris.Block.*
@@ -38,6 +39,7 @@ class ClassicModeActivity : AppCompatActivity() {
     // 랜덤하게 얻은 블럭을 Block에 저장(게임화면에서 움직일 블럭)
     var block: Block = randomBlockChoice(randomNum, 1, COL / 2)
     var run = true
+    var erase: Int = 0
 
 
     lateinit var viewModelFrame: ViewModelArray
@@ -59,6 +61,11 @@ class ClassicModeActivity : AppCompatActivity() {
         viewModelFrame.arr.observe(this, Observer {
 
         })
+
+        // 뷰모델로 score 갱신
+        viewModelFrame.score.observe(this) {
+            binding?.txtScore?.text = viewModelFrame.score.value.toString()
+        }
 
         // 게임 시작 후 gridLayout에 게임화면 생성
         gameFrameSetting(gameFrame, binding.gridmain, ROW, COL)
@@ -177,6 +184,8 @@ class ClassicModeActivity : AppCompatActivity() {
 
     fun DeleteBlocks(row: Int) {
         viewModelFrame.destroy(row)
+        erase += 1
+        viewModelFrame.setscore(erase)
         printAllGameFrame()
     }
 
