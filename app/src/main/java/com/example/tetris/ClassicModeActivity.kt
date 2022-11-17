@@ -288,7 +288,8 @@ class ClassicModeActivity : AppCompatActivity() {
     fun gameRun() {
         Thread {
             while(run) {
-                Thread.sleep(1000L)
+                var millis = 1000L - (viewModelFrame.level.value?.times(25) ?:0)
+                Thread.sleep(millis)
                 runOnUiThread {
                     //clearScreen(gameFrame, ROW, COL)
                     moveDownBlock()
