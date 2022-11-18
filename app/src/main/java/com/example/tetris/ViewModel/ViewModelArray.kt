@@ -18,13 +18,23 @@ class ViewModelArray : ViewModel() {
     private val _level = MutableLiveData<Int>()
     val level: LiveData<Int> get() = _level
 
+    private val _high = MutableLiveData<Int>()
+    val high: LiveData<Int> get() = _high
+
+
     init { // 모든 배열 원소 0으로 초기화
         _arr.value = Array( ROW) {
             Array(COL) { 0 }
         }
         _score.value = 0 // 시작점수 0
         _level.value = 1 // 시작레벨 1
+        _high.value = 0 // 시작 최고 점수 0
     }
+
+    fun setHigh(score: Int) {
+        _high.value = score
+    }
+
     fun setscore(erase: Int) { // erase를 인자로 받아서 점수 계산
         _score.value = erase * 20
     }

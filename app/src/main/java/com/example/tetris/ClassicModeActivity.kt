@@ -1,26 +1,18 @@
 package com.example.tetris
 
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.gridlayout.widget.GridLayout
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewTreeLifecycleOwner
 import com.example.tetris.Block.*
 import com.example.tetris.ViewModel.ViewModelArray
 import com.example.tetris.databinding.ActivityClassicmodeBinding
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import java.util.*
-import kotlin.math.log
 
 
 class ClassicModeActivity : AppCompatActivity() {
@@ -65,6 +57,10 @@ class ClassicModeActivity : AppCompatActivity() {
         // 뷰모델로 level 갱신
         viewModelFrame.level.observe(this) {
             binding?.txtLevel?.text = viewModelFrame.level.value.toString()
+        }
+        // 뷰모델로 high 갱신
+        viewModelFrame.high.observe(this) {
+            binding?.txtHigh?.text = viewModelFrame.high.value.toString()
         }
 
         // 게임 시작 후 gridLayout에 게임화면 생성
@@ -186,6 +182,15 @@ class ClassicModeActivity : AppCompatActivity() {
         erase += 1 // 한 줄 지워질 때마다 erase 1씩 증가
         viewModelFrame.setscore(erase) // erase수에 따라 스코어 계산
         viewModelFrame.setlevel(viewModelFrame.score.value?:1) // level 갱신
+        var h: Int = 0
+        var s: Int = 0
+        viewModelFrame.high.value?.let {
+            h = it
+        }
+        viewModelFrame.score.value?.let {
+            s = it
+        }?:0
+        if(h < s) viewModelFrame.setHigh(s)
         printAllGameFrame()
     }
 
@@ -280,6 +285,34 @@ class ClassicModeActivity : AppCompatActivity() {
             changeGameOverActivity()
         }.start()
     }
+
+    override fun onPause() {
+        super.onPause()
+
+        saveState()
+    }
+
+    fun saveState() {
+        val pref = getSharedPreferences("pref", Activity.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putInt("high", (viewModelFrame.high.value!!))
+        editor.commit()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        restoreState()
+    }
+
+    fun restoreState() {
+        val pref = getSharedPreferences("pref", Activity.MODE_PRIVATE)
+        if( pref != null && pref.contains("high") ) {
+            viewModelFrame.setHigh(pref.getInt("high", 0))
+        }
+    }
+
+
 
 /*
     fun printArray() {
