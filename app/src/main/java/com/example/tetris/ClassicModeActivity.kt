@@ -84,6 +84,7 @@ class ClassicModeActivity : AppCompatActivity() {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
             block.blockDown(viewModelFrame)
             printBlock() // 움직인 블럭을 다시 그림
+            newBlockDown()
         }
         binding.imgChange.setOnClickListener {
             removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
