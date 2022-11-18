@@ -153,6 +153,17 @@ class ClassicModeActivity : AppCompatActivity() {
         gameFrame[block.point4.x][block.point4.y]!!.setImageResource(blockColor(block.number))
     }
 
+    fun printNextBlock() {
+        //화면초기화 후
+        resetScreen(nextBlockFrame,4,3)
+        val blockPreView = randomBlockChoice(randomNum, 1, 1)
+
+        nextBlockFrame[blockPreView.point1.x][blockPreView.point1.y]!!.setImageResource((blockColor(blockPreView.number)))
+        nextBlockFrame[blockPreView.point2.x][blockPreView.point2.y]!!.setImageResource((blockColor(blockPreView.number)))
+        nextBlockFrame[blockPreView.point3.x][blockPreView.point3.y]!!.setImageResource((blockColor(blockPreView.number)))
+        nextBlockFrame[blockPreView.point4.x][blockPreView.point4.y]!!.setImageResource((blockColor(blockPreView.number)))
+    }
+
     // gameFrame에서 블럭을 다시 원래 배경으로 바꾸는 함수(이동할 때 사용)
     fun removeBlock() {
         viewModelFrame.changeBlockNumberToZero(block)
@@ -160,6 +171,12 @@ class ClassicModeActivity : AppCompatActivity() {
         gameFrame[block.point2.x][block.point2.y]!!.setImageResource(R.drawable.gameframe)
         gameFrame[block.point3.x][block.point3.y]!!.setImageResource(R.drawable.gameframe)
         gameFrame[block.point4.x][block.point4.y]!!.setImageResource(R.drawable.gameframe)
+    }
+
+    fun resetScreen(arr: Array<Array<ImageView?>>, row: Int, col: Int) {
+        for(i in 0 until row)
+            for(j in 0 until col)
+                arr[i][j]!!.setImageResource(blockColor(R.drawable.gameframe))
     }
 
     fun newBlockDown() {
