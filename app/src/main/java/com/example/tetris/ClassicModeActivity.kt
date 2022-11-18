@@ -29,7 +29,7 @@ class ClassicModeActivity : AppCompatActivity() {
     }
     private val random = Random() //seed를 랜덤하게 나오기위해 seed 랜덤 저장
     // 블럭들을 랜덤하게 나오기 위해 블럭의 번호를 난수로 저장
-    var randomNum: Int = random.nextInt(8) + 1 //boundary라 + 1 해줌
+    var randomNum: Int = random.nextInt(7) + 1 //boundary라 + 1 해줌
     // 랜덤하게 얻은 블럭을 Block에 저장(게임화면에서 움직일 블럭)
     var block: Block = randomBlockChoice(randomNum, 1, COL / 2)
     var run = true
@@ -183,13 +183,16 @@ class ClassicModeActivity : AppCompatActivity() {
         if(block.point1.x == 1 && block.touchBottomBlock(viewModelFrame)) {
             run = false
         } else {
+            if(block.point1.x == 2){
+            randomNum = random.nextInt(7) + 1
+            printNextBlock()
+        }
             if(viewModelFrame.touchFloor(block) || block.touchBottomBlock(viewModelFrame)) { // 블럭이 바닥에 닿으면 새로운 블럭 생성
                 while(isDelete()) {
                     DeleteBlocksChecking()
                 }
-                randomNum = random.nextInt(8) + 1
-                block = randomBlockChoice(randomNum, 1, COL / 2)
                 printBlock()
+                block = randomBlockChoice(randomNum, 1, COL / 2)
             }
         }
     }
@@ -290,6 +293,8 @@ class ClassicModeActivity : AppCompatActivity() {
     }
 
     fun gameRun() {
+        resetScreen(nextBlockFrame,4,3)
+        printNextBlock()
         Thread {
             while(run) {
                 var millis = 1000L - (viewModelFrame.level.value?.times(25) ?:0)
