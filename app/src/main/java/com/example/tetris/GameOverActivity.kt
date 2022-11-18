@@ -17,7 +17,10 @@ class GameOverActivity : AppCompatActivity() {
         binding = ActivityGameoverBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.txtResult.text = viewModelFrame.score.value.toString()
+        binding.txtResult.text = intent.getStringExtra("score")
+
+
+
 
         binding.btnRetry.setOnClickListener {
             val intent = Intent(this, ClassicModeActivity::class.java)

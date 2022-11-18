@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.ImageView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.gridlayout.widget.GridLayout
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewTreeLifecycleOwner
 import com.example.tetris.Block.*
 import com.example.tetris.ViewModel.ViewModelArray
 import com.example.tetris.databinding.ActivityClassicmodeBinding
@@ -41,9 +43,7 @@ class ClassicModeActivity : AppCompatActivity() {
     var run = true
     var erase: Int = 0
 
-
-    lateinit var viewModelFrame: ViewModelArray
-
+    val viewModelFrame: ViewModelArray by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,10 +57,6 @@ class ClassicModeActivity : AppCompatActivity() {
         binding.nextblock.rowCount = 4
         binding.nextblock.columnCount = 3
 
-        viewModelFrame = ViewModelProvider(this).get(ViewModelArray::class.java)
-        viewModelFrame.arr.observe(this, Observer {
-
-        })
 
         // 뷰모델로 score 갱신
         viewModelFrame.score.observe(this) {
@@ -171,18 +167,17 @@ class ClassicModeActivity : AppCompatActivity() {
     }
 
     fun newBlockDown() {
-        if(viewModelFrame.touchFloor(block) || block.touchBottomBlock(viewModelFrame)) { // 블럭이 바닥에 닿으면 새로운 블럭 생성
-            if(!gameOver()) {
+        if(block.point1.x == 1 && block.touchBottomBlock(viewModelFrame)) {
+            run = false
+        } else {
+            if(viewModelFrame.touchFloor(block) || block.touchBottomBlock(viewModelFrame)) { // 블럭이 바닥에 닿으면 새로운 블럭 생성
                 while(isDelete()) {
                     DeleteBlocksChecking()
                 }
                 randomNum = random.nextInt(8) + 1
                 block = randomBlockChoice(randomNum, 1, COL / 2)
                 printBlock()
-            } else {
-                run = false
             }
-
         }
     }
 
@@ -254,27 +249,14 @@ class ClassicModeActivity : AppCompatActivity() {
         }
     }
 
-    // 게임오버 함수
-
-    fun gameOver(): Boolean {
-        for(col in 0 until COL) {
-            for(row in 1 until ROW) {
-                var isBlock = true
-                viewModelFrame.arr.value?. let{
-                    isBlock = (it[row][col] == 0)
-                }
-                if(isBlock) break
-                else {
-                    if(row == ROW - 1)  return true
-                } // 게임 종료
-            }
-        }
-        return false
-    }
 
     // 나중에 게임 종료 되면 여기서 현재 자기 점수 값 게임오버 액티비티에 넘겨야 해서 함수로 만듦
     fun changeGameOverActivity() {
-        startActivity(Intent(this, GameOverActivity::class.java))
+
+        val intent = Intent(this, GameOverActivity::class.java)
+        intent.putExtra("score", viewModelFrame.score.value.toString())
+
+        startActivity(intent)
     }
 
 
@@ -291,7 +273,6 @@ class ClassicModeActivity : AppCompatActivity() {
                 var millis = 1000L - (viewModelFrame.level.value?.times(25) ?:0)
                 Thread.sleep(millis)
                 runOnUiThread {
-                    //clearScreen(gameFrame, ROW, COL)
                     moveDownBlock()
                     newBlockDown()
                 }

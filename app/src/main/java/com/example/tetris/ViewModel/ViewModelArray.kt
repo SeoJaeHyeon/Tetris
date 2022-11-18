@@ -68,10 +68,6 @@ class ViewModelArray : ViewModel() {
                 (block.point3.y + 1 == COL) || (block.point4.y + 1 == COL)
     }
 
-    fun addScore(score: Int) {
-        _score.value = score
-    }
-
     fun destroy(row: Int) {
         for(i in row downTo 1) {
             for( j in 0 until COL) {
