@@ -183,7 +183,7 @@ class ClassicModeActivity : AppCompatActivity() {
         if(block.point1.x == 1 && block.touchBottomBlock(viewModelFrame)) {  //블럭이 생성되는 곳과 블럭이 닿았을떄 게임오버
             run = false
         } else {
-            if(block.point1.x == 2){ //세 블럭생성 후 다음블럭 보여줌
+            if(block.point1.x == 2){ //새 블럭생성 후 다음블럭 보여줌
             randomNum = random.nextInt(7) + 1
             printNextBlock()
         }
