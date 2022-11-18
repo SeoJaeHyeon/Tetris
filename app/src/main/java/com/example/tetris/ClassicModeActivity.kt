@@ -153,11 +153,10 @@ class ClassicModeActivity : AppCompatActivity() {
         gameFrame[block.point4.x][block.point4.y]!!.setImageResource(blockColor(block.number))
     }
 
+    // 다음에 올 블럭을 nextBlockFrame에 보여주는 함수
     fun printNextBlock() {
-        //화면초기화 후
-        resetScreen(nextBlockFrame,4,3)
-        val blockPreView = randomBlockChoice(randomNum, 1, 1)
-
+        resetFrame(nextBlockFrame,4,3) //화면초기화 후
+        val blockPreView = randomBlockChoice(randomNum, 1, 1) //새 블럭 객체
         nextBlockFrame[blockPreView.point1.x][blockPreView.point1.y]!!.setImageResource((blockColor(blockPreView.number)))
         nextBlockFrame[blockPreView.point2.x][blockPreView.point2.y]!!.setImageResource((blockColor(blockPreView.number)))
         nextBlockFrame[blockPreView.point3.x][blockPreView.point3.y]!!.setImageResource((blockColor(blockPreView.number)))
@@ -173,17 +172,18 @@ class ClassicModeActivity : AppCompatActivity() {
         gameFrame[block.point4.x][block.point4.y]!!.setImageResource(R.drawable.gameframe)
     }
 
-    fun resetScreen(arr: Array<Array<ImageView?>>, row: Int, col: Int) {
+    // Frame 초기화를 위해 만듦
+    fun resetFrame(arr: Array<Array<ImageView?>>, row: Int, col: Int) {
         for(i in 0 until row)
             for(j in 0 until col)
                 arr[i][j]!!.setImageResource(blockColor(R.drawable.gameframe))
     }
 
     fun newBlockDown() {
-        if(block.point1.x == 1 && block.touchBottomBlock(viewModelFrame)) {
+        if(block.point1.x == 1 && block.touchBottomBlock(viewModelFrame)) {  //블럭이 생성되는 곳과 블럭이 닿았을떄 게임오버
             run = false
         } else {
-            if(block.point1.x == 2){
+            if(block.point1.x == 2){ //세 블럭생성 후 다음블럭 보여줌
             randomNum = random.nextInt(7) + 1
             printNextBlock()
         }
@@ -191,7 +191,7 @@ class ClassicModeActivity : AppCompatActivity() {
                 while(isDelete()) {
                     DeleteBlocksChecking()
                 }
-                printBlock()
+                printBlock()  //printBlock이랑 block객체 순서 중요
                 block = randomBlockChoice(randomNum, 1, COL / 2)
             }
         }
@@ -293,7 +293,7 @@ class ClassicModeActivity : AppCompatActivity() {
     }
 
     fun gameRun() {
-        resetScreen(nextBlockFrame,4,3)
+        resetFrame(nextBlockFrame,4,3)
         printNextBlock()
         Thread {
             while(run) {
