@@ -40,6 +40,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/black"
+                android:gravity="center"
                 android:text="score"
                 android:textAlignment="center"
                 android:textColor="@color/white"
@@ -53,11 +54,12 @@
                 android:layout_weight="1"
                 android:background="@color/black"
                 android:backgroundTint="#050505"
+                android:gravity="center"
                 android:text="100"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="75sp"
-                android:textStyle="bold" />
+                android:textStyle="bold|italic" />
 
         </LinearLayout>
 

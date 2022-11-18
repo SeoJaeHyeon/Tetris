@@ -85,9 +85,10 @@
                     android:layout_marginBottom="5dp"
                     android:background="#F4E75C"
                     android:gravity="center"
-                    android:text="3"
+                    android:text="0"
                     android:textColor="@color/black"
-                    android:textSize="24sp" />
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic" />
 
                 <TextView
                     android:id="@+id/txt_hh"
@@ -113,9 +114,10 @@
                     android:layout_marginBottom="5dp"
                     android:background="#F3E65C"
                     android:gravity="center"
-                    android:text="7777"
+                    android:text="0"
                     android:textColor="@color/black"
-                    android:textSize="24sp" />
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic" />
 
                 <TextView
                     android:id="@+id/txt_sc"
@@ -141,9 +143,10 @@
                     android:layout_marginBottom="5dp"
                     android:background="#F2E55C"
                     android:gravity="center"
-                    android:text="5555"
+                    android:text="0"
                     android:textColor="@color/black"
-                    android:textSize="24sp" />
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic" />
 
             </LinearLayout>
 
