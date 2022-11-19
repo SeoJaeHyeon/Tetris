@@ -23,10 +23,12 @@
 
             <androidx.gridlayout.widget.GridLayout
                 android:id="@+id/boardh"
-                android:layout_width="290dp"
-                android:layout_height="580dp"
+                android:layout_width="300dp"
+                android:layout_height="600dp"
                 android:layout_weight="1"
-                android:background="@color/black">
+                android:background="@color/black"
+                app:columnCount="10"
+                app:rowCount="20">
 
             </androidx.gridlayout.widget.GridLayout>
 
@@ -47,6 +49,7 @@
                     android:id="@+id/txt_nexth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:gravity="center_horizontal"
                     android:text="Next Block"
                     android:textColor="@color/white" />
@@ -54,38 +57,97 @@
                 <androidx.gridlayout.widget.GridLayout
                     android:id="@+id/nextblockh"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_margin="5dp"
+                    android:layout_height="130dp"
                     android:background="@color/black">
 
                 </androidx.gridlayout.widget.GridLayout>
 
                 <TextView
+                    android:id="@+id/txt_lvh"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="0.5dp"
+                    android:background="#F3E65C"
+                    android:gravity="center_horizontal"
+                    android:text="LEVEL"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/txt_levelh"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_margin="5dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0.5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
                     android:background="#F4E75C"
+                    android:gravity="center"
+                    android:text="20"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/txt_hhh"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="0.5dp"
+                    android:background="#F3E65C"
                     android:gravity="center_horizontal"
-                    android:text="LEVEL" />
+                    android:text="HIGH"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txt_highh"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_margin="5dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0.5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#F3E65C"
+                    android:gravity="center|center_horizontal"
+                    android:text="1400"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/txt_sch"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="0.5dp"
                     android:background="#F3E65C"
                     android:gravity="center_horizontal"
-                    android:text="HIGH" />
+                    android:text="SCORE"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txt_scoreh"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_margin="5dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0.5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
                     android:background="#F2E55C"
-                    android:gravity="center_horizontal"
-                    android:text="SCORE" />
+                    android:gravity="center|center_horizontal"
+                    android:text="920"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic" />
 
             </LinearLayout>
         </LinearLayout>
