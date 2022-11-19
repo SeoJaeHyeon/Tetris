@@ -12,6 +12,8 @@ import androidx.gridlayout.widget.GridLayout
 import com.example.tetris.Block.*
 import com.example.tetris.ViewModel.ViewModelArray
 import com.example.tetris.databinding.ActivityClassicmodeBinding
+import kotlin.concurrent.thread
+
 import java.util.*
 
 
@@ -296,7 +298,7 @@ class ClassicModeActivity : AppCompatActivity() {
     fun gameRun() {
         resetFrame(nextBlockFrame,4,3)
         printNextBlock()
-        Thread {
+        thread(start = true) {
             while(run) {
                 var millis = 1000L - (viewModelFrame.level.value?.times(25) ?:0)
                 Thread.sleep(millis)
@@ -306,7 +308,7 @@ class ClassicModeActivity : AppCompatActivity() {
                 }
             }
             changeGameOverActivity()
-        }.start()
+        }
     }
 
     override fun onPause() {
