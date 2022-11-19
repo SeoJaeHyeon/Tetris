@@ -307,6 +307,7 @@ class ClassicModeActivity : AppCompatActivity() {
                     newBlockDown()
                 }
             }
+
             changeGameOverActivity()
         }
     }
