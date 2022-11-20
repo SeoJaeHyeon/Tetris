@@ -194,8 +194,9 @@ class HardModeActivity : AppCompatActivity() {
                 while(isDelete()) {
                     DeleteBlocksChecking()
                 }
-                printBlock()  //printBlock이랑 block객체 순서 중요
                 block = randomBlockChoice(randomNum, 1, COL / 2)
+                printBlock()  //printBlock이랑 block객체 순서 중요
+
             }
         }
     }

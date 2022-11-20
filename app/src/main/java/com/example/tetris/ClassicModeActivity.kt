@@ -4,6 +4,7 @@ package com.example.tetris
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.ImageView
 import androidx.activity.viewModels
@@ -189,19 +190,22 @@ class ClassicModeActivity : AppCompatActivity() {
             if(block.point1.x == 2){ //새 블럭생성 후 다음블럭 보여줌
             randomNum = random.nextInt(7) + 1
             printNextBlock()
-        }
+            }
             if(viewModelFrame.touchFloor(block) || block.touchBottomBlock(viewModelFrame)) { // 블럭이 바닥에 닿으면 새로운 블럭 생성
                 while(isDelete()) {
                     DeleteBlocksChecking()
                 }
-                printBlock()  //printBlock이랑 block객체 순서 중요
+
                 block = randomBlockChoice(randomNum, 1, COL / 2)
+                printBlock()  //printBlock이랑 block객체 순서 중요
             }
         }
     }
 
     fun DeleteBlocks(row: Int) {
         viewModelFrame.destroy(row)
+        printAllGameFrame()
+
         erase += 1 // 한 줄 지워질 때마다 erase 1씩 증가
         viewModelFrame.setscore(erase) // erase수에 따라 스코어 계산
         viewModelFrame.setlevel(viewModelFrame.score.value?:1) // level 갱신
@@ -214,7 +218,7 @@ class ClassicModeActivity : AppCompatActivity() {
             s = it
         }?:0
         if(h < s) viewModelFrame.setHigh(s)
-        printAllGameFrame()
+
     }
 
     fun DeleteBlocksChecking() {
@@ -430,6 +434,7 @@ class ClassicModeActivity : AppCompatActivity() {
     }
 
  */
+
 }
 
 
