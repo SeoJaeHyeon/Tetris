@@ -25,15 +25,14 @@
                 android:id="@+id/boardh"
                 android:layout_width="300dp"
                 android:layout_height="600dp"
-                android:layout_weight="1"
-                android:background="@color/black"
+                android:background="#050859"
                 app:columnCount="10"
                 app:rowCount="20">
 
             </androidx.gridlayout.widget.GridLayout>
 
             <LinearLayout
-                android:layout_width="87dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -58,7 +57,7 @@
                     android:id="@+id/nextblockh"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
-                    android:background="@color/black">
+                    android:background="#050859">
 
                 </androidx.gridlayout.widget.GridLayout>
 
