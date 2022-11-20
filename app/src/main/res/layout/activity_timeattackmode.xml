@@ -18,13 +18,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="600dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <androidx.gridlayout.widget.GridLayout
                 android:id="@+id/boardt"
                 android:layout_width="300dp"
                 android:layout_height="600dp"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:background="@color/black"
                 app:columnCount="10"
