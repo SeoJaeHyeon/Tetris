@@ -439,4 +439,3 @@ class ClassicModeActivity : AppCompatActivity() {
 
 
 
-

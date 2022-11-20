@@ -50,6 +50,17 @@ class TimeAttackModeActivity: AppCompatActivity() {
         binding.nextblockt.columnCount = 3
 
 
+        // 뷰모델로 score 갱신
+        viewModelFrameT.score.observe(this) {
+            binding?.txtScoret?.text = viewModelFrameT.score.value.toString()
+        }
+
+        // 뷰모델로 high 갱신
+        viewModelFrameT.high.observe(this) {
+            binding?.txtHight?.text = viewModelFrameT.high.value.toString()
+        }
+
+
         // 게임 시작 후 gridLayout에 게임화면 생성
         gameFrameSetting(gameFrame, binding.boardt, ROW, COL)
         gameFrameSetting(nextBlockFrame, binding.nextblockt, 4, 3)
