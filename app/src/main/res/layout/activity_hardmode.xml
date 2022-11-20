@@ -25,6 +25,7 @@
                 android:id="@+id/boardh"
                 android:layout_width="300dp"
                 android:layout_height="600dp"
+                android:layout_marginLeft="1dp"
                 android:background="#050859"
                 app:columnCount="10"
                 app:rowCount="20">

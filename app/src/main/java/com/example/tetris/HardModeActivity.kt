@@ -49,15 +49,14 @@ class HardModeActivity : AppCompatActivity() {
         binding.nextblockh.rowCount = 4
         binding.nextblockh.columnCount = 3
 
+        binding?.txtLevelh?.text = "20"
+
 
         // 뷰모델로 score 갱신
         viewModelFrameH.score.observe(this) {
             binding?.txtScoreh?.text = viewModelFrameH.score.value.toString()
         }
-        // 뷰모델로 level 갱신
-        viewModelFrameH.level.observe(this) {
-            binding?.txtLevelh?.text = viewModelFrameH.level.value.toString()
-        }
+
         // 뷰모델로 high 갱신
         viewModelFrameH.high.observe(this) {
             binding?.txtHighh?.text = viewModelFrameH.high.value.toString()
