@@ -13,6 +13,7 @@ import com.example.tetris.ViewModel.ViewModelArray
 import com.example.tetris.databinding.ActivityTimeattackmodeBinding
 import java.util.*
 import kotlin.concurrent.thread
+import kotlin.concurrent.timer
 
 class TimeAttackModeActivity: AppCompatActivity() {
     lateinit var binding: ActivityTimeattackmodeBinding
@@ -33,6 +34,11 @@ class TimeAttackModeActivity: AppCompatActivity() {
     var block: Block = randomBlockChoice(randomNum, 1, COL / 2)
     var run = true
     var erase: Int = 0
+
+    var time = 3000 //처음 시간 60초
+    var timerTask: Timer? = null
+    var sec = 0
+    var milli = 0
 
     val viewModelFrameT: ViewModelArray by viewModels()
 
@@ -58,6 +64,20 @@ class TimeAttackModeActivity: AppCompatActivity() {
         // 뷰모델로 high 갱신
         viewModelFrameT.high.observe(this) {
             binding?.txtHight?.text = viewModelFrameT.high.value.toString()
+        }
+
+        //타이머로 시간 표현, time이 0 되면 게임종료
+        timerTask = timer(period = 10) {
+                time--
+                sec = time / 100
+                milli = time % 100
+                runOnUiThread {
+                    binding.txtTime?.text = "${sec}:${milli}"
+            }
+            if (time == 0) {
+                timerTask?.cancel()
+                run = false
+            }
         }
 
 
@@ -198,7 +218,7 @@ class TimeAttackModeActivity: AppCompatActivity() {
     fun DeleteBlocks(row: Int) {
         viewModelFrameT.destroy(row)
         printAllGameFrame()
-
+        time += 1000 // 한 줄 지워질 때마다 10초씩 추가
         erase += 1 // 한 줄 지워질 때마다 erase 1씩 증가
         viewModelFrameT.setscore(erase) // erase수에 따라 스코어 계산
         viewModelFrameT.setlevel(viewModelFrameT.score.value?:1) // level 갱신
@@ -297,8 +317,8 @@ class TimeAttackModeActivity: AppCompatActivity() {
         printNextBlock()
         thread(start = true) {
             while(run) {
-                var millis = 1000L - (viewModelFrameT.level.value?.times(25) ?:0)
-                Thread.sleep(millis)
+//                var millis = 1000L - (viewModelFrameT.level.value?.times(25) ?:0)
+                Thread.sleep(500L)
                 runOnUiThread {
                     moveDownBlock()
                     newBlockDown()

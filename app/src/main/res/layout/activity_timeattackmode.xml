@@ -87,7 +87,7 @@
                     android:layout_marginBottom="5dp"
                     android:background="#F4E75C"
                     android:gravity="center"
-                    android:text="TIME"
+                    android:text="60:00"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:textStyle="bold|italic" />
