@@ -19,13 +19,8 @@ import kotlin.concurrent.timer
 class TimeAttackModeActivity: AppCompatActivity() {
     lateinit var binding: ActivityTimeattackmodeBinding
 
-
     val viewModelFrameT: ViewModelArray by viewModels()
     val tetris = Tetris()
-
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +38,6 @@ class TimeAttackModeActivity: AppCompatActivity() {
         viewModelFrameT.score.observe(this) {
             binding?.txtScoret?.text = viewModelFrameT.score.value.toString()
         }
-        // 뷰모델로 level 갱신
 
         // 뷰모델로 high 갱신
         viewModelFrameT.high.observe(this) {
@@ -115,7 +109,6 @@ class TimeAttackModeActivity: AppCompatActivity() {
                     tetris.newBlockDown()
                 }
                 viewModelFrameT.setscore(tetris.score, viewModelFrameT.high.value?:0)
-                viewModelFrameT.setlevel()
             }
 
             changeGameOverActivity()
