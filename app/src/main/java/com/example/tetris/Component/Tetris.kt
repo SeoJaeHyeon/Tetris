@@ -7,7 +7,7 @@ import com.example.tetris.Block.*
 import com.example.tetris.R
 import java.util.*
 
-class Tetris() {
+open class Tetris() {
     val ROW = 20 // gameFrame의 row
     val COL = 10 // gameFrame의 col
     val NEXTROW = 4
@@ -28,15 +28,9 @@ class Tetris() {
     var block: Block = randomBlockChoice(randomNum, 1, COL / 2)
     var run = true
     var erase: Int = 1
-
     var high: Int = 0
     var score: Int = 0
 
-    // 타임어택 모드에서 사용
-    var time = 3000 //처음 시간 60초
-    var timerTask: Timer? = null
-    var sec = 0
-    var milli = 0
 
     // 다음에 나올 블럭 랜덤하게 지정(블럭의 number를 통해 지정)
     fun randomBlockChoice(number: Int, row: Int, col: Int): Block {
@@ -144,17 +138,16 @@ class Tetris() {
         }
         return false
     }
-    fun DeleteBlocks(row: Int) {
+
+    open fun DeleteBlocks(row: Int) {
         arr.destroy(row)
         printAllGameFrame()
 
         // 한 줄 지워질 때마다 점수 20씩 증가
         score += erase * 20
         if( high < score ) high = score
-        time += 1000
-
-
     }
+
     fun DeleteBlocksChecking() {
         for(row in ROW-1 downTo 0) {
             for(col in 0 until COL) {
@@ -187,6 +180,7 @@ class Tetris() {
             }
         }
     }
+
     fun printAllGameFrame() {
         for(i in 0 until ROW) {
             for (j in 0 until  COL){
@@ -194,6 +188,7 @@ class Tetris() {
             }
         }
     }
+
     fun printEachBlock(number: Int, arr: Array<Array<ImageView?>>, row: Int, col: Int) {
         when(number) {
             1 -> arr[row][col]!!.setImageResource(R.drawable.skyblueblockl)
@@ -213,8 +208,6 @@ class Tetris() {
         block.blockDown(arr)
         printBlock()
     }
-
-
 
 
 }

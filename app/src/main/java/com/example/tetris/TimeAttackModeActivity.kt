@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.gridlayout.widget.GridLayout
 import com.example.tetris.Block.*
 import com.example.tetris.Component.Tetris
+import com.example.tetris.Component.TetrisTimeAttack
 import com.example.tetris.ViewModel.ViewModelArray
 import com.example.tetris.databinding.ActivityTimeattackmodeBinding
 import java.util.*
@@ -20,7 +21,7 @@ class TimeAttackModeActivity: AppCompatActivity() {
     lateinit var binding: ActivityTimeattackmodeBinding
 
     val viewModelFrameT: ViewModelArray by viewModels()
-    val tetris = Tetris()
+    val tetris = TetrisTimeAttack()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
