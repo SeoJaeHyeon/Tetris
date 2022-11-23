@@ -1,5 +1,6 @@
 package com.example.tetris
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -23,6 +24,7 @@ class TimeAttackModeActivity: AppCompatActivity() {
     val viewModelFrameT: ViewModelArray by viewModels()
     val tetris = TetrisTimeAttack()
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -45,25 +47,14 @@ class TimeAttackModeActivity: AppCompatActivity() {
             binding?.txtHight?.text = viewModelFrameT.high.value.toString()
         }
 
-        //타이머로 시간 표현, time이 0 되면 게임종료
-        tetris.timerTask = timer(period = 10) {
-                tetris.time--
-                tetris.sec = tetris.time / 100
-                tetris.milli = tetris.time % 100
-                runOnUiThread {
-                    binding.txtTime?.text = "${tetris.sec}:${tetris.milli}"
-            }
-            if (tetris.time == 0) {
-                tetris.timerTask?.cancel()
-                tetris.gameState.run = false
-            }
-        }
+
         // 게임 시작 후 gridLayout에 게임화면 생성
         gameFrameSetting(tetris.gameState.gameFrame, binding.boardt, tetris.gameState.ROW, tetris.gameState.COL)
         gameFrameSetting(tetris.gameState.nextBlockFrame, binding.nextblockt, tetris.gameState.NEXTROW, tetris.gameState.NEXTCOL)
 
         gameRun()
 
+        timeAttack()
 
         binding.imgLeftt.setOnClickListener {
             tetris.imgLeft()
@@ -93,6 +84,22 @@ class TimeAttackModeActivity: AppCompatActivity() {
                 arr!![i][j] = inflater.inflate(R.layout.gameframe_image, grid, false) as ImageView
                 // 위의 배열을 gridLayout에 맞추어 이미지 삽입
                 grid.addView(arr[i][j])
+            }
+        }
+    }
+
+    fun timeAttack() {
+        //타이머로 시간 표현, time이 0 되면 게임종료
+        tetris.timerTask = timer(period = 10) {
+            tetris.time--
+            tetris.sec = tetris.time / 100
+            tetris.milli = tetris.time % 100
+            runOnUiThread {
+                binding.txtTime?.text = "${tetris.sec}:${tetris.milli}"
+            }
+            if (tetris.time == 0) {
+                tetris.timerTask?.cancel()
+                tetris.gameState.run = false
             }
         }
     }
