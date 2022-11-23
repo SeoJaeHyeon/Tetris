@@ -26,11 +26,11 @@ class ClassicModeActivity : AppCompatActivity() {
         binding = ActivityClassicmodeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.gridmain.rowCount = tetris.ROW // gridLayout의 row
-        binding.gridmain.columnCount = tetris.COL // gridLayout의 col
+        binding.gridmain.rowCount = tetris.gameState.ROW // gridLayout의 row
+        binding.gridmain.columnCount = tetris.gameState.COL // gridLayout의 col
 
-        binding.nextblock.rowCount = tetris.NEXTROW
-        binding.nextblock.columnCount = tetris.NEXTCOL
+        binding.nextblock.rowCount = tetris.gameState.NEXTROW
+        binding.nextblock.columnCount = tetris.gameState.NEXTCOL
 
 
         // 뷰모델로 score 갱신
@@ -49,8 +49,8 @@ class ClassicModeActivity : AppCompatActivity() {
 
 
         // 게임 시작 후 gridLayout에 게임화면 생성
-        gameFrameSetting(tetris.gameFrame, binding.gridmain, tetris.ROW, tetris.COL)
-        gameFrameSetting(tetris.nextBlockFrame, binding.nextblock, tetris.NEXTROW, tetris.NEXTCOL)
+        gameFrameSetting(tetris.gameState.gameFrame, binding.gridmain, tetris.gameState.ROW, tetris.gameState.COL)
+        gameFrameSetting(tetris.gameState.nextBlockFrame, binding.nextblock, tetris.gameState.NEXTROW, tetris.gameState.NEXTCOL)
 
         gameRun()
 
@@ -91,10 +91,10 @@ class ClassicModeActivity : AppCompatActivity() {
 
     fun gameRun() {
 
-        tetris.resetFrame(tetris.nextBlockFrame,tetris.NEXTROW,tetris.NEXTCOL)
+        tetris.resetFrame(tetris.gameState.nextBlockFrame,tetris.gameState.NEXTROW,tetris.gameState.NEXTCOL)
         tetris.printNextBlock()
         thread(start = true) {
-            while(tetris.run) {
+            while(tetris.gameState.run) {
                 var millis = 1000L - (viewModelFrame.level.value?.times(25) ?:0)
                 Thread.sleep(millis)
                 runOnUiThread {

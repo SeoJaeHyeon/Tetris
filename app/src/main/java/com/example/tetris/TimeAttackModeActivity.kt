@@ -29,11 +29,11 @@ class TimeAttackModeActivity: AppCompatActivity() {
         binding = ActivityTimeattackmodeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.boardt.rowCount = tetris.ROW // gridLayout의 row
-        binding.boardt.columnCount = tetris.COL // gridLayout의 col
+        binding.boardt.rowCount = tetris.gameState.ROW // gridLayout의 row
+        binding.boardt.columnCount = tetris.gameState.COL // gridLayout의 col
 
-        binding.nextblockt.rowCount = tetris.NEXTROW
-        binding.nextblockt.columnCount = tetris.NEXTCOL
+        binding.nextblockt.rowCount = tetris.gameState.NEXTROW
+        binding.nextblockt.columnCount = tetris.gameState.NEXTCOL
 
         // 뷰모델로 score 갱신
         viewModelFrameT.score.observe(this) {
@@ -55,12 +55,12 @@ class TimeAttackModeActivity: AppCompatActivity() {
             }
             if (tetris.time == 0) {
                 tetris.timerTask?.cancel()
-                tetris.run = false
+                tetris.gameState.run = false
             }
         }
         // 게임 시작 후 gridLayout에 게임화면 생성
-        gameFrameSetting(tetris.gameFrame, binding.boardt, tetris.ROW, tetris.COL)
-        gameFrameSetting(tetris.nextBlockFrame, binding.nextblockt, tetris.NEXTROW, tetris.NEXTCOL)
+        gameFrameSetting(tetris.gameState.gameFrame, binding.boardt, tetris.gameState.ROW, tetris.gameState.COL)
+        gameFrameSetting(tetris.gameState.nextBlockFrame, binding.nextblockt, tetris.gameState.NEXTROW, tetris.gameState.NEXTCOL)
 
         gameRun()
 
@@ -99,10 +99,10 @@ class TimeAttackModeActivity: AppCompatActivity() {
 
     fun gameRun() {
 
-        tetris.resetFrame(tetris.nextBlockFrame,tetris.NEXTROW,tetris.NEXTCOL)
+        tetris.resetFrame(tetris.gameState.nextBlockFrame,tetris.gameState.NEXTROW,tetris.gameState.NEXTCOL)
         tetris.printNextBlock()
         thread(start = true) {
-            while(tetris.run) {
+            while(tetris.gameState.run) {
                 var millis = 500L
                 Thread.sleep(millis)
                 runOnUiThread {

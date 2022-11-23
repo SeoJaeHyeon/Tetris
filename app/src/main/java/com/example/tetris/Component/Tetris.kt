@@ -8,25 +8,16 @@ import com.example.tetris.R
 import java.util.*
 
 open class Tetris() {
-    val ROW = 20 // gameFrame의 row
-    val COL = 10 // gameFrame의 col
-    val NEXTROW = 4
-    val NEXTCOL = 3
+    val gameState = GameState()
 
-    val gameFrame = Array(ROW) { // gameFrame의 이차원 배열
-        // 각 행들의 배열의 타입은 ImageView ! 나중에 초기화하기 위해 arrayOfNulls 배열 사용
-        arrayOfNulls<ImageView>(COL)
-    }
-    val nextBlockFrame = Array(NEXTROW) {
-        arrayOfNulls<ImageView>(NEXTCOL)
-    }
     val arr = CompareArray()
+
     private val random = Random() //seed를 랜덤하게 나오기위해 seed 랜덤 저장
     // 블럭들을 랜덤하게 나오기 위해 블럭의 번호를 난수로 저장
     var randomNum: Int = random.nextInt(7) + 1 //boundary라 + 1 해줌
     // 랜덤하게 얻은 블럭을 Block에 저장(게임화면에서 움직일 블럭)
-    var block: Block = randomBlockChoice(randomNum, 1, COL / 2)
-    var run = true
+    var block: Block = randomBlockChoice(randomNum, 1, gameState.COL / 2)
+
     var erase: Int = 1
     var high: Int = 0
     var score: Int = 0
@@ -68,28 +59,28 @@ open class Tetris() {
     fun printBlock() {
         arr.changeZeroToBlockNumber(block)
         // 블럭이 지정하는 인덱스에 맞추어 블럭 출력 -> gameFrame의 배열 블럭은 항상 이미지가 있어 null이 될 수 없음
-        gameFrame[block.point1.x][block.point1.y]!!.setImageResource(blockColor(block.number))
-        gameFrame[block.point2.x][block.point2.y]!!.setImageResource(blockColor(block.number))
-        gameFrame[block.point3.x][block.point3.y]!!.setImageResource(blockColor(block.number))
-        gameFrame[block.point4.x][block.point4.y]!!.setImageResource(blockColor(block.number))
+        gameState.gameFrame[block.point1.x][block.point1.y]!!.setImageResource(blockColor(block.number))
+        gameState.gameFrame[block.point2.x][block.point2.y]!!.setImageResource(blockColor(block.number))
+        gameState.gameFrame[block.point3.x][block.point3.y]!!.setImageResource(blockColor(block.number))
+        gameState.gameFrame[block.point4.x][block.point4.y]!!.setImageResource(blockColor(block.number))
     }
     // gameFrame에서 블럭을 다시 원래 배경으로 바꾸는 함수(이동할 때 사용)
     fun removeBlock() {
         arr.changeBlockNumberToZero(block)
-        gameFrame[block.point1.x][block.point1.y]!!.setImageResource(R.drawable.gameframe)
-        gameFrame[block.point2.x][block.point2.y]!!.setImageResource(R.drawable.gameframe)
-        gameFrame[block.point3.x][block.point3.y]!!.setImageResource(R.drawable.gameframe)
-        gameFrame[block.point4.x][block.point4.y]!!.setImageResource(R.drawable.gameframe)
+        gameState.gameFrame[block.point1.x][block.point1.y]!!.setImageResource(R.drawable.gameframe)
+        gameState.gameFrame[block.point2.x][block.point2.y]!!.setImageResource(R.drawable.gameframe)
+        gameState.gameFrame[block.point3.x][block.point3.y]!!.setImageResource(R.drawable.gameframe)
+        gameState.gameFrame[block.point4.x][block.point4.y]!!.setImageResource(R.drawable.gameframe)
     }
 
     // 다음에 올 블럭을 nextBlockFrame에 보여주는 함수
     fun printNextBlock() {
-        resetFrame(nextBlockFrame,NEXTROW,NEXTCOL) //화면초기화 후
+        resetFrame(gameState.nextBlockFrame,gameState.NEXTROW,gameState.NEXTCOL) //화면초기화 후
         val blockPreView = randomBlockChoice(randomNum, 1, 1) //새 블럭 객체
-        nextBlockFrame[blockPreView.point1.x][blockPreView.point1.y]!!.setImageResource((blockColor(blockPreView.number)))
-        nextBlockFrame[blockPreView.point2.x][blockPreView.point2.y]!!.setImageResource((blockColor(blockPreView.number)))
-        nextBlockFrame[blockPreView.point3.x][blockPreView.point3.y]!!.setImageResource((blockColor(blockPreView.number)))
-        nextBlockFrame[blockPreView.point4.x][blockPreView.point4.y]!!.setImageResource((blockColor(blockPreView.number)))
+        gameState.nextBlockFrame[blockPreView.point1.x][blockPreView.point1.y]!!.setImageResource((blockColor(blockPreView.number)))
+        gameState.nextBlockFrame[blockPreView.point2.x][blockPreView.point2.y]!!.setImageResource((blockColor(blockPreView.number)))
+        gameState.nextBlockFrame[blockPreView.point3.x][blockPreView.point3.y]!!.setImageResource((blockColor(blockPreView.number)))
+        gameState.nextBlockFrame[blockPreView.point4.x][blockPreView.point4.y]!!.setImageResource((blockColor(blockPreView.number)))
     }
 
     fun imgDown() {
@@ -125,12 +116,12 @@ open class Tetris() {
     }
 
     fun isDelete(): Boolean {
-        for(i in ROW-1 downTo 0) {
-            for(j in 0 until COL) {
+        for(i in gameState.ROW - 1 downTo 0) {
+            for(j in 0 until gameState.COL) {
 
                 if( arr.arr[i][j] == 0 ) break
                 else{
-                    if(j == COL - 1) {
+                    if(j == gameState.COL - 1) {
                         return true
                     }
                 }
@@ -149,12 +140,12 @@ open class Tetris() {
     }
 
     fun DeleteBlocksChecking() {
-        for(row in ROW-1 downTo 0) {
-            for(col in 0 until COL) {
+        for(row in gameState.ROW - 1 downTo 0) {
+            for(col in 0 until gameState.COL) {
 
                 if( arr.arr[row][col] == 0 ) break
                 else{
-                    if(col == COL - 1) {
+                    if(col == gameState.COL - 1) {
                         DeleteBlocks(row)
                     }
                 }
@@ -164,7 +155,7 @@ open class Tetris() {
 
     fun newBlockDown() {
         if(block.point1.x == 1 && block.touchBottomBlock(arr)) {  //블럭이 생성되는 곳과 블럭이 닿았을떄 게임오버
-            run = false
+            gameState.run = false
         } else {
             if(block.point1.x == 2){ //새 블럭생성 후 다음블럭 보여줌
                 randomNum = random.nextInt(7) + 1
@@ -175,16 +166,16 @@ open class Tetris() {
                     DeleteBlocksChecking()
                 }
 
-                block = randomBlockChoice(randomNum, 1, COL / 2)
+                block = randomBlockChoice(randomNum, 1, gameState.COL / 2)
                 printBlock()  //printBlock이랑 block객체 순서 중요
             }
         }
     }
 
     fun printAllGameFrame() {
-        for(i in 0 until ROW) {
-            for (j in 0 until  COL){
-                printEachBlock(arr.arr[i][j], gameFrame, i, j)
+        for(i in 0 until gameState.ROW) {
+            for (j in 0 until  gameState.COL){
+                printEachBlock(arr.arr[i][j], gameState.gameFrame, i, j)
             }
         }
     }
