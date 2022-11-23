@@ -1,7 +1,6 @@
 package com.example.tetris.Block
 
 import com.example.tetris.Component.CompareArray
-import com.example.tetris.ViewModel.ViewModelArray
 
 class BlockT(var row: Int, var col: Int): Block(row, col) {
 

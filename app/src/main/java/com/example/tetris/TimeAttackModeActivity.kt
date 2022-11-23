@@ -9,19 +9,16 @@ import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.gridlayout.widget.GridLayout
-import com.example.tetris.Block.*
-import com.example.tetris.Component.Tetris
 import com.example.tetris.Component.TetrisTimeAttack
-import com.example.tetris.ViewModel.ViewModelArray
+import com.example.tetris.ViewModel.ViewModelTetris
 import com.example.tetris.databinding.ActivityTimeattackmodeBinding
-import java.util.*
 import kotlin.concurrent.thread
 import kotlin.concurrent.timer
 
 class TimeAttackModeActivity: AppCompatActivity() {
     lateinit var binding: ActivityTimeattackmodeBinding
 
-    val viewModelFrameT: ViewModelArray by viewModels()
+    val viewModelFrameT: ViewModelTetris by viewModels()
     val tetris = TetrisTimeAttack()
 
     @SuppressLint("SetTextI18n")

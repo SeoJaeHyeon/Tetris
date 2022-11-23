@@ -2,7 +2,6 @@ package com.example.tetris.Block
 
 //import com.example.tetris.CompareArray
 import com.example.tetris.Component.CompareArray
-import com.example.tetris.ViewModel.ViewModelArray
 
 // 최상위 클래스인 Block을 상속하여 각각의 Block를 정의
 open class Block(var x: Int, var y: Int) {

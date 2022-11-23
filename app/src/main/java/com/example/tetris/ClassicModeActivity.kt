@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.gridlayout.widget.GridLayout
 import com.example.tetris.Component.Tetris
-import com.example.tetris.ViewModel.ViewModelArray
+import com.example.tetris.ViewModel.ViewModelTetris
 import com.example.tetris.databinding.ActivityClassicmodeBinding
 import kotlin.concurrent.thread
 
@@ -17,7 +17,7 @@ import kotlin.concurrent.thread
 class ClassicModeActivity : AppCompatActivity() {
     lateinit var binding: ActivityClassicmodeBinding
 
-    val viewModelFrame: ViewModelArray by viewModels()
+    val viewModelFrame: ViewModelTetris by viewModels()
     val tetris = Tetris()
 
     override fun onCreate(savedInstanceState: Bundle?) {

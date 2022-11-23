@@ -8,18 +8,15 @@ import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.gridlayout.widget.GridLayout
-import com.example.tetris.Block.*
 import com.example.tetris.Component.Tetris
-import com.example.tetris.ViewModel.ViewModelArray
+import com.example.tetris.ViewModel.ViewModelTetris
 import com.example.tetris.databinding.ActivityHardmodeBinding
-import com.example.tetris.databinding.ActivityTimeattackmodeBinding
-import java.util.*
 import kotlin.concurrent.thread
 
 class HardModeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHardmodeBinding
 
-    val viewModelFrameH: ViewModelArray by viewModels()
+    val viewModelFrameH: ViewModelTetris by viewModels()
     val tetris = Tetris()
 
 

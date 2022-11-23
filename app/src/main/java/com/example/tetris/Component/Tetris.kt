@@ -1,7 +1,6 @@
 package com.example.tetris.Component
 
 
-import android.app.Activity
 import android.widget.ImageView
 import com.example.tetris.Block.*
 import com.example.tetris.R

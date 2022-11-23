@@ -3,7 +3,7 @@ package com.example.tetris.Component
 import com.example.tetris.Block.Block
 
 
-// (20 x 10) Int 배열로서 게임 화면에서 블럭이 있는 곳은 1, 블럭이 없는 곳은 0으로 표시 하기 위한 클래스
+// (20 x 10) Int 배열로서 게임 화면에서 블럭이 있는 곳은 blockNumber, 블럭이 없는 곳은 0으로 표시 하기 위한 클래스
 // 0으로 표시 되어 있으면 블럭 이동 가능, blockNumber로 표시되어 있으면 블럭 이동 불가능
 class CompareArray {
     val arr: Array<Array<Int>>

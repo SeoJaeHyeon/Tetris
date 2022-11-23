@@ -3,13 +3,11 @@ package com.example.tetris
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tetris.ViewModel.ViewModelArray
+import com.example.tetris.ViewModel.ViewModelTetris
 import com.example.tetris.databinding.ActivityGameoverBinding
-import com.example.tetris.databinding.ActivitySettingBinding
 
 class GameOverActivity : AppCompatActivity() {
     lateinit var binding: ActivityGameoverBinding
-    lateinit var viewModelFrame: ViewModelArray
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
