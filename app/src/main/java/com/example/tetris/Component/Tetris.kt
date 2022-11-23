@@ -32,6 +32,12 @@ class Tetris() {
     var high: Int = 0
     var score: Int = 0
 
+    // 타임어택 모드에서 사용
+    var time = 3000 //처음 시간 60초
+    var timerTask: Timer? = null
+    var sec = 0
+    var milli = 0
+
     // 다음에 나올 블럭 랜덤하게 지정(블럭의 number를 통해 지정)
     fun randomBlockChoice(number: Int, row: Int, col: Int): Block {
         val randomBlock: Block
@@ -145,6 +151,7 @@ class Tetris() {
         // 한 줄 지워질 때마다 점수 20씩 증가
         score += erase * 20
         if( high < score ) high = score
+        time += 1000
 
 
     }

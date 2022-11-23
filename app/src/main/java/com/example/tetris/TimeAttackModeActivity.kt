@@ -24,10 +24,7 @@ class TimeAttackModeActivity: AppCompatActivity() {
     val tetris = Tetris()
 
 
-    var time = 3000 //처음 시간 60초
-    var timerTask: Timer? = null
-    var sec = 0
-    var milli = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,15 +51,15 @@ class TimeAttackModeActivity: AppCompatActivity() {
         }
 
         //타이머로 시간 표현, time이 0 되면 게임종료
-        timerTask = timer(period = 10) {
-                time--
-                sec = time / 100
-                milli = time % 100
+        tetris.timerTask = timer(period = 10) {
+                tetris.time--
+                tetris.sec = tetris.time / 100
+                tetris.milli = tetris.time % 100
                 runOnUiThread {
-                    binding.txtTime?.text = "${sec}:${milli}"
+                    binding.txtTime?.text = "${tetris.sec}:${tetris.milli}"
             }
-            if (time == 0) {
-                timerTask?.cancel()
+            if (tetris.time == 0) {
+                tetris.timerTask?.cancel()
                 tetris.run = false
             }
         }
