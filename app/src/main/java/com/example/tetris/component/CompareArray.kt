@@ -1,6 +1,6 @@
-package com.example.tetris.Component
+package com.example.tetris.component
 
-import com.example.tetris.Block.Block
+import com.example.tetris.block.Block
 
 
 // (20 x 10) Int 배열로서 게임 화면에서 블럭이 있는 곳은 blockNumber, 블럭이 없는 곳은 0으로 표시 하기 위한 클래스

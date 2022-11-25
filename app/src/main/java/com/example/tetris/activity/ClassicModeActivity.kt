@@ -1,4 +1,4 @@
-package com.example.tetris
+package com.example.tetris.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -8,68 +8,74 @@ import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.gridlayout.widget.GridLayout
-import com.example.tetris.Component.Tetris
-import com.example.tetris.ViewModel.ViewModelTetris
-import com.example.tetris.databinding.ActivityHardmodeBinding
+import com.example.tetris.component.Tetris
+import com.example.tetris.R
+import com.example.tetris.viewModel.ViewModelTetris
+import com.example.tetris.databinding.ActivityClassicmodeBinding
 import kotlin.concurrent.thread
 
-class HardModeActivity : AppCompatActivity() {
-    lateinit var binding: ActivityHardmodeBinding
 
-    val viewModelFrameH: ViewModelTetris by viewModels()
+class ClassicModeActivity : AppCompatActivity() {
+    lateinit var binding: ActivityClassicmodeBinding
+
+    val viewModelFrame: ViewModelTetris by viewModels()
     val tetris = Tetris()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityHardmodeBinding.inflate(layoutInflater)
+        binding = ActivityClassicmodeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.boardh.rowCount = tetris.gameState.ROW // gridLayout의 row
-        binding.boardh.columnCount = tetris.gameState.COL // gridLayout의 col
+        binding.gridmain.rowCount = tetris.gameState.ROW // gridLayout의 row
+        binding.gridmain.columnCount = tetris.gameState.COL // gridLayout의 col
 
-        binding.nextblockh.rowCount = tetris.gameState.NEXTROW
-        binding.nextblockh.columnCount = tetris.gameState.NEXTCOL
+        binding.nextblock.rowCount = tetris.gameState.NEXTROW
+        binding.nextblock.columnCount = tetris.gameState.NEXTCOL
+
 
         // 뷰모델로 score 갱신
-        viewModelFrameH.score.observe(this) {
-            binding?.txtScoreh?.text = viewModelFrameH.score.value.toString()
+        viewModelFrame.score.observe(this) {
+            binding?.txtScore?.text = viewModelFrame.score.value.toString()
         }
         // 뷰모델로 level 갱신
-        viewModelFrameH.level.observe(this) {
-            binding?.txtLevelh?.text = viewModelFrameH.level.value.toString()
+        viewModelFrame.level.observe(this) {
+            binding?.txtLevel?.text = viewModelFrame.level.value.toString()
         }
         // 뷰모델로 high 갱신
-        viewModelFrameH.high.observe(this) {
-            binding?.txtHighh?.text = viewModelFrameH.high.value.toString()
+        viewModelFrame.high.observe(this) {
+            binding?.txtHigh?.text = viewModelFrame.high.value.toString()
         }
+
 
 
         // 게임 시작 후 gridLayout에 게임화면 생성
-        gameFrameSetting(tetris.gameState.gameFrame, binding.boardh, tetris.gameState.ROW, tetris.gameState.COL)
-        gameFrameSetting(tetris.gameState.nextBlockFrame, binding.nextblockh, tetris.gameState.NEXTROW, tetris.gameState.NEXTCOL)
+        gameFrameSetting(tetris.gameState.gameFrame, binding.gridmain, tetris.gameState.ROW, tetris.gameState.COL)
+        gameFrameSetting(tetris.gameState.nextBlockFrame, binding.nextblock, tetris.gameState.NEXTROW, tetris.gameState.NEXTCOL)
 
         gameRun()
 
-        binding.imgLefth.setOnClickListener {
+        //버튼 눌렸을 때
+        binding.imgLeft.setOnClickListener {
             tetris.imgLeft()
         }
-        binding.imgRighth.setOnClickListener {
+        binding.imgRight.setOnClickListener {
             tetris.imgRight()
         }
-        binding.imgDownh.setOnClickListener {
+        binding.imgDown.setOnClickListener {
             tetris.imgDown()
         }
-        binding.imgChangeh.setOnClickListener {
+        binding.imgChange.setOnClickListener {
             tetris.imgChange()
         }
-        binding.imgStoph.setOnClickListener {
+        binding.imgStop.setOnClickListener {
             // 그만하기 버튼 누르면 StopActivity로 이동
             startActivity(Intent(this, StopActivity::class.java))
         }
-    }
 
+
+
+    }
     // 게임 화면 설정 -> 게임화면에 사용될 이차원배열, 이차원배열을 그려줄 gridLayout, row, col을 매개변수로 받음
     fun gameFrameSetting(arr: Array<Array<ImageView?>>, grid: GridLayout, row: Int, col: Int) {
         // 해당 context(환경에 대한 전역정보) LayoutInflater를 가져옴(xml을 View객체로 변환)
@@ -90,14 +96,14 @@ class HardModeActivity : AppCompatActivity() {
         tetris.printNextBlock()
         thread(start = true) {
             while(tetris.gameState.run) {
-                var millis = 500L
+                var millis = 1000L - (viewModelFrame.level.value?.times(25) ?:0)
                 Thread.sleep(millis)
                 runOnUiThread {
                     tetris.moveDownBlock()
                     tetris.newBlockDown()
                 }
-                viewModelFrameH.setscore(tetris.score, viewModelFrameH.high.value?:0)
-                viewModelFrameH.setlevel()
+                viewModelFrame.setscore(tetris.score, viewModelFrame.high.value?:0)
+                viewModelFrame.setlevel()
             }
 
             changeGameOverActivity()
@@ -108,7 +114,7 @@ class HardModeActivity : AppCompatActivity() {
     fun changeGameOverActivity() {
 
         val intent = Intent(this, GameOverActivity::class.java)
-        intent.putExtra("score", viewModelFrameH.score.value.toString())
+        intent.putExtra("score", viewModelFrame.score.value.toString())
 
         startActivity(intent)
     }
@@ -121,9 +127,9 @@ class HardModeActivity : AppCompatActivity() {
     }
 
     fun saveState() {
-        val pref = getSharedPreferences("prefH", Activity.MODE_PRIVATE)
+        val pref = getSharedPreferences("pref", Activity.MODE_PRIVATE)
         val editor = pref.edit()
-        editor.putInt("highH", (viewModelFrameH.high.value!!))
+        editor.putInt("high", (viewModelFrame.high.value!!))
         editor.commit()
     }
 
@@ -134,11 +140,15 @@ class HardModeActivity : AppCompatActivity() {
     }
 
     fun restoreState() {
-        val pref = getSharedPreferences("prefH", Activity.MODE_PRIVATE)
-        if( pref != null && pref.contains("highH") ) {
-            viewModelFrameH.setHigh(pref.getInt("highH", 0))
+        val pref = getSharedPreferences("pref", Activity.MODE_PRIVATE)
+        if( pref != null && pref.contains("high") ) {
+            viewModelFrame.setHigh(pref.getInt("high", 0))
         }
     }
 
 
+
 }
+
+
+

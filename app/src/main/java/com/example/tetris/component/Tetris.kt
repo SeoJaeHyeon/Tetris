@@ -1,8 +1,8 @@
-package com.example.tetris.Component
+package com.example.tetris.component
 
 
 import android.widget.ImageView
-import com.example.tetris.Block.*
+import com.example.tetris.block.*
 import com.example.tetris.R
 import java.util.*
 

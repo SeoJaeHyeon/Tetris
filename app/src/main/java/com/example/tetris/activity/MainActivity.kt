@@ -1,10 +1,10 @@
-package com.example.tetris
+package com.example.tetris.activity
 
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NO_USER_ACTION
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import com.example.tetris.service.MusicService
 import com.example.tetris.databinding.ActivityMainBinding
 
 var isMusicOn: Boolean = true // 음악이 켜져있는 지 확인하는 변수

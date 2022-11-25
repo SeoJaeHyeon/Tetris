@@ -1,4 +1,4 @@
-package com.example.tetris.ViewModel
+package com.example.tetris.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

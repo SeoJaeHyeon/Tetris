@@ -1,8 +1,9 @@
-package com.example.tetris
+package com.example.tetris.activity
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tetris.service.MusicService
 import com.example.tetris.databinding.ActivitySettingBinding
 
 

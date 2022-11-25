@@ -1,4 +1,4 @@
-package com.example.tetris.Component
+package com.example.tetris.component
 
 import java.util.*
 

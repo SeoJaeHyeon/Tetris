@@ -1,6 +1,6 @@
-package com.example.tetris.Block
+package com.example.tetris.block
 
-import com.example.tetris.Component.CompareArray
+import com.example.tetris.component.CompareArray
 
 // 최상위 클래스인 Block을 상속하여 각각의 Block를 정의
 abstract class Block(var x: Int, var y: Int) {

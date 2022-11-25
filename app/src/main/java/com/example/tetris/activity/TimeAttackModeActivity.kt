@@ -1,4 +1,4 @@
-package com.example.tetris
+package com.example.tetris.activity
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -9,8 +9,9 @@ import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.gridlayout.widget.GridLayout
-import com.example.tetris.Component.TetrisTimeAttack
-import com.example.tetris.ViewModel.ViewModelTetris
+import com.example.tetris.component.TetrisTimeAttack
+import com.example.tetris.R
+import com.example.tetris.viewModel.ViewModelTetris
 import com.example.tetris.databinding.ActivityTimeattackmodeBinding
 import kotlin.concurrent.thread
 import kotlin.concurrent.timer

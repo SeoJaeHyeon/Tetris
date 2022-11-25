@@ -1,4 +1,4 @@
-package com.example.tetris
+package com.example.tetris.activity
 
 
 import android.content.Intent

@@ -1,9 +1,10 @@
-package com.example.tetris
+package com.example.tetris.service
 
 import android.app.Service
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.IBinder
+import com.example.tetris.R
 
 class MusicService : Service() {
     lateinit var mediaPlayer: MediaPlayer
