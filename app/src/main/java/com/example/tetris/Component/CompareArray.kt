@@ -48,13 +48,13 @@ class CompareArray {
         return (block.point1.y + 1 == COL) || (block.point2.y + 1 == COL) ||
                 (block.point3.y + 1 == COL) || (block.point4.y + 1 == COL)
     }
+    // 해당 블록줄 지우고 위에서 블록 밑으로 내림
     fun destroy(row: Int) {
         for(i in row downTo 1) {
             for( j in 0 until COL) {
                 arr[i][j] = arr[i - 1][j]
-
             }
-
         }
     }
+
 }

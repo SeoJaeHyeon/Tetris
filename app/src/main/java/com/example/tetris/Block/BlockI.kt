@@ -5,12 +5,14 @@ import com.example.tetris.Component.CompareArray
 
 class BlockI(var row: Int, var col: Int): Block(row, col) {
 
-    init {
-        number = 1
-        point2 = Point(row - 1, col )
-        point3 = Point(row + 1, col )
-        point4 = Point(row + 2, col )
-    }
+    override var number = 1
+    override val point1 = Point( row, col )
+    override val point2 = Point(row - 1, col )
+    override val point3 = Point(row + 1, col )
+    override val point4 = Point(row + 2, col )
+
+    // 2개만 로테이션 하면 되는 것들의 회전 확인을 위한 불리언 변수
+    var isRotation = false
 
     override fun blockDown(arr: CompareArray) {
         if(!(arr.touchFloor(this))) { // 블럭들이 바닥에 안닿았으면 이동가능
@@ -47,7 +49,6 @@ class BlockI(var row: Int, var col: Int): Block(row, col) {
     override fun rotation(arr: CompareArray) {
 
         // 왼쪽 혹은 오른쪽 벽에 부딪혔는지 확인 먼저 -> rotation 실행
-
         if(!isRotation) { // 한번도 로테이션 실행 x
             if(arr.touchLeft(this)) {
                 point1.y += 2 // point1.x 변화 x
@@ -133,6 +134,7 @@ class BlockI(var row: Int, var col: Int): Block(row, col) {
                     arr.arr[point3.x + 1][point3.y] > 0 || arr.arr[point4.x + 1][point4.y] > 0
         }
     }
+
     override fun touchLeftBlock(arr: CompareArray): Boolean {
         if(!isRotation) {
             return ( arr.arr[point1.x][point1.y - 1] > 0 || arr.arr[point2.x][point2.y - 1] > 0 ||

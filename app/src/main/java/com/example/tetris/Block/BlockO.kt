@@ -4,12 +4,12 @@ import com.example.tetris.Component.CompareArray
 
 class BlockO(var row: Int, var col: Int): Block(row, col) {
 
-    init {
-        number = 2
-        point2 = Point(row , col + 1 )
-        point3 = Point(row + 1, col )
-        point4 = Point(row + 1, col + 1)
-    }
+    override var number = 2
+    override val point1 = Point( row , col )
+    override val point2 = Point(row , col + 1 )
+    override val point3 = Point(row + 1, col )
+    override val point4 = Point(row + 1, col + 1)
+
 
     override fun blockDown(arr: CompareArray) {
         if(!(arr.touchFloor(this))) { // 블럭들이 바닥에 안닿았으면 이동가능
@@ -42,10 +42,16 @@ class BlockO(var row: Int, var col: Int): Block(row, col) {
             }
         }
     }
+
+    override fun rotation(arr: CompareArray) {
+        // 회전해도 동일
+    }
+
     override fun touchBottomBlock(arr: CompareArray): Boolean {
 
         return arr.arr[point3.x + 1][point3.y] > 0 || arr.arr[point4.x + 1][point4.y] > 0
     }
+
     override fun touchLeftBlock(arr: CompareArray): Boolean {
 
         return arr.arr[point1.x][point1.y - 1] > 0 || arr.arr[point3.x][point3.y - 1] > 0

@@ -5,23 +5,27 @@ import com.example.tetris.Component.CompareArray
 
 class BlockJ(var row: Int, var col: Int): Block(row, col) {
 
-    init {
-        number = 5
-        point2 = Point(row - 1 , col )
-        point3 = Point(row + 1, col )
-        point4 = Point(row + 1, col - 1)
-    }
+    override var number = 5
+    override val point1 = Point(row, col)
+    override val point2 = Point(row - 1 , col )
+    override val point3 = Point(row + 1, col )
+    override val point4 = Point(row + 1, col - 1)
 
-override fun blockDown(arr: CompareArray) {
-    if(!(arr.touchFloor(this))) { // 블럭들이 바닥에 안닿았으면 이동가능
-        if(!touchBottomBlock(arr)) { // 다른블럭이랑 밑 부분이 안부딪히면 이동 가능
-            point1.down()
-            point2.down()
-            point3.down()
-            point4.down()
+    // 4번 회전하는 블럭들의 회전 확인을 위한 불리언 변수
+    var isRotation1: Boolean = false
+    var isRotation2: Boolean = false
+    var isRotation3: Boolean = false
+
+    override fun blockDown(arr: CompareArray) {
+        if(!(arr.touchFloor(this))) { // 블럭들이 바닥에 안닿았으면 이동가능
+            if(!touchBottomBlock(arr)) { // 다른블럭이랑 밑 부분이 안부딪히면 이동 가능
+                point1.down()
+                point2.down()
+                point3.down()
+                point4.down()
+            }
         }
     }
-}
 
     override fun blockLeft(arr: CompareArray) {
         if(!(arr.touchLeft(this))) { // 블럭들이 왼쪽 벽에 닿지 않았으면 이동가능
@@ -145,6 +149,7 @@ override fun blockDown(arr: CompareArray) {
                     arr.arr[point4.x + 1][point4.y] > 0
         }
     }
+
     override fun touchLeftBlock(arr: CompareArray): Boolean {
 
         if(!isRotation1 && !isRotation2 && !isRotation3) {
@@ -164,6 +169,7 @@ override fun blockDown(arr: CompareArray) {
         }
 
     }
+
     override fun touchRightBlock(arr: CompareArray): Boolean {
         if(!isRotation1 && !isRotation2 && !isRotation3) {
             return arr.arr[point1.x][point1.y + 1] > 0 || arr.arr[point2.x][point2.y + 1] > 0 ||

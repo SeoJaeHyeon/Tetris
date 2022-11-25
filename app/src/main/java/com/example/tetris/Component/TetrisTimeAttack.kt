@@ -14,7 +14,7 @@ class TetrisTimeAttack : Tetris() {
         printAllGameFrame()
 
         // 한 줄 지워질 때마다 점수 20씩 증가
-        score += erase * 20
+        score += PLUS_SCORE
         time += 1000
     }
 }

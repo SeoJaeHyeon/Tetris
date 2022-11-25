@@ -4,12 +4,15 @@ import com.example.tetris.Component.CompareArray
 
 class BlockZ(var row: Int, var col: Int): Block(row, col) {
 
-    init {
-        number = 3
-        point2 = Point(row, col - 1 )
-        point3 = Point(row + 1, col)
-        point4 = Point(row + 1, col + 1)
-    }
+    override var number = 3
+    override val point1 = Point( row, col )
+    override val point2 = Point(row, col - 1 )
+    override val point3 = Point(row + 1, col)
+    override val point4 = Point(row + 1, col + 1)
+
+    // 2개만 로테이션 하면 되는 것들의 회전 확인을 위한 불리언 변수
+    var isRotation = false
+
 
     override fun blockDown(arr: CompareArray) {
         if(!(arr.touchFloor(this))) { // 블럭들이 바닥에 안닿았으면 이동가능

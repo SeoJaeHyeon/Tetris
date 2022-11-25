@@ -17,9 +17,9 @@ open class Tetris() {
     // 랜덤하게 얻은 블럭을 Block에 저장(게임화면에서 움직일 블럭)
     var block: Block = randomBlockChoice(randomNum, 1, gameState.COL / 2)
 
-    var erase: Int = 1
-    var high: Int = 0
-    var score: Int = 0
+    val PLUS_SCORE: Int = 20 // 한번 줄 지울 때 마다 올라가는 점수
+    var high: Int = 0 // 최고 점수
+    var score: Int = 0 // 현재 점수
 
 
     // 다음에 나올 블럭 랜덤하게 지정(블럭의 number를 통해 지정)
@@ -134,7 +134,7 @@ open class Tetris() {
         printAllGameFrame()
 
         // 한 줄 지워질 때마다 점수 20씩 증가
-        score += erase * 20
+        score += PLUS_SCORE
         if( high < score ) high = score
     }
 
