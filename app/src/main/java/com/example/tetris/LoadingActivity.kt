@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.postDelayed
 import com.example.tetris.databinding.ActivityLoadingBinding
-import com.example.tetris.databinding.ActivityStopBinding
 
 class LoadingActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoadingBinding

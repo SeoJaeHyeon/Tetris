@@ -2,7 +2,6 @@ package com.example.tetris.Block
 
 import com.example.tetris.Component.CompareArray
 
-
 class BlockJ(var row: Int, var col: Int): Block(row, col) {
 
     override var number = 5

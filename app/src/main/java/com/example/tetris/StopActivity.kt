@@ -14,8 +14,6 @@ class StopActivity : AppCompatActivity() {
         binding = ActivityStopBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //버튼 눌렸을 때
-
         // 그만하기 버튼을 누르면 엑티비티 스택에 있는 모든 액티비티 없애고 다시 게임 첫 화면으로 이동
         binding.btnStop.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)

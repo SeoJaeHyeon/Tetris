@@ -3,7 +3,6 @@ package com.example.tetris
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tetris.ViewModel.ViewModelTetris
 import com.example.tetris.databinding.ActivityGameoverBinding
 
 class GameOverActivity : AppCompatActivity() {
@@ -16,8 +15,6 @@ class GameOverActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.txtResult.text = intent.getStringExtra("score")
-
-
 
 
         binding.btnRetry.setOnClickListener {

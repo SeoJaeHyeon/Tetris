@@ -65,7 +65,8 @@ class HardModeActivity : AppCompatActivity() {
             tetris.imgChange()
         }
         binding.imgStoph.setOnClickListener {
-            startActivity(Intent(this, StopActivity::class.java)) // 그만하기 버튼 누르면 StopActivity로 이동 -재현이가 해놓음
+            // 그만하기 버튼 누르면 StopActivity로 이동
+            startActivity(Intent(this, StopActivity::class.java))
         }
     }
 

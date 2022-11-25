@@ -15,9 +15,7 @@ class ViewModelTetris : ViewModel() {
     private val _high = MutableLiveData<Int>()
     val high: LiveData<Int> get() = _high
 
-
     init {
-
         _score.value = 0 // 시작점수 0
         _level.value = 1 // 시작레벨 1
         _high.value = 0 // 시작 최고 점수 0

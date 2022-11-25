@@ -1,6 +1,5 @@
 package com.example.tetris.Block
 
-//import com.example.tetris.CompareArray
 import com.example.tetris.Component.CompareArray
 
 class BlockI(var row: Int, var col: Int): Block(row, col) {
