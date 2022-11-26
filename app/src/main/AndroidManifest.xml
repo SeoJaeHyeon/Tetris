@@ -13,12 +13,12 @@
         android:theme="@style/Theme.Tetris"
         tools:targetApi="31">
         <service
-            android:name=".MusicService"
+            android:name=".service.MusicService"
             android:enabled="true"
             android:exported="true"></service>
 
         <activity
-            android:name="com.example.tetris.LoadingActivity"
+            android:name="com.example.tetris.activity.LoadingActivity"
             android:theme="@style/Theme.Tetris"
             android:exported="true">
             <intent-filter>
@@ -31,14 +31,14 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".GameModeActivity" />
-        <activity android:name=".ClassicModeActivity" />
-        <activity android:name=".HardModeActivity" />
-        <activity android:name=".TimeAttackModeActivity" />
-        <activity android:name=".StopActivity" />
-        <activity android:name=".SettingActivity" />
-        <activity android:name=".GameOverActivity" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.GameModeActivity" />
+        <activity android:name=".activity.ClassicModeActivity" />
+        <activity android:name=".activity.HardModeActivity" />
+        <activity android:name=".activity.TimeAttackModeActivity" />
+        <activity android:name=".activity.StopActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.GameOverActivity" />
     </application>
 
 </manifest>

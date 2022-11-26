@@ -3,9 +3,20 @@ package com.example.tetris.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tetris.component.Ranking
+import com.example.tetris.component.RankingsAdapter
 import com.example.tetris.databinding.ActivityGameoverBinding
 
 class GameOverActivity : AppCompatActivity() {
+    val rankings = arrayOf(
+        Ranking(1,"Kim", 1400),
+        Ranking(2, "Lee", 1500),
+        Ranking(3, "Park", 1600),
+        Ranking(4, "Choi", 1700),
+        Ranking(5, "Jung", 1800),
+    )
+
     lateinit var binding: ActivityGameoverBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +27,8 @@ class GameOverActivity : AppCompatActivity() {
 
         binding.txtResult.text = intent.getStringExtra("score")
 
+        binding.recRank.layoutManager = LinearLayoutManager(this)
+        binding.recRank.adapter = RankingsAdapter(rankings)
 
         binding.btnRetry.setOnClickListener {
             val intent = Intent(this, ClassicModeActivity::class.java)
