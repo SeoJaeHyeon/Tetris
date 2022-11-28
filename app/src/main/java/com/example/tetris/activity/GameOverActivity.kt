@@ -10,11 +10,11 @@ import com.example.tetris.databinding.ActivityGameoverBinding
 
 class GameOverActivity : AppCompatActivity() {
     val rankings = arrayListOf(
-        Ranking(1,"Kim", 1400),
-        Ranking(2, "Lee", 1500),
+        Ranking(1,"Kim", 1800),
+        Ranking(2, "Lee", 1700),
         Ranking(3, "Park", 1600),
-        Ranking(4, "Choi", 1700),
-        Ranking(5, "Jung", 1800),
+        Ranking(4, "Choi", 1500),
+        Ranking(5, "Jung", 1400),
     )
 
     lateinit var binding: ActivityGameoverBinding
