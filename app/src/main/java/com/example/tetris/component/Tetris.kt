@@ -1,6 +1,7 @@
 package com.example.tetris.component
 
 
+import android.util.Log
 import android.widget.ImageView
 import com.example.tetris.block.*
 import com.example.tetris.R
@@ -58,60 +59,118 @@ open class Tetris() {
     fun printBlock() {
         arr.changeZeroToBlockNumber(block)
         // 블럭이 지정하는 인덱스에 맞추어 블럭 출력 -> gameFrame의 배열 블럭은 항상 이미지가 있어 null이 될 수 없음
-        gameState.gameFrame[block.point1.x][block.point1.y]!!.setImageResource(blockColor(block.number))
-        gameState.gameFrame[block.point2.x][block.point2.y]!!.setImageResource(blockColor(block.number))
-        gameState.gameFrame[block.point3.x][block.point3.y]!!.setImageResource(blockColor(block.number))
-        gameState.gameFrame[block.point4.x][block.point4.y]!!.setImageResource(blockColor(block.number))
+        if (gameState.gameFrame[block.point1.x][block.point1.y] != null){
+            gameState.gameFrame[block.point1.x][block.point1.y]?.setImageResource(blockColor(block.number))
+        }
+        else throw NullPointerException("Expression 'gameState.gameFrame[block.point1.x][block.point1.y]' must not be null")
+        if (gameState.gameFrame[block.point2.x][block.point2.y] != null) {
+            gameState.gameFrame[block.point2.x][block.point2.y]?.setImageResource(blockColor(block.number))
+        }
+        else throw NullPointerException("Expression 'gameState.gameFrame[block.point2.x][block.point2.y]' must not be null")
+        if (gameState.gameFrame[block.point3.x][block.point3.y] != null) {
+            gameState.gameFrame[block.point3.x][block.point3.y]?.setImageResource(blockColor(block.number))
+        }
+        else throw NullPointerException("Expression 'gameState.gameFrame[block.point3.x][block.point3.y]' must not be null")
+        if (gameState.gameFrame[block.point4.x][block.point4.y] != null) {
+            gameState.gameFrame[block.point4.x][block.point4.y]?.setImageResource(blockColor(block.number))
+        }
+        else throw NullPointerException("Expression 'gameState.gameFrame[block.point4.x][block.point4.y]' must not be null")
     }
     // gameFrame에서 블럭을 다시 원래 배경으로 바꾸는 함수(이동할 때 사용)
     fun removeBlock() {
         arr.changeBlockNumberToZero(block)
-        gameState.gameFrame[block.point1.x][block.point1.y]!!.setImageResource(R.drawable.gameframe)
-        gameState.gameFrame[block.point2.x][block.point2.y]!!.setImageResource(R.drawable.gameframe)
-        gameState.gameFrame[block.point3.x][block.point3.y]!!.setImageResource(R.drawable.gameframe)
-        gameState.gameFrame[block.point4.x][block.point4.y]!!.setImageResource(R.drawable.gameframe)
+        if (gameState.gameFrame[block.point1.x][block.point1.y] != null) {
+            gameState.gameFrame[block.point1.x][block.point1.y]?.setImageResource(R.drawable.gameframe)
+        }
+        else throw NullPointerException("Expression 'gameState.gameFrame[block.point1.x][block.point1.y]' must not be null")
+        if (gameState.gameFrame[block.point2.x][block.point2.y] != null) {
+            gameState.gameFrame[block.point2.x][block.point2.y]?.setImageResource(R.drawable.gameframe)
+        }
+        else throw NullPointerException("Expression 'gameState.gameFrame[block.point2.x][block.point2.y]' must not be null")
+        if (gameState.gameFrame[block.point3.x][block.point3.y] != null) {
+            gameState.gameFrame[block.point3.x][block.point3.y]?.setImageResource(R.drawable.gameframe)
+        }
+        else throw NullPointerException("Expression 'gameState.gameFrame[block.point3.x][block.point3.y]' must not be null")
+        if (gameState.gameFrame[block.point4.x][block.point4.y] != null)
+        {
+            gameState.gameFrame[block.point4.x][block.point4.y]?.setImageResource(R.drawable.gameframe)
+        }
+        else throw NullPointerException("Expression 'gameState.gameFrame[block.point4.x][block.point4.y]' must not be null")
     }
 
     // 다음에 올 블럭을 nextBlockFrame에 보여주는 함수
     fun printNextBlock() {
         resetFrame(gameState.nextBlockFrame,gameState.NEXTROW,gameState.NEXTCOL) //화면초기화 후
         val blockPreView = randomBlockChoice(randomNum, 1, 1) //새 블럭 객체
-        gameState.nextBlockFrame[blockPreView.point1.x][blockPreView.point1.y]!!.setImageResource((blockColor(blockPreView.number)))
-        gameState.nextBlockFrame[blockPreView.point2.x][blockPreView.point2.y]!!.setImageResource((blockColor(blockPreView.number)))
-        gameState.nextBlockFrame[blockPreView.point3.x][blockPreView.point3.y]!!.setImageResource((blockColor(blockPreView.number)))
-        gameState.nextBlockFrame[blockPreView.point4.x][blockPreView.point4.y]!!.setImageResource((blockColor(blockPreView.number)))
+        if (gameState.nextBlockFrame[blockPreView.point1.x][blockPreView.point1.y] != null) {
+            gameState.nextBlockFrame[blockPreView.point1.x][blockPreView.point1.y]?.setImageResource((blockColor(blockPreView.number)))
+        }
+        else throw NullPointerException("Expression 'gameState.nextBlockFrame[blockPreView.point1.x][blockPreView.point1.y]' must not be null")
+        if (gameState.nextBlockFrame[blockPreView.point2.x][blockPreView.point2.y] != null) {
+            gameState.nextBlockFrame[blockPreView.point2.x][blockPreView.point2.y]?.setImageResource((blockColor(blockPreView.number)))
+        }
+        else throw NullPointerException("Expression 'gameState.nextBlockFrame[blockPreView.point2.x][blockPreView.point2.y]' must not be null")
+        if (gameState.nextBlockFrame[blockPreView.point3.x][blockPreView.point3.y] != null) {
+            gameState.nextBlockFrame[blockPreView.point3.x][blockPreView.point3.y]?.setImageResource((blockColor(blockPreView.number)))
+        }
+        else throw NullPointerException("Expression 'gameState.nextBlockFrame[blockPreView.point3.x][blockPreView.point3.y]' must not be null")
+        if (gameState.nextBlockFrame[blockPreView.point4.x][blockPreView.point4.y] != null) {
+            gameState.nextBlockFrame[blockPreView.point4.x][blockPreView.point4.y]?.setImageResource((blockColor(blockPreView.number)))
+        }
+        else throw NullPointerException("Expression 'gameState.nextBlockFrame[blockPreView.point4.x][blockPreView.point4.y]' must not be null")
     }
 
     fun imgDown() {
-        removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-        block.blockDown(arr)
-        printBlock() // 움직인 블럭을 다시 그림
-        newBlockDown()
+        try {
+            removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
+            block.blockDown(arr)
+            printBlock() // 움직인 블럭을 다시 그림
+        } catch(e: NullPointerException) {
+            Log.e("Remove for Down","NullError")
+        }
+
+        newBlockDown() // 바닥 or 밑의 다른 블럭 닿으면 새로운 블럭 생성
     }
 
     fun imgLeft() {
-        removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-        block.blockLeft(arr)
-        printBlock() // 움직인 블럭을 다시 그림
+        try {
+            removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
+            block.blockLeft(arr)
+            printBlock() // 움직인 블럭을 다시 그림
+        } catch(e: NullPointerException) {
+            Log.e("Remove for Left","NullError")
+        }
+
     }
 
     fun imgRight() {
-        removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-        block.blockRight(arr)
-        printBlock() // 움직인 블럭을 다시 그림
+        try {
+            removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
+            block.blockRight(arr)
+            printBlock() // 움직인 블럭을 다시 그림
+        } catch(e: NullPointerException) {
+            Log.e("Remove for Right", "NullPointerException")
+        }
+
     }
 
     fun imgChange() {
-        removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
-        block.rotation(arr)
-        printBlock() // 움직인 블럭을 다시 그림
+        try {
+            removeBlock() // 블럭을 원래 gridLayout의 배경으로 다시 변경
+            block.rotation(arr)
+            printBlock() // 움직인 블럭을 다시 그림
+        } catch(e: NullPointerException) {
+            Log.e("Remove for Rotation", "NullPointerException")
+        }
+
     }
 
     // Frame 초기화를 위해 만듦
     fun resetFrame(arr: Array<Array<ImageView?>>, row: Int, col: Int) {
         for(i in 0 until row)
             for(j in 0 until col)
-                arr[i][j]!!.setImageResource(blockColor(R.drawable.gameframe))
+                if (arr[i][j] != null) arr[i][j]?.setImageResource(blockColor(R.drawable.gameframe))
+                else throw NullPointerException("Expression 'arr[i][j]' must not be null")
     }
 
     fun isDelete(): Boolean {
@@ -181,14 +240,22 @@ open class Tetris() {
 
     fun printEachBlock(number: Int, arr: Array<Array<ImageView?>>, row: Int, col: Int) {
         when(number) {
-            1 -> arr[row][col]!!.setImageResource(R.drawable.skyblueblockl)
-            2 -> arr[row][col]!!.setImageResource(R.drawable.yellowblocko)
-            3 -> arr[row][col]!!.setImageResource(R.drawable.redblockz)
-            4 -> arr[row][col]!!.setImageResource(R.drawable.greenblocks)
-            5 -> arr[row][col]!!.setImageResource(R.drawable.deepblueblockj)
-            6 -> arr[row][col]!!.setImageResource(R.drawable.orangeblockl)
-            7 -> arr[row][col]!!.setImageResource(R.drawable.purpleblockt)
-            else -> arr[row][col]!!.setImageResource(R.drawable.gameframe)
+            1 -> if (arr[row][col] != null) arr[row][col]?.setImageResource(R.drawable.skyblueblockl)
+                else throw NullPointerException("Expression 'arr[row][col]' must not be null")
+            2 -> if (arr[row][col] != null) arr[row][col]?.setImageResource(R.drawable.yellowblocko)
+                else throw NullPointerException("Expression 'arr[row][col]' must not be null")
+            3 -> if (arr[row][col] != null) arr[row][col]?.setImageResource(R.drawable.redblockz)
+                else throw NullPointerException("Expression 'arr[row][col]' must not be null")
+            4 -> if (arr[row][col] != null) arr[row][col]?.setImageResource(R.drawable.greenblocks)
+                else throw NullPointerException("Expression 'arr[row][col]' must not be null")
+            5 -> if (arr[row][col] != null) arr[row][col]?.setImageResource(R.drawable.deepblueblockj)
+                else throw NullPointerException("Expression 'arr[row][col]' must not be null")
+            6 -> if (arr[row][col] != null) arr[row][col]?.setImageResource(R.drawable.orangeblockl)
+                else throw NullPointerException("Expression 'arr[row][col]' must not be null")
+            7 -> if (arr[row][col] != null) arr[row][col]?.setImageResource(R.drawable.purpleblockt)
+                else throw NullPointerException("Expression 'arr[row][col]' must not be null")
+            else -> if (arr[row][col] != null) arr[row][col]?.setImageResource(R.drawable.gameframe)
+                else throw NullPointerException("Expression 'arr[row][col]' must not be null")
         }
     }
 

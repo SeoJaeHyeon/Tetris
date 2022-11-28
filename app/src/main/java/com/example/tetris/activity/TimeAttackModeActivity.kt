@@ -79,7 +79,8 @@ class TimeAttackModeActivity: AppCompatActivity() {
         for (i in 0 until row) {
             for (j in 0 until col) {
                 // 게임화면에서 사용되는 이차원 배열의 각 원소에 gameframe_image를 넣음
-                arr!![i][j] = inflater.inflate(R.layout.gameframe_image, grid, false) as ImageView
+                (if (arr != null) arr[i][j] = inflater.inflate(R.layout.gameframe_image, grid, false) as ImageView
+                else throw NullPointerException("Expression 'arr' must not be null"))
                 // 위의 배열을 gridLayout에 맞추어 이미지 삽입
                 grid.addView(arr[i][j])
             }

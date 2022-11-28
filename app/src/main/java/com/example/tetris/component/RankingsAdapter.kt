@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tetris.databinding.ListRankingsBinding
 
-class RankingsAdapter(val rankings: Array<Ranking>)
+class RankingsAdapter(val rankings: ArrayList<Ranking>)
     : RecyclerView.Adapter<RankingsAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {

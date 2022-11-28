@@ -9,7 +9,7 @@ import com.example.tetris.component.RankingsAdapter
 import com.example.tetris.databinding.ActivityGameoverBinding
 
 class GameOverActivity : AppCompatActivity() {
-    val rankings = arrayOf(
+    val rankings = arrayListOf(
         Ranking(1,"Kim", 1400),
         Ranking(2, "Lee", 1500),
         Ranking(3, "Park", 1600),

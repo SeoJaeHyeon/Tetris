@@ -10,10 +10,10 @@ class GameState {
 
     val gameFrame = Array(ROW) { // gameFrame의 이차원 배열
         // 각 행들의 배열의 타입은 ImageView ! 나중에 초기화하기 위해 arrayOfNulls 배열 사용
-        arrayOfNulls<ImageView>(COL)
+        arrayOfNulls<ImageView?>(COL)
     }
-    val nextBlockFrame = Array(NEXTROW) { // Next blcok Frame의 이차원 배열
-        arrayOfNulls<ImageView>(NEXTCOL)
+    val nextBlockFrame = Array(NEXTROW) { // Next block Frame의 이차원 배열
+        arrayOfNulls<ImageView?>(NEXTCOL)
     }
 
     var run = true
