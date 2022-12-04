@@ -38,6 +38,8 @@ class GameOverActivity : AppCompatActivity() {
 
         binding.recRank.layoutManager = LinearLayoutManager(this)
         binding.recRank.adapter = RankingsAdapter(viewModel.rankings)
+        (binding.recRank.layoutManager as LinearLayoutManager).setReverseLayout(true)
+        (binding.recRank.layoutManager as LinearLayoutManager).setStackFromEnd(true)
 
         viewModel.rankings.observe(this) {
             binding?.recRank?.adapter?.notifyDataSetChanged()

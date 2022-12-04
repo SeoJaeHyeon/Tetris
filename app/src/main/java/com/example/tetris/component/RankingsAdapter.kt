@@ -22,7 +22,7 @@ class RankingsAdapter(val rankings: LiveData<ArrayList<Ranking>>)
 
     class ViewHolder(private val binding: ListRankingsBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(ranking: Ranking?, position: Int) {
-            binding.txtRank.text = (position+1).toString()
+            binding.txtRank.text = (5-position).toString()
             binding.txtName.text = ranking?.name
             binding.txtTop.text = ranking?.score.toString()
             /*ranking?.let {
