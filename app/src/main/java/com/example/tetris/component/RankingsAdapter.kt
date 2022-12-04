@@ -2,28 +2,34 @@ package com.example.tetris.component
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tetris.databinding.ListRankingsBinding
 
-class RankingsAdapter(val rankings: ArrayList<Ranking>)
-    : RecyclerView.Adapter<RankingsAdapter.Holder>() {
+class RankingsAdapter(val rankings: LiveData<ArrayList<Ranking>>)
+    : RecyclerView.Adapter<RankingsAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ListRankingsBinding.inflate(LayoutInflater.from(parent.context))
-        return Holder(binding)
+        return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(rankings[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(rankings.value?.get(position), position)
     }
 
-    override fun getItemCount() = rankings.size
+    override fun getItemCount(): Int = rankings.value?.size ?: 0
 
-    class Holder(private val binding: ListRankingsBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(ranking: Ranking) {
-            binding.txtRank.text = ranking.rank.toString()
-            binding.txtName.text = ranking.name
-            binding.txtTop.text = ranking.top.toString()
+    class ViewHolder(private val binding: ListRankingsBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(ranking: Ranking?, position: Int) {
+            binding.txtRank.text = (position+1).toString()
+            binding.txtName.text = ranking?.name
+            binding.txtTop.text = ranking?.score.toString()
+            /*ranking?.let {
+                binding.txtRank.text = "1"
+                binding.txtName.text = it.name
+                binding.txtTop.text = it.top.toString()
+            }*/
         }
     }
 }

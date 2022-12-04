@@ -2,22 +2,27 @@ package com.example.tetris.activity
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tetris.component.Ranking
 import com.example.tetris.component.RankingsAdapter
 import com.example.tetris.databinding.ActivityGameoverBinding
+import com.example.tetris.viewModel.ViewModelTetris
 
 class GameOverActivity : AppCompatActivity() {
-    val rankings = arrayListOf(
+    /*val rankings = arrayListOf(
         Ranking(1,"Kim", 1800),
         Ranking(2, "Lee", 1700),
         Ranking(3, "Park", 1600),
         Ranking(4, "Choi", 1500),
         Ranking(5, "Jung", 1400),
-    )
+    )*/
 
     lateinit var binding: ActivityGameoverBinding
+
+    val viewModel: ViewModelTetris by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +32,16 @@ class GameOverActivity : AppCompatActivity() {
 
         binding.txtResult.text = intent.getStringExtra("score")
 
+        /*binding.btnRank.setOnClickListener {
+            //viewModel.retrieveRankings()
+        }*/
+
         binding.recRank.layoutManager = LinearLayoutManager(this)
-        binding.recRank.adapter = RankingsAdapter(rankings)
+        binding.recRank.adapter = RankingsAdapter(viewModel.rankings)
+
+        viewModel.rankings.observe(this) {
+            binding?.recRank?.adapter?.notifyDataSetChanged()
+        }
 
         binding.btnRetry.setOnClickListener {
             val intent = Intent(this, ClassicModeActivity::class.java)

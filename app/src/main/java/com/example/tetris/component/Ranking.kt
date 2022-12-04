@@ -1,5 +1,5 @@
 package com.example.tetris.component
 
-data class Ranking(val rank: Int,
-                     val name: String,
-                     val top: Int)
+data class Ranking(
+    var name: String = "",
+    var score: Int = 0)
