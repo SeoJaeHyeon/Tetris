@@ -14,14 +14,6 @@ import com.example.tetris.databinding.ActivityGameoverBinding
 import com.example.tetris.viewModel.ViewModelTetris
 
 class GameOverActivity : AppCompatActivity() {
-    /*val rankings = arrayListOf(
-        Ranking(1,"Kim", 1800),
-        Ranking(2, "Lee", 1700),
-        Ranking(3, "Park", 1600),
-        Ranking(4, "Choi", 1500),
-        Ranking(5, "Jung", 1400),
-    )*/
-
     lateinit var binding: ActivityGameoverBinding
 
     val viewModel: ViewModelTetris by viewModels()
@@ -31,34 +23,25 @@ class GameOverActivity : AppCompatActivity() {
 
         binding = ActivityGameoverBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        /*val imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-        fun hideKeyBoard(v: View) {
-            if( v != null ) {
-                imm?.hideSoftInputFromWindow(v.windowToken, 0)
-            }
-        }*/
-        val score = intent.getIntExtra("score", 0)
-        binding.txtResult.text = score.toString()
-
-        /*binding.btnRank.setOnClickListener {
-            //viewModel.retrieveRankings()
-        }*/
+        
+        val score = intent.getIntExtra("score", 0) // 게임끝나고 점수 받아옴(Int형)
+        binding.txtResult.text = score.toString() // 문자형으로 변환 후 스코어 출력
+        
         binding.etxtInput.setOnClickListener {
-            val tempName = binding.etxtInput.getText()
-            binding.etxtInput.text = tempName
+            val tempName = binding.etxtInput.getText() // 사용자 이름 입력 받아
+            binding.etxtInput.text = tempName           // 입력받은 이름 보여주기
             val imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-            imm?.hideSoftInputFromWindow(binding.etxtInput.windowToken, 0)
-            viewModel.renewalRanking(tempName.toString(), score)
+            imm?.hideSoftInputFromWindow(binding.etxtInput.windowToken, 0) // 키보드 내리기
+            viewModel.renewalRanking(tempName.toString(), score) // 리사이클러뷰 최신화
         }
 
         binding.recRank.layoutManager = LinearLayoutManager(this)
         binding.recRank.adapter = RankingsAdapter(viewModel.rankings)
-        (binding.recRank.layoutManager as LinearLayoutManager).setReverseLayout(true)
-        (binding.recRank.layoutManager as LinearLayoutManager).setStackFromEnd(true)
+        (binding.recRank.layoutManager as LinearLayoutManager).setReverseLayout(true) // 파이어베이스 자료 orderByChild로 받으면 내림차순이라
+        (binding.recRank.layoutManager as LinearLayoutManager).setStackFromEnd(true)  // 리사이클러뷰 거꾸로 쌓아서 고득점이 위로 보이게 설정
 
         viewModel.rankings.observe(this) {
-            binding?.recRank?.adapter?.notifyDataSetChanged()
+            binding?.recRank?.adapter?.notifyDataSetChanged() //리사이클러뷰 업데이트
         }
 
         binding.btnRetry.setOnClickListener {

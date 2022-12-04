@@ -10,26 +10,21 @@ class RankingsAdapter(val rankings: LiveData<ArrayList<Ranking>>)
     : RecyclerView.Adapter<RankingsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ListRankingsBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = ListRankingsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(rankings.value?.get(position), position)
+        holder.bind(rankings.value?.get(position), position) // 랭킹 표시하려고 position까지 인자로 넣음
     }
 
-    override fun getItemCount(): Int = rankings.value?.size ?: 0
+    override fun getItemCount(): Int = rankings.value?.size ?: 0 // 받아온 Ranking의 수
 
     class ViewHolder(private val binding: ListRankingsBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(ranking: Ranking?, position: Int) {
-            binding.txtRank.text = (5-position).toString()
+            binding.txtRank.text = (5-position).toString() // 밑에서부터 쌓을거라 랭킹 순서는 5부터 0까지
             binding.txtName.text = ranking?.name
             binding.txtTop.text = ranking?.score.toString()
-            /*ranking?.let {
-                binding.txtRank.text = "1"
-                binding.txtName.text = it.name
-                binding.txtTop.text = it.top.toString()
-            }*/
         }
     }
 }

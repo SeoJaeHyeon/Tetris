@@ -73,8 +73,6 @@ class ClassicModeActivity : AppCompatActivity() {
             startActivity(Intent(this, StopActivity::class.java))
         }
 
-
-
     }
     // 게임 화면 설정 -> 게임화면에 사용될 이차원배열, 이차원배열을 그려줄 gridLayout, row, col을 매개변수로 받음
     fun gameFrameSetting(arr: Array<Array<ImageView?>>, grid: GridLayout, row: Int, col: Int) {
@@ -107,7 +105,6 @@ class ClassicModeActivity : AppCompatActivity() {
                 viewModelFrame.setscore(tetris.score, viewModelFrame.high.value?:0)
                 viewModelFrame.setlevel()
             }
-
             changeGameOverActivity()
         }
     }
