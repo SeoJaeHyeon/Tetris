@@ -33,8 +33,8 @@ class ViewModelTetris : ViewModel() {
         _high.value = 0 // 시작 최고 점수 0
         repository.observeRanking(_rankings) // 파이어베이스에서 읽어온 랭킹 리스트 받아옴
     }
-    fun renewalRanking(userName: String, score: Int) { // 새로운 사용자 정보가 들어오면
-        repository.modifyScore(userName, score)         // 데이터 업데이트 해주는 함수 호출
+    fun renewalRanking(userName: String, gamemode: String, score: Int) { // 새로운 사용자 정보가 들어오면
+        repository.modifyScore(userName, gamemode, score)         // 데이터 업데이트 해주는 함수 호출
     }
 
     fun setHigh(score: Int) {

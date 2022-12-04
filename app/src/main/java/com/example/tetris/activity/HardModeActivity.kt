@@ -19,6 +19,7 @@ class HardModeActivity : AppCompatActivity() {
 
     val viewModelFrameH: ViewModelTetris by viewModels()
     val tetris = Tetris()
+    val gamemode = "hard"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,6 +113,7 @@ class HardModeActivity : AppCompatActivity() {
 
         val intent = Intent(this, GameOverActivity::class.java)
         intent.putExtra("score", viewModelFrameH.score.value.toString())
+        intent.putExtra("gamemode", gamemode)
 
         startActivity(intent)
     }

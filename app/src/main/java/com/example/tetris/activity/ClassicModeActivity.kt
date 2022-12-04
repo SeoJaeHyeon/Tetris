@@ -20,6 +20,7 @@ class ClassicModeActivity : AppCompatActivity() {
 
     val viewModelFrame: ViewModelTetris by viewModels()
     val tetris = Tetris()
+    val gamemode = "classic"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,6 +115,7 @@ class ClassicModeActivity : AppCompatActivity() {
 
         val intent = Intent(this, GameOverActivity::class.java)
         intent.putExtra("score", viewModelFrame.score.value)
+        intent.putExtra("gamemode", gamemode)
 
         startActivity(intent)
     }

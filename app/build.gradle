@@ -33,6 +33,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     //viewBinding 해주기
     viewBinding{
         enabled = true

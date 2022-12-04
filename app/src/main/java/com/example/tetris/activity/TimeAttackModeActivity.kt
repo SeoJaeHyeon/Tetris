@@ -21,6 +21,7 @@ class TimeAttackModeActivity: AppCompatActivity() {
 
     val viewModelFrameT: ViewModelTetris by viewModels()
     val tetris = TetrisTimeAttack()
+    val gamemode = "timeAttack"
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -128,6 +129,7 @@ class TimeAttackModeActivity: AppCompatActivity() {
 
         val intent = Intent(this, GameOverActivity::class.java)
         intent.putExtra("score", viewModelFrameT.score.value.toString())
+        intent.putExtra("gamemode", gamemode)
 
         startActivity(intent)
     }

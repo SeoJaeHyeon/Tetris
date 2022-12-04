@@ -30,8 +30,8 @@ class TetrisRepository {
             }
         })
     }
-    fun modifyScore(userName: String, newValue: Int) {                      // 사용자, 데이터 들어오면
+    fun modifyScore(userName: String, gamemode: String, newValue: Int) {                      // 사용자, 데이터 들어오면
         val ranking = Ranking(userName, newValue)                           // Ranking 객체를 만들어서
-        database.child("user").child(userName).setValue(ranking)   // user 하위에 사용자 이름의 클래스에 점수 업데이트
+        database.child("user").child(gamemode).child(userName).setValue(ranking)   // user 하위에 사용자 이름의 클래스에 점수 업데이트
     }                                                                       // 받아온 이름으로 된 사용자 정보 없으면 새로 추가해줌
 }

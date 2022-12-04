@@ -26,13 +26,15 @@ class GameOverActivity : AppCompatActivity() {
         
         val score = intent.getIntExtra("score", 0) // 게임끝나고 점수 받아옴(Int형)
         binding.txtResult.text = score.toString() // 문자형으로 변환 후 스코어 출력
+
+        val gamemode = intent.getStringExtra("gamemode")
         
         binding.etxtInput.setOnClickListener {
             val tempName = binding.etxtInput.getText() // 사용자 이름 입력 받아
             binding.etxtInput.text = tempName           // 입력받은 이름 보여주기
             val imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
             imm?.hideSoftInputFromWindow(binding.etxtInput.windowToken, 0) // 키보드 내리기
-            viewModel.renewalRanking(tempName.toString(), score) // 리사이클러뷰 최신화
+            viewModel.renewalRanking(tempName.toString(), gamemode?:"classic", score) // 리사이클러뷰 최신화
         }
 
         binding.recRank.layoutManager = LinearLayoutManager(this)
