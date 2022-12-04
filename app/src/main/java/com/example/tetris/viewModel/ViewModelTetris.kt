@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.tetris.component.Ranking
+import com.example.tetris.component.Tetris
 import com.example.tetris.component.TetrisRepository
 
 class ViewModelTetris : ViewModel() {
@@ -19,14 +20,21 @@ class ViewModelTetris : ViewModel() {
     private val _high = MutableLiveData<Int>()
     val high: LiveData<Int> get() = _high
 
+    private val _userName = MutableLiveData<String>()
+    val userName: LiveData<String> get() =_userName
+
     private val _rankings = MutableLiveData<ArrayList<Ranking>>()
     val rankings : LiveData<ArrayList<Ranking>> = _rankings
 
     init {
+        _userName.value = ""
         _score.value = 0 // 시작점수 0
         _level.value = 1 // 시작레벨 1
         _high.value = 0 // 시작 최고 점수 0
         repository.observeRanking(_rankings)
+    }
+    fun renewalRanking(userName: String, score: Int) {
+        repository.modifyScore(userName, score)
     }
 
     fun setHigh(score: Int) {

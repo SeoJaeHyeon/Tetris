@@ -116,7 +116,7 @@ class ClassicModeActivity : AppCompatActivity() {
     fun changeGameOverActivity() {
 
         val intent = Intent(this, GameOverActivity::class.java)
-        intent.putExtra("score", viewModelFrame.score.value.toString())
+        intent.putExtra("score", viewModelFrame.score.value)
 
         startActivity(intent)
     }

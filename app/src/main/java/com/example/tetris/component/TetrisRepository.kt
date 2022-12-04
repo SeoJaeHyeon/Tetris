@@ -12,15 +12,17 @@ import com.google.firebase.ktx.Firebase
 
 class TetrisRepository {
     private val rankingList = ArrayList<Ranking>()
-    var database = FirebaseDatabase.getInstance()
-    val userRef = database.getReference().child("user").orderByChild("score").limitToLast(5)
+    //var database = Firebase.database.reference
+    var database = FirebaseDatabase.getInstance().getReference()
+    val userRef = database.child("user").orderByChild("score").limitToLast(5)
 
     fun observeRanking(rankings: MutableLiveData<ArrayList<Ranking>>) {
         userRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                rankingList.clear()
                 for( datasnapshot in snapshot.children) {
-                    val rankingResult = datasnapshot.getValue(Ranking::class.java)
-                    rankingResult?.let { rankingList.add(it) }
+                    val ranking = datasnapshot.getValue(Ranking::class.java)
+                    ranking?.let { rankingList.add(it) }
                 }
                 rankings.postValue(rankingList)
             }
@@ -28,7 +30,8 @@ class TetrisRepository {
             }
         })
     }
-    fun modifyScore(newValue: Int) {
-
+    fun modifyScore(userName: String, newValue: Int) {
+        val ranking = Ranking(userName, newValue)
+        database.child("user").child(userName).setValue(ranking)
     }
 }

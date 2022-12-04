@@ -2,6 +2,8 @@ package com.example.tetris.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
@@ -30,11 +32,25 @@ class GameOverActivity : AppCompatActivity() {
         binding = ActivityGameoverBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.txtResult.text = intent.getStringExtra("score")
+        /*val imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        fun hideKeyBoard(v: View) {
+            if( v != null ) {
+                imm?.hideSoftInputFromWindow(v.windowToken, 0)
+            }
+        }*/
+        val score = intent.getIntExtra("score", 0)
+        binding.txtResult.text = score.toString()
 
         /*binding.btnRank.setOnClickListener {
             //viewModel.retrieveRankings()
         }*/
+        binding.etxtInput.setOnClickListener {
+            val tempName = binding.etxtInput.getText()
+            binding.etxtInput.text = tempName
+            val imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+            imm?.hideSoftInputFromWindow(binding.etxtInput.windowToken, 0)
+            viewModel.renewalRanking(tempName.toString(), score)
+        }
 
         binding.recRank.layoutManager = LinearLayoutManager(this)
         binding.recRank.adapter = RankingsAdapter(viewModel.rankings)

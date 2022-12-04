@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -31,7 +31,43 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rec_rank"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/txt_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="이름을 입력하세요 :"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/etxt_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:imeOptions="actionDone"
+                    android:editable="true"
+                    android:hint="(ex. Jerry)"
+                    android:inputType="textPersonName"
+                    android:selectAllOnFocus="true"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#969696"
+                    android:textColorHint="#C8C8C8"
+                    android:textSize="20sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
