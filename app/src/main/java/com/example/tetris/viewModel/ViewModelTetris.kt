@@ -26,6 +26,9 @@ class ViewModelTetris : ViewModel() {
     private val _rankings = MutableLiveData<ArrayList<Ranking>>()
     val rankings : LiveData<ArrayList<Ranking>> = _rankings
 
+    private val _gamemode = MutableLiveData<String>()
+    val gamemode : LiveData<String> get() = _gamemode
+
     init {
         _userName.value = ""
         _score.value = 0 // 시작점수 0
@@ -35,6 +38,10 @@ class ViewModelTetris : ViewModel() {
     }
     fun renewalRanking(userName: String, gamemode: String, score: Int) { // 새로운 사용자 정보가 들어오면
         repository.modifyScore(userName, gamemode, score)         // 데이터 업데이트 해주는 함수 호출
+    }
+
+    fun setGameMode(gamemode: String) {
+        _gamemode.value = gamemode
     }
 
     fun setHigh(score: Int) {

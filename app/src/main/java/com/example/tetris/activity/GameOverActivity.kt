@@ -28,7 +28,10 @@ class GameOverActivity : AppCompatActivity() {
         binding.txtResult.text = score.toString() // 문자형으로 변환 후 스코어 출력
 
         val gamemode = intent.getStringExtra("gamemode")
-        
+        if (gamemode != null) {
+            viewModel.setGameMode(gamemode)
+        }
+
         binding.etxtInput.setOnClickListener {
             val tempName = binding.etxtInput.getText() // 사용자 이름 입력 받아
             binding.etxtInput.text = tempName           // 입력받은 이름 보여주기
