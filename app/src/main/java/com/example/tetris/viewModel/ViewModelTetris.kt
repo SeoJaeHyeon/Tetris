@@ -22,11 +22,6 @@ class ViewModelTetris : ViewModel() {
     private val _rankings = MutableLiveData<ArrayList<Ranking>>()
     val rankings : LiveData<ArrayList<Ranking>> = _rankings
 
-    fun retrieveRankings() {}
-        //_rankings.value = rankings.
-        //_rankings.value =
-
-
     init {
         _score.value = 0 // 시작점수 0
         _level.value = 1 // 시작레벨 1
@@ -48,6 +43,4 @@ class ViewModelTetris : ViewModel() {
         //_level.value = _score.value?.div(100)?.plus(1)
         _level.postValue(_score.value?.div(100)?.plus(1))
     }
-
-
 }
