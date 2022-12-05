@@ -34,7 +34,6 @@ class ViewModelTetris : ViewModel() {
         _score.value = 0 // 시작점수 0
         _level.value = 1 // 시작레벨 1
         _high.value = 0 // 시작 최고 점수 0
-        //repository.observeRanking(_rankings, gamemode) // 파이어베이스에서 읽어온 랭킹 리스트 받아옴
     }
 
     fun setGameMode(gamemode: String) {
@@ -50,17 +49,14 @@ class ViewModelTetris : ViewModel() {
     }
 
     fun setHigh(score: Int) {
-        //_high.value = score
         _high.postValue(score)
     }
 
-    fun setscore(score: Int, high: Int) { // erase를 인자로 받아서 점수 계산
-        //_score.value = score
+    fun setscore(score: Int, high: Int) {
         _score.postValue(score)
         if( score > high) setHigh(score)
     }
-    fun setlevel() { // 점수를 인자로 받아서 레벨 업업
-        //_level.value = _score.value?.div(100)?.plus(1)
+    fun setlevel() { // 점수를 인자로 받아서 레벨 업
         _level.postValue(_score.value?.div(100)?.plus(1))
     }
 }

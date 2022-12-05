@@ -4,7 +4,7 @@ import java.util.*
 
 class TetrisTimeAttack : Tetris() {
     // 타임어택 모드에서 사용
-    var time = 3000 //처음 시간 60초
+    var time = 6000 //처음 시간 60초
     var timerTask: Timer? = null
     var sec = 0
     var milli = 0
