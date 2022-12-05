@@ -34,14 +34,19 @@ class ViewModelTetris : ViewModel() {
         _score.value = 0 // 시작점수 0
         _level.value = 1 // 시작레벨 1
         _high.value = 0 // 시작 최고 점수 0
-        repository.observeRanking(_rankings) // 파이어베이스에서 읽어온 랭킹 리스트 받아옴
-    }
-    fun renewalRanking(userName: String, gamemode: String, score: Int) { // 새로운 사용자 정보가 들어오면
-        repository.modifyScore(userName, gamemode, score)         // 데이터 업데이트 해주는 함수 호출
+        //repository.observeRanking(_rankings, gamemode) // 파이어베이스에서 읽어온 랭킹 리스트 받아옴
     }
 
     fun setGameMode(gamemode: String) {
         _gamemode.value = gamemode
+    }
+
+    fun callRankings() {
+        _gamemode.value?.let { repository.observeRanking(_rankings, it) }
+    }
+
+    fun renewalRankings(userName: String, gamemode: String, score: Int) { // 새로운 사용자 정보가 들어오면
+        repository.modifyScore(userName, gamemode, score)         // 데이터 업데이트 해주는 함수 호출
     }
 
     fun setHigh(score: Int) {

@@ -31,13 +31,18 @@ class GameOverActivity : AppCompatActivity() {
         if (gamemode != null) {
             viewModel.setGameMode(gamemode)
         }
+        viewModel.gamemode.observe(this) {
+            viewModel.callRankings()
+        }
 
         binding.etxtInput.setOnClickListener {
             val tempName = binding.etxtInput.getText() // 사용자 이름 입력 받아
             binding.etxtInput.text = tempName           // 입력받은 이름 보여주기
             val imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
             imm?.hideSoftInputFromWindow(binding.etxtInput.windowToken, 0) // 키보드 내리기
-            viewModel.renewalRanking(tempName.toString(), gamemode?:"classic", score) // 리사이클러뷰 최신화
+            if (gamemode != null) {
+                viewModel.renewalRankings(tempName.toString(), gamemode, score)
+            } // 리사이클러뷰 최신화
         }
 
         binding.recRank.layoutManager = LinearLayoutManager(this)

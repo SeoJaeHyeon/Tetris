@@ -20,7 +20,7 @@ class ClassicModeActivity : AppCompatActivity() {
 
     val viewModelFrame: ViewModelTetris by viewModels()
     val tetris = Tetris()
-    val gamemode = "classic"
+    val gamemode: String = "classic"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
