@@ -144,7 +144,7 @@ class TimeAttackModeActivity: AppCompatActivity() {
     fun saveState() {
         val pref = getSharedPreferences("prefT", Activity.MODE_PRIVATE)
         val editor = pref.edit()
-        editor.putInt("highT", (viewModelFrameT.high.value!!))
+        editor.putInt("highT", (viewModelFrameT.high.value ?: 0))
         editor.commit()
     }
 

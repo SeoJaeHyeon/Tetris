@@ -14,7 +14,6 @@ import com.google.firebase.ktx.Firebase
 class TetrisRepository {
     private val rankingList = ArrayList<Ranking>() // 파이어베이스에서 읽어온 데이터를 저장할 어레이리스트
     var database = FirebaseDatabase.getInstance().getReference() // 데이터베이스에서 자료를 받아오는데
-    //val userRef = database.child("user").orderByChild("score").limitToLast(5)
     // user 아래 children 데이터들을 가져올건데         점수를 기준으로 오름차순       맨 마지막에서 5개
 
     fun observeRanking(rankings: MutableLiveData<ArrayList<Ranking>>, gamemode: String) {

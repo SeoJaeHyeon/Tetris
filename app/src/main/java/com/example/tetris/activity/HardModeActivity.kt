@@ -128,7 +128,7 @@ class HardModeActivity : AppCompatActivity() {
     fun saveState() {
         val pref = getSharedPreferences("prefH", Activity.MODE_PRIVATE)
         val editor = pref.edit()
-        editor.putInt("highH", (viewModelFrameH.high.value!!))
+        editor.putInt("highH", (viewModelFrameH.high.value ?: 0))
         editor.commit()
     }
 

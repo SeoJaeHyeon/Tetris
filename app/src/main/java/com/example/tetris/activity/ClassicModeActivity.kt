@@ -130,7 +130,7 @@ class ClassicModeActivity : AppCompatActivity() {
     fun saveState() {
         val pref = getSharedPreferences("pref", Activity.MODE_PRIVATE)
         val editor = pref.edit()
-        editor.putInt("high", (viewModelFrame.high.value!!))
+        editor.putInt("high", (viewModelFrame.high.value ?: 0))
         editor.commit()
     }
 
