@@ -97,7 +97,7 @@ class ClassicModeActivity : AppCompatActivity() {
         tetris.printNextBlock()
         thread(start = true) {
             while(tetris.gameState.run) {
-                var millis = 1000L - (viewModelFrame.level.value?.times(25) ?:0)
+                val millis = 1000L - (viewModelFrame.level.value?.times(25) ?:0)
                 Thread.sleep(millis)
                 runOnUiThread {
                     tetris.moveDownBlock()

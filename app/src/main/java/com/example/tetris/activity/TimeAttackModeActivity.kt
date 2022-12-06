@@ -111,7 +111,7 @@ class TimeAttackModeActivity: AppCompatActivity() {
         tetris.printNextBlock()
         thread(start = true) {
             while(tetris.gameState.run) {
-                var millis = 500L
+                val millis = 500L
                 Thread.sleep(millis)
                 runOnUiThread {
                     tetris.moveDownBlock()

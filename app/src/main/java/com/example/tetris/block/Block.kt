@@ -3,7 +3,7 @@ package com.example.tetris.block
 import com.example.tetris.component.CompareArray
 
 // 최상위 클래스인 Block을 상속하여 각각의 Block를 정의
-abstract class Block(var x: Int, var y: Int) {
+abstract class Block() {
     abstract var number: Int // 각 블럭별로 상이한 숫자를 가져 서로 다른 블럭임을 나타냄
 
     abstract val point1: Point // 각 블럭들의 기준 블럭

@@ -2,7 +2,7 @@ package com.example.tetris.block
 
 import com.example.tetris.component.CompareArray
 
-class BlockI(var row: Int, var col: Int): Block(row, col) {
+class BlockI(var row: Int, var col: Int): Block() {
 
     override var number = 1
     override val point1 = Point( row, col )
