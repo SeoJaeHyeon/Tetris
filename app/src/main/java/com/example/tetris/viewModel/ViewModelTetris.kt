@@ -56,7 +56,7 @@ class ViewModelTetris : ViewModel() {
         _score.postValue(score)
         if( score > high) setHigh(score)
     }
-    fun setlevel() { // 점수를 인자로 받아서 레벨 업
+    fun setlevel() {
         _level.postValue(_score.value?.div(100)?.plus(1))
     }
 }

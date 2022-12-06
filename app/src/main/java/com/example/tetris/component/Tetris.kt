@@ -56,7 +56,6 @@ open class Tetris() {
     // 블럭을 gameFrame에 보여주는 함수
     fun printBlock() {
         arr.changeZeroToBlockNumber(block)
-        // 블럭이 지정하는 인덱스에 맞추어 블럭 출력 -> gameFrame의 배열 블럭은 항상 이미지가 있어 null이 될 수 없음
         gameState.gameFrame[block.point1.x][block.point1.y]. let {
             it?.setImageResource(blockColor(block.number))
         }
